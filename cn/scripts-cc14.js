@@ -1311,7 +1311,7 @@ function broadcastTransactionFn(transactionBytes, location){
 };
 
 //generate QR code for title token issuance--------------------------------start
-function issueNFTQRCodeFn(assetID,regCode, location){
+function issueNFTQRCodeFn(assetID,regCode,fullHash,location){
   var assetIDConfig = {
     width: 180,
     height: 180,
@@ -1319,8 +1319,25 @@ function issueNFTQRCodeFn(assetID,regCode, location){
     PI:"#0C8918",
     quietZone: 25,
     logo:"../images/logo-nft-qr.png",
-    logoWidth:80,
-    logoHeight:80,
+    logoWidth:60,
+    logoHeight:60,
+    logoBackgroundTransparent: true,
+    title:"Title Token ID",
+    subTitle:assetID,
+    titleHeight:50,
+    titleTop:20,
+    subTitleTop: 40,
+    correctLevel: QRCode.CorrectLevel.H
+  };
+  var fullHashConfig = {
+    width: 180,
+    height: 180,
+    text:fullHash,
+    PI:"#0C8918",
+    quietZone: 25,
+    logo:"../images/logo-nft-qr.png",
+    logoWidth:40,
+    logoHeight:40,
     logoBackgroundTransparent: true,
     title:"Title Token ID",
     subTitle:assetID,
@@ -1336,8 +1353,8 @@ function issueNFTQRCodeFn(assetID,regCode, location){
     PI:"#177CB0",
     quietZone: 25,
     logo:"../images/logo-cc14-qr.png",
-    logoWidth:80,
-    logoHeight:40,
+    logoWidth:60,
+    logoHeight:30,
     logoBackgroundTransparent: false,
     title:"Verification  Code",
     subTitle:assetID,
@@ -1347,11 +1364,12 @@ function issueNFTQRCodeFn(assetID,regCode, location){
     correctLevel: QRCode.CorrectLevel.Q
   };
   var t=new QRCode(document.getElementById(location), assetIDConfig);
+  var t=new QRCode(document.getElementById(location), fullHashConfig);
   var s=new QRCode(document.getElementById(location), regCodeConfig);
 };
 
-// title token issuance, PID = NFT ID -------------------------------------start
-$("#issueNFTForm").submit(function(event){
+// title token issuance, PID = NFT ID -------------------------------------BK
+$("#BKissueNFTForm").submit(function(event){
   event.preventDefault();
   sessionStorage.clear();
   var formData = $(this).serializeArray();
@@ -1440,8 +1458,83 @@ $("#issueNFTForm").submit(function(event){
   $("#issueNFTResponse").removeClass("d-none");
 });
 
-// title token issuance, with pre-defined serial number -------------------start
-$("#issueNFTwSNoForm").submit(function(event){
+// title token issuance, PID = NFT ID -------------------------------------start
+$("#issueNFTForm").submit(function(event){
+  event.preventDefault();
+  sessionStorage.clear();
+  var formData = $(this).serializeArray();
+  var issueQty=parseInt(formData[4].value);
+  var barcode   = parseInt(formData[0].value);
+  var assetName = barcode.toString(32);
+
+  for(i=0; i<issueQty;i++){
+    var placeholder=99999-i;
+    var issueAssetData = [
+      {name:"requestType", value:"issueAsset"},
+      {name:"name",        value:assetName},
+      {name:"description", value:"NFTID"+placeholder},
+      {name:"quantityQNT", value:"1"},
+      {name:"decimals",    value:"0"},
+      {name:"secretPhrase",value:formData[3].value},
+      {name:"feeNQT",      value:"0"},
+      {name:"deadline",    value:"60"},
+      {name:"broadcast",   value:"true"},
+      {name:"message",     value:formData[2].value},
+    ];
+
+    //remove below line for real production-------------------------------------
+    if (secretPhraseIssuance.includes(formData[3].value)){
+      var broadcastLimit = 2;
+    }else{
+      var broadcastLimit = issueQty;
+    };
+    console.log(broadcastLimit);
+    if(i>=broadcastLimit){
+      issueAssetData[8].value ="false";
+    }else{
+    };
+    //remove above line for real production-------------------------------------
+
+    $.ajax({
+      type:"POST",
+      url: apiNodeURL,
+      data:issueAssetData,
+      success:function(response){
+        var responseObj = JSON.parse(response);
+        var fullHash    = responseObj.fullHash;
+        var assetID     = NRS.fullHashToId(fullHash);
+        var feeCC14     = responseObj.transactionJSON.feeNQT/100000000;
+        var timestamp   = responseObj.transactionJSON.timestamp;
+        var senderRS    = responseObj.transactionJSON.senderRS;
+        var description = responseObj.transactionJSON.attachment.description;
+        var message     = responseObj.transactionJSON.attachment.message;
+        var key         = CryptoJS.enc.Hex.parse(keyHex);
+        var iv          = CryptoJS.enc.Hex.parse(ivHex);
+        var encryptedID = CryptoJS.AES.encrypt(assetID, key, { iv: iv });
+        var regCodeText = encryptedID.ciphertext.toString();
+        var issueTime   = timestampToLocalFn(timestamp);
+        var issueNFTTbl = "<tr><td>"+assetID+
+                          "</td><td>"+assetID+
+                          "</td><td>"+fullHash+
+                          "</td><td>"+regCodeText+
+                          "</td><td>"+barcode+
+                          "</td><td>"+assetName+
+                          "</td><td>"+message+
+                          "</td><td>"+senderRS+
+                          "</td><td>"+issueTime[0]+" "+issueTime[1]+
+                          "</td><td>"+feeCC14+
+                          "</td></tr>";
+        issueNFTQRCodeFn(assetID,regCodeText,fullHash,"issueNFTQRCode");
+        $("#issueNFTResultTbl tbody").append(issueNFTTbl);
+        $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+      }
+    });
+  };
+  $("#issueNFTResponse").removeClass("d-none");
+});
+
+// title token issuance, with pre-defined serial number ----------------------BK
+$("#BKissueNFTwSNoForm").submit(function(event){
   event.preventDefault();
   sessionStorage.clear();
   var formData = $(this).serializeArray();
@@ -1522,6 +1615,83 @@ $("#issueNFTwSNoForm").submit(function(event){
         }
       });
     };
+  };
+  $("#issueNFTwSNoResponse").removeClass("d-none");
+});
+
+// title token issuance, with pre-defined serial number -------------------start
+$("#issueNFTwSNoForm").submit(function(event){
+  event.preventDefault();
+  sessionStorage.clear();
+  var formData = $(this).serializeArray();
+  var fullHashArray         = new Array(serialNoQty);
+  var assetIDArray          = new Array(serialNoQty);
+  var transactionBytesArray = new Array(serialNoQty);
+  var barcode               = parseInt(formData[0].value);
+  var assetName             = barcode.toString(32);
+  var serialNumbers         = JSON.parse(formData[1].value);
+  var serialNoQty           = serialNumbers.length;
+  for (i=0; i<serialNoQty;i++){
+    var issueAssetData = [
+      {name:"requestType", value:"issueAsset"},
+      {name:"name",        value:assetName},
+      {name:"description", value:serialNumbers[i]},
+      {name:"quantityQNT", value:"1"},
+      {name:"decimals",    value:"0"},
+      {name:"secretPhrase",value:formData[3].value},
+      {name:"feeNQT",      value:"0"},
+      {name:"deadline",    value:"60"},
+      {name:"broadcast",   value:"true"},
+      {name:"message",     value:formData[2].value},
+    ];
+
+    //remove below line for real production-------------------------------------
+    if (secretPhraseIssuance.includes(formData[3].value)){
+      var broadcastLimit = 2;
+    }else{
+      var broadcastLimit = issueQty;
+    };
+    if(i>=broadcastLimit){
+      issueAssetData[8].value ="false";
+    }else{
+    };
+    //remove above line for real production-------------------------------------
+
+    $.ajax({
+      type:"POST",
+      url: apiNodeURL,
+      data:issueAssetData,
+      success:function(response){
+        var responseObj = JSON.parse(response);
+        var fullHash    = responseObj.fullHash;
+        var assetID     = NRS.fullHashToId(fullHash);
+        var feeCC14     = responseObj.transactionJSON.feeNQT/100000000;
+        var timestamp   = responseObj.transactionJSON.timestamp;
+        var senderRS    = responseObj.transactionJSON.senderRS;
+        var description = responseObj.transactionJSON.attachment.description;
+        var message     = responseObj.transactionJSON.attachment.message;
+        var key         = CryptoJS.enc.Hex.parse(keyHex);
+        var iv          = CryptoJS.enc.Hex.parse(ivHex);
+        var encryptedID = CryptoJS.AES.encrypt(assetID, key, { iv: iv });
+        var regCodeText = encryptedID.ciphertext.toString();
+        var issueTime   = timestampToLocalFn(timestamp);
+        var n=i+1;
+        var issueNFTTbl = "<tr><td>"+description +
+                          "</td><td>"+assetID+
+                          "</td><td>"+fullHash+
+                          "</td><td>"+regCodeText+
+                          "</td><td>"+barcode+
+                          "</td><td>"+assetName+
+                          "</td><td>"+message+
+                          "</td><td>"+senderRS+
+                          "</td><td>"+issueTime[0]+" "+issueTime[1]+
+                          "</td><td>"+feeCC14+
+                          "</td></tr>";
+        issueNFTQRCodeFn(assetID,regCodeText,fullHash,"issueNFTwSNoQRCode");
+        $("#issueNFTwSNoResultTbl tbody").append(issueNFTTbl);
+        $("#issueNFTwSNoJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+      }
+    });
   };
   $("#issueNFTwSNoResponse").removeClass("d-none");
 });

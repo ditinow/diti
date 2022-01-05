@@ -70,7 +70,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
@@ -78,16 +78,16 @@
                         <input type="number" class="form-control" name='issueQty' value='2' min="2" max="100">
 
                       </div>
-                      <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备上链字节">
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
                       </div>
                     </form>
-                    <form id="issueNFTBroadcastForm">
+                    <!-- <form id="issueNFTBroadcastForm">
                       <input type="hidden" name="requestType" value="broadcastTransaction">
                       <input type="hidden" name="transactionBytes" value="">
                       <input type="submit" id="issueNFTBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认授权">
-                    </form>
+                    </form> -->
                   </div>
                   <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
                     <div class="overflow-auto" name="issueNFTResult">
@@ -98,11 +98,10 @@
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
                           <thead class="thead-light">
                             <tr>
-                              <th>#</th>
-                              <th>防伪码</th>
                               <th>产品编号</th>
+                              <th>防伪码 (短码)</th>
+                              <th>防伪码 (长码, 区块链事件完整哈希)</th>
                               <th>验证码</th>
-                              <th>区块链标识</th>
                               <th>产品条码</th>
                               <th>令牌名字</th>
                               <th>操作信息</th>
@@ -147,7 +146,7 @@
                       </div>
                       <div class="input-group mb-3 " >
                         <span class="input-group-text">产品编号</span>
-                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003","9990048413986158969","9990048413986158969","9990048413986158969","9990048413986158969","9990048413986158969"]</textarea>
+                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003"]</textarea>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">操作信息</span>
@@ -155,7 +154,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3 d-none" >
@@ -167,16 +166,16 @@
                           <option value="10">Quantity 10</option>
                         </datalist>
                       </div>
-                      <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备上链字节">
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
                       </div>
                     </form>
-                    <form id="issueNFTwSNoBroadcastForm">
+                    <!-- <form id="issueNFTwSNoBroadcastForm">
                       <input type="hidden" name="requestType" value="broadcastTransaction">
                       <input type="hidden" name="transactionBytes" value="">
                       <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认上链">
-                    </form>
+                    </form> -->
                   </div>
                   <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
                     <div class="overflow-auto" name="issueNFTwSNoResult">
@@ -186,13 +185,12 @@
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
                           <thead class="thead-light">
                             <tr>
-                              <th>#</th>
-                              <th>防伪码</th>
                               <th>产品编号</th>
+                              <th>防伪码 (短码)</th>
+                              <th>防伪码 (长码, 区块链事件完整哈希)</th>
                               <th>验证码</th>
-                              <th>区块链标识</th>
                               <th>产品条码</th>
-                              <th>资产名字</th>
+                              <th>令牌名字</th>
                               <th>操作信息</th>
                               <th>授权钱包</th>
                               <th>授权时间</th>

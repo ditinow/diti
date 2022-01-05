@@ -9,7 +9,7 @@
   <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
   <meta name="integrity" content="token...">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel = "icon" href ="../images/icon-ditinow.png.png" type = "image/x-icon">
+  <link rel = "icon" href ="../images/icon-ditinow.png" type = "image/x-icon">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style-cc14.css">
   <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
@@ -69,23 +69,23 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Quantity</span>
                         <input type="number" class="form-control" name='issueQty' value='5' min="2" max="100">
                       </div>
-                      <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepare transactionBytes">
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="only 2 token issuance transactions will bebroadcasted for prefilled passpharse" value="&#x2714; Confirm broadcast">
                       </div>
                     </form>
-                    <form id="issueNFTBroadcastForm">
+                    <!-- <form id="issueNFTBroadcastForm">
                       <input type="hidden" name="requestType" value="broadcastTransaction">
                       <input type="hidden" name="transactionBytes" value="">
                       <input type="submit" id="issueNFTBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm broadcast">
-                    </form>
+                    </form> -->
                   </div>
                   <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
                     <div class="overflow-auto" name="issueNFTResult">
@@ -95,11 +95,10 @@
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
                           <thead class="thead-light">
                             <tr>
-                              <th>#</th>
-                              <th>Title Token ID</th>
                               <th>Product ID</th>
+                              <th>Title Token(short ID)</th>
+                              <th>Title Token(long ID)</th>
                               <th>Verification Code</th>
-                              <th>Full hash</th>
                               <th>Barcode</th>
                               <th>Asset name</th>
                               <th>Mssage</th>
@@ -152,7 +151,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3 d-none" >
@@ -164,16 +163,18 @@
                           <option value="10">Quantity 10</option>
                         </datalist>
                       </div>
-                      <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepare transactionBytes">
+                      <!-- <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-secondary" value="&#x1F503;Reset"> -->
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="only 2 token issuance transactions will bebroadcasted for prefilled passpharse" value="&#x2714; Confirm broadcast">
                       </div>
                     </form>
-                    <form id="issueNFTwSNoBroadcastForm">
+                    <!-- <form id="issueNFTwSNoBroadcastForm">
                       <input type="hidden" name="requestType" value="broadcastTransaction">
                       <input type="hidden" name="transactionBytes" value="">
                       <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm broadcast">
-                    </form>
+                    </form> -->
                   </div>
                   <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
                     <div class="overflow-auto" name="issueNFTwSNoResult">
@@ -184,11 +185,10 @@
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
                           <thead class="thead-light">
                             <tr>
-                              <th>#</th>
-                              <th>Title Token ID</th>
-                              <th>Product ID</th>
+                              <th>Serial No</th>
+                              <th>Title Token(short ID)</th>
+                              <th>Title Token(long ID)</th>
                               <th>Verification Code</th>
-                              <th>Full hash</th>
                               <th>Barcode</th>
                               <th>Asset name</th>
                               <th>Mssage</th>
