@@ -4,7 +4,8 @@ $mySecretPhrase = "ci di wu yin 302 liang ge bi wang er bu ceng tou";
 $key   = hex2bin("d0e84ed3edceb0c92db2621f64ae4f8d");
 $iv    = hex2bin("f5547c653a7022e9958d3c9de1fcc1af");
 
-$mes        = hex2bin($_POST["regCode"]);
+// $mes        = hex2bin($_POST["regCode"]);
+$mes   = base64_decode($_POST["regCode"]);
 $asset      = $_POST["asset"];
 $recipient  = $_POST["recipient"];
 $publicKey  = $_POST["publicKey"];

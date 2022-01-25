@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>CryptoC14 一站式区块链应用</title>
   <meta charset="utf-8">
   <meta name="description" content="Crypto C14 一站式区块链应用">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -26,12 +26,28 @@
   <div style="min-height: calc(100vh - 50px);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ 本地电脑</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ 本地网络</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
         </div>
       </div>
     </nav>
@@ -70,7 +86,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
@@ -80,7 +96,7 @@
                       </div>
                       <div class="d-md-flex justify-content-md-end mb-3">
                         <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
+                        <input type="submit" class="btn btn-success " id="issueNFTBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
                       </div>
                     </form>
                     <!-- <form id="issueNFTBroadcastForm">
@@ -168,7 +184,7 @@
                       </div>
                       <div class="d-md-flex justify-content-md-end mb-3">
                         <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
+                        <input type="submit" class="btn btn-success " id="issueNFTwSNoSubmitBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
                       </div>
                     </form>
                     <!-- <form id="issueNFTwSNoBroadcastForm">
@@ -473,7 +489,7 @@
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备交易字节">
+                        <input type="submit" class="btn btn-outline-secondary " id="setAssetPropertyTByteBtn" value="&#x2705;准备交易字节">
                       </div>
                     </form>
                     <div>
@@ -552,7 +568,7 @@
 
             <div class="accordion-item" name="Request Title Token">
               <h2 class="accordion-header" id="requestTitlTokenFlip">
-                <button id="RequestDTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestTitlTokenPanel" aria-expanded="false" aria-controls="requestTitlTokenPanel">
+                <button id="requestTitlTokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestTitlTokenPanel" aria-expanded="false" aria-controls="requestTitlTokenPanel">
                   <h4>&#x1F41E; 申请权益令牌</h4>
                 </button>
               </h2>
@@ -729,12 +745,12 @@
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备上链字节">
+                        <input type="submit" class="btn btn-outline-secondary " id="issueAssetBtn" value="&#x2705;准备上链字节">
                       </div>
                     </form>
                     <div>
                       <form id="issueAssetBroadcastTransactionForm">
-                        <input type="text" id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="应用自动填写...">
+                        <textarea id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="应用自动填写..." rows="7"></textarea>
                         <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; 广播上链字节" onClick="broadcastTransactionFn('issueAsset')">
                       </form>
                     </div>
@@ -760,6 +776,9 @@
       </div><!-- actionBlock end ============================================-->
     </div><!-- container end =============================================== -->
   </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
   <footer id="footer" style="height: 50px;">
     <!-- load by nav_footer.js -->
   </footer>
@@ -792,6 +811,7 @@
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
+  $("#footerModalContainer").html(footerModal);
   $("input[type='text']").on("click", function () {$(this).select();});
   function activationConfirmBtnFn(selected){
     $("#activationConfirmWallet").html(selected);
@@ -809,5 +829,9 @@
       $("#activationConfirmBtn").addClass("btn-success");
     }
   }
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
 </script>
 </html>

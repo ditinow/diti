@@ -1,4 +1,38 @@
+var epochBeginningCC14         = 1560945600000;
+var epochBeginningNXTMainnet   = 1385294400000;
+var epochBeginningNXTTestnet   = 1385294400000;
+var epochBeginningArdorMainnet = 1514764800000;
+var epochBeginningArdorTestnet = 1514296800000;
+
 var epochBeginning=1560945600;
+
+
+//user update blockchain node address
+$("#selectNodeUrlForm").submit(function(event){
+  event.preventDefault();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var apiNodeUrl = formData[0].value+"nxt";
+  var getStateData= [
+    {name:"requestType",  value:"getState"},
+    {name:"includeCounts",value:true},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeUrl,
+    data:getStateData,
+    success:function(response){
+      var getStateObj = JSON.parse(response);
+      if(getStateObj.blockchainState =="UP_TO_DATE"){
+        localStorage.setItem("selectedNodeUrl", formData[0].value);
+        $("#nodeAddress").val(formData[0].value).change();
+        alert("Your are connecting to blockchain node at: \n" + formData[0].value);
+      }else if (getStateObj.blockchainState =="DOWNLOADING") {
+        alert("Your MAY connecting to fork, please choice another node.");
+      };
+    }
+  });
+});
 
 //setup apiNodeURL
 if(localStorage.getItem("selectedNodeUrl") == undefined){
@@ -7,15 +41,10 @@ if(localStorage.getItem("selectedNodeUrl") == undefined){
   console.log(apiNodeURL);
 }else{
   var apiNodeURL = localStorage.getItem("selectedNodeUrl")+"nxt";
+  var nodeURL = localStorage.getItem("selectedNodeUrl");
+  $("#nodeAddress").val(nodeURL).change();
   console.log(apiNodeURL);
 };
-
-// $("#apiUrlForm").submit(function(event){
-//   event.preventDefault();
-//   localStorage.clear();
-//   var formData = $(this).serializeArray();
-//   localStorage.setItem("apiUrl", formData[0].value);
-// });
 
 //export web table to excel ====================================================
 $("#table2excel").click(function(){
@@ -111,7 +140,7 @@ $("#requestCC14Form").submit(function(event){
   ];
   $.ajax({
     type:"POST",
-    url: "../requestCC14.php",
+    url: "../requestUtilityToken.php",
     data: requestCC14,
     success:function(response){
       var responseObj  = JSON.parse(response);
@@ -340,8 +369,8 @@ function genQRCodeFn(text,logo,displayLocation,color){
     PI:color,
     quietZone: 25,
     logo:logo,
-    logoWidth:100,
-    logoHeight:50,
+    logoWidth:60,
+    logoHeight:30,
     titleHeight:50,
     titleTop:20,
   };
@@ -663,60 +692,19 @@ function returnFileSizeFn(number) {
 //#                               for index.html                               #
 //#                                                                            #
 //##############################################################################
-//all-in-on title token search tool BKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBKBK
-$("#BKgetAssetInfoAll").submit(function(event){
-  event.preventDefault();
-  $("#searchResult").removeClass("d-none");
-  var formData= $(this).serializeArray();
-  var assetID = formData[0].value.trim();
-  var getAssetData= [
-    {name:"requestType",value:"getAsset"},
-    {name:"asset",value:assetID},
-  ];
-  $("#modalBlockSecurecode").val(assetID);
-  $("#modalBlockSecurecode2").val(assetID);
-  $("#modalBlockSecurecode3").val(assetID);
-  $.ajax({
-    type:"POST",
-    url: apiNodeURL,
-    data:getAssetData,
-    success:function(response){
-      var getAssetObj = JSON.parse(response);
-      $("#JSONresponse").append("<h6>getAsset</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(getAssetObj,undefined, 4)+"</textarea>");
-      if (getAssetObj.errorDescription =="Unknown asset"){
-        console.log("line 1835");
-        $("#advisoryUn").removeClass("d-none");
-        $("#testTable").hide();
-      }else{
-        $("#modalBlockContainer").removeClass("d-none");
-        $("#assetInforTbl-assetID").html(getAssetObj.asset);
-        if(getAssetObj.description=="NFTID"){
-          $("#assetInforTbl-PID").html(getAssetObj.asset);
-        }else{
-          $("#assetInforTbl-PID").html(getAssetObj.description);
-        };
-
-        if (getAssetObj.quantityQNT==0) {
-          $("#test-q4-result").html("<strong style='color:red'>NO!</strong>");
-          $("#advisoryA4").removeClass("d-none");
-          $("#blockTokenRedeem").addClass("d-none");
-        }else{
-          $("#test-q4-result").html("<strong style='color:green'>YES</strong>");
-        };
-        assetInfoFn(getAssetObj.name);
-        assetPropertyFn(getAssetObj.asset);
-        assetHistoryFn(getAssetObj.asset);
-        assetTransferFn(getAssetObj.asset);
-      };
-    }
-  });
-});
 
 //all-in-on title token search tool ---------------------------------------start
 $("#getAssetInfoAll").submit(function(event){
   event.preventDefault();
   var formData= $(this).serializeArray();
-  var assetID = formData[0].value.trim();
+  var idInputed = formData[0].value.trim();
+  console.log(idInputed);
+  if(idInputed.length > 22){
+    var assetID=NRS.fullHashToId(idInputed);
+    console.log(assetID);
+  }else{
+    var assetID= idInputed;
+  };
   var getAssetData= [
     {name:"requestType",  value:"getAsset"},
     {name:"includeCounts",value:"true"},
@@ -728,8 +716,6 @@ $("#getAssetInfoAll").submit(function(event){
     data:getAssetData,
     success:function(response){
       var getAssetObj = JSON.parse(response);
-      // console.log("line 782");
-      // console.log(getAssetObj);
       if (getAssetObj.errorDescription =="Unknown asset"){
         $("#advisoryA0").removeClass("d-none");
         $("#titleSearchTable").hide();
@@ -772,7 +758,7 @@ $("#getAssetInfoAll").submit(function(event){
         };
 
         //display product ID based on the content of getAssetObj.description
-        if(getAssetObj.description=="NFTID"){
+        if(getAssetObj.description=="NFTID"||getAssetObj.description.slice(0,5)=="NFTID"){
           $("#assetInforTbl-PID").html(getAssetObj.asset);
         }else{
           $("#assetInforTbl-PID").html(getAssetObj.description);
@@ -1445,99 +1431,6 @@ function issueNFTQRCodeFn(assetID,regCode,fullHash,location){
 };
 
 // title token issuance, PID = NFT ID ----------------------------------------BK
-$("#BKissueNFTForm").submit(function(event){
-  event.preventDefault();
-  sessionStorage.clear();
-  var formData = $(this).serializeArray();
-  var issueQty=parseInt(formData[4].value);
-
-  //remove below for github repositories----------------------------------------
-    if(issueQty >20 && (formData[3].value)==secretPhraseIssuance){
-    $("#issueNFTBroadcastBtn").prop('disabled', true);
-  };
-  //remove above for github repositories----------------------------------------
-
-  var barcode   = parseInt(formData[0].value);
-  var assetName = barcode.toString(32);
-  var issueAssetData = [
-    {name:"requestType", value:"issueAsset"},
-    {name:"name",        value:assetName},
-    {name:"description", value:"NFTID"},
-    {name:"quantityQNT", value:"1"},
-    {name:"decimals",    value:"0"},
-    {name:"secretPhrase",value:formData[3].value},
-    {name:"feeNQT",      value:"0"},
-    {name:"deadline",    value:"60"},
-    {name:"broadcast",   value:"false"},
-    {name:"message",     value:formData[2].value},
-  ];
-  var fullHashArray         = new Array(issueQty);
-  var assetIDArray          = new Array(issueQty);
-  var transactionBytesArray = new Array(issueQty);
-  var i=0;
-  issueNFTFn();
-  function issueNFTFn(){
-    if(i<issueQty){
-      $.ajax({
-        type:"POST",
-        url: apiNodeURL,
-        data:issueAssetData,
-        success:function(response){
-          var responseObj = JSON.parse(response);
-          fullHashArray[i]         = responseObj.fullHash;
-          transactionBytesArray[i] = responseObj.transactionBytes;
-          assetIDArray[i]          = NRS.fullHashToId(fullHashArray[i]);
-          var feeCC14     = responseObj.transactionJSON.feeNQT/100000000;
-          var timestamp   = responseObj.transactionJSON.timestamp;
-          var senderRS    = responseObj.transactionJSON.senderRS;
-          var description = responseObj.transactionJSON.attachment.description;
-          var message     = responseObj.transactionJSON.attachment.message;
-
-          //generate verification code with prdefined keyHex and ivHex in ../data/doNotShare
-          var key         = CryptoJS.enc.Hex.parse(keyHex);
-          var iv          = CryptoJS.enc.Hex.parse(ivHex);
-          var encryptedID = CryptoJS.AES.encrypt(assetIDArray[i], key, { iv: iv });
-          var regCodeText = encryptedID.ciphertext.toString();
-
-          var issueTime   = timestampToLocalFn(timestamp);
-          var n = i+1;
-          var issueNFTTbl = "<tr><td>"+n+
-                            "</td><td>&#160;"+assetIDArray[i] +
-                            "</td><td>&#160;"+assetIDArray[i]+
-                            "</td><td>"+regCodeText+
-                            "</td><td>"+fullHashArray[i]+
-                            "</td><td>&#160;"+barcode+
-                            "</td><td>"+assetName+
-                            "</td><td>"+message+
-                            "</td><td>"+senderRS+
-                            "</td><td>"+issueTime[0]+" "+issueTime[1]+
-                            "</td><td>"+feeCC14+
-                            "</td></tr>";
-          if(i==0){
-            issueNFTQRCodeFn(assetIDArray[i],regCodeText,"issueNFTQRCode");
-            $("#issueNFTResultTbl tbody").append(issueNFTTbl);
-            $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
-            i++;
-            issueNFTFn();
-          }else if (assetIDArray[i] != assetIDArray[i-1]) {
-            issueNFTQRCodeFn(assetIDArray[i],regCodeText,"issueNFTQRCode");
-            $("#issueNFTResultTbl tbody").append(issueNFTTbl);
-            $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
-            sessionStorage.setItem("issueNFTBroadcast", JSON.stringify(transactionBytesArray));
-            i++;
-            issueNFTFn();
-          }else if (assetIDArray[i] == assetIDArray[i-1]) {
-            setTimeout(function() {
-              issueNFTFn();
-            }, 1000);
-          };
-        }
-      });
-    };
-  };
-  $("#issueNFTResponse").removeClass("d-none");
-});
-
 $("#issueNFTForm").submit(function(event){
   event.preventDefault();
   sessionStorage.clear();
@@ -1580,8 +1473,6 @@ $("#issueNFTForm").submit(function(event){
       data:issueAssetData,
       success:function(response){
         var responseObj = JSON.parse(response);
-        // transactionBytesArray[i] = responseObj.transactionBytes;
-        // console.log(transactionBytesArray[i]);
         var fullHash    = responseObj.fullHash;
         var assetID     = NRS.fullHashToId(fullHash);
         var feeCC14     = responseObj.transactionJSON.feeNQT/100000000;
@@ -1592,7 +1483,9 @@ $("#issueNFTForm").submit(function(event){
         var key         = CryptoJS.enc.Hex.parse(keyHex);
         var iv          = CryptoJS.enc.Hex.parse(ivHex);
         var encryptedID = CryptoJS.AES.encrypt(assetID, key, { iv: iv });
-        var regCodeText = encryptedID.ciphertext.toString();
+        // var regCodeText = encryptedID.ciphertext.toString();
+        var regCodeText = encryptedID.toString();
+        console.log(regCodeText);
         var issueTime   = timestampToLocalFn(timestamp);
         var issueNFTTbl = "<tr><td>"+assetID+
                           "</td><td>"+assetID+
@@ -1607,7 +1500,7 @@ $("#issueNFTForm").submit(function(event){
                           "</td></tr>";
         issueNFTQRCodeFn(assetID,regCodeText,fullHash,"issueNFTQRCode");
         $("#issueNFTResultTbl tbody").append(issueNFTTbl);
-        $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+        $("#issueNFTJSON").after("<h6>issueAsset - NFT</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       }
     });
   };
@@ -1660,7 +1553,9 @@ $("#BKissueNFTwSNoForm").submit(function(event){
           var key         = CryptoJS.enc.Hex.parse(keyHex);
           var iv          = CryptoJS.enc.Hex.parse(ivHex);
           var encryptedID = CryptoJS.AES.encrypt(assetIDArray[i], key, { iv: iv });
-          var regCodeText = encryptedID.ciphertext.toString();
+          // var regCodeText = encryptedID.ciphertext.toString();
+          var regCodeText = encryptedID.toString();
+          console.log(regCodeText);
           var issueTime   = timestampToLocalFn(timestamp);
           var n=i+1;
           var issueNFTTbl = "<tr><td>"+n+
@@ -1705,7 +1600,6 @@ $("#issueNFTwSNoForm").submit(function(event){
   event.preventDefault();
   sessionStorage.clear();
   var formData = $(this).serializeArray();
-  // var transactionBytesArray = new Array(serialNoQty);
   var barcode               = parseInt(formData[0].value);
   var assetName             = barcode.toString(32);
   var serialNumbers         = JSON.parse(formData[1].value);
@@ -1753,8 +1647,8 @@ $("#issueNFTwSNoForm").submit(function(event){
         var iv          = CryptoJS.enc.Hex.parse(ivHex);
         var encryptedID = CryptoJS.AES.encrypt(assetID, key, { iv: iv });
         var regCodeText = encryptedID.ciphertext.toString();
+        var regCodeText = encryptedID.toString();
         var issueTime   = timestampToLocalFn(timestamp);
-        var n=i+1;
         var issueNFTTbl = "<tr><td>"+description +
                           "</td><td>"+assetID+
                           "</td><td>"+fullHash+
@@ -1768,7 +1662,7 @@ $("#issueNFTwSNoForm").submit(function(event){
                           "</td></tr>";
         issueNFTQRCodeFn(assetID,regCodeText,fullHash,"issueNFTwSNoQRCode");
         $("#issueNFTwSNoResultTbl tbody").append(issueNFTTbl);
-        $("#issueNFTwSNoJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+        $("#issueNFTwSNoJSON").after("<h6>issueAsset - NFT</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       }
     });
   };
@@ -1817,7 +1711,7 @@ $("#issueNFTwSNoBroadcastForm").submit(function(event){
       success:function(response)
       {
         var n=i+1;
-        $("#issueNFTwSNoJSON").after("<h6>broadcastTransaction - NFT#"+n+"</h6>"+response);
+        $("#issueNFTwSNoJSON").after("<h6>broadcastTransaction - NFT</h6>"+response);
       }
     });
   }
@@ -2204,7 +2098,7 @@ $("#reproduceRegCodeForm").submit(function(event){
   var encryptedID = CryptoJS.AES.encrypt(secureCode, key, { iv: iv });
   var regCodeText = encryptedID.ciphertext.toString();
   $("#dispReproduceRegCode").html(regCodeText);
-  issueNFTQRCodeFn(secureCode,regCodeText,"reproduceRegCodeQRCode");
+  // issueNFTQRCodeFn(secureCode,regCodeText,"reproduceRegCodeQRCode");
 });
 
 //AES key and IV generator ------------------------------------------------start
@@ -2248,7 +2142,7 @@ $("#issueAssetForm").submit(function(event){
   // remove this line for production version====================================
   $.ajax({
     type:"POST",
-    url: url,
+    url: apiNodeURL,
     data:issueAsset,
     success:function(response){
       var responseObj      = JSON.parse(response);

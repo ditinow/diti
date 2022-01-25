@@ -1,6 +1,6 @@
 <?php
     $url = "http://40.124.110.187:19886/nxt";
-    $distributorSecretPhrase = "*****************";
+    $distributorSecretPhrase = "flirt despite melody wall amaze lunch dude total trust defeat steady awkward 2!oo6";
     $distributorRS = "CC14-XBNL-PLAT-UDME-EGAXX";
     $requestorRS = $_POST["account"];
     $requestorPubKey = $_POST["publicKey"];

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 One stop blockchain DApp</title>
+  <title>CryptoC14 one stop blockchain dApp</title>
   <meta charset="utf-8">
   <meta name="description" content="Crypto C14 One stop blockchain DApp">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -9,7 +9,7 @@
   <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
   <meta name="integrity" content="token...">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel = "icon" href ="../images/icon-ditinow.png" type = "image/x-icon">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style-cc14.css">
   <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
@@ -26,12 +26,28 @@
   <div style="min-height: calc(100vh - 50px);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
         </div>
       </div>
     </nav>
@@ -69,7 +85,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
                         <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
@@ -528,7 +544,7 @@
             <div class="accordion-item" name="generate aes key and iv">
               <h2 class="accordion-header" id="aesKeyIv">
                 <button id="aesKeyIvBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aesKeyIvFPanel" aria-expanded="false" aria-controls="aesKeyIvFPanel">
-                  <h4>&#128273; Simple AES key and iv generator</h4>
+                  <h4>&#128273; AES key and iv generator</h4>
                 </button>
               </h2>
               <div id="aesKeyIvFPanel" class="accordion-collapse collapse" aria-labelledby="aesKeyIvFlip" >
@@ -756,6 +772,9 @@
       </div><!-- actionBlock end ============================================-->
     </div><!-- container end =============================================== -->
   </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
   <footer id="footer" style="height: 50px;">
     <!-- load by nav_footer.js -->
   </footer>
@@ -788,5 +807,12 @@
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
   $("input[type='text']").on("click", function () {$(this).select();});
+</script>
+<script>
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
 </script>
 </html>

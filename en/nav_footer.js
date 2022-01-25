@@ -3,29 +3,9 @@ var navbarSupportedContentHtml='';
   navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="tokenManagement.html">Token Management</a></li>';
   navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="cryptoEvidence.html">Crypto Evidence</a></li>';
   navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="howto.html">How-To</a></li>';
-  navbarSupportedContentHtml += '  <li class="nav-item dropdown">';
-  navbarSupportedContentHtml += '    <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>';
-  navbarSupportedContentHtml += '    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-  navbarSupportedContentHtml += '      <li><a class="dropdown-item " href="utilities.html">Wallet & Communication</a></li>';
-  navbarSupportedContentHtml += '      <li><a class="dropdown-item " href="index.html">&#x1F50D; Search Title Token</a></li>';
-  navbarSupportedContentHtml += '    </ul>';
-  navbarSupportedContentHtml += '  </li>';
-  // navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link disabled" href="shop.html">Market</a></li>';
+  navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="utilities.html">Blockchain Tools</a></li>';
+  navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="search.html">Authentication  Check&#x1F50D;&nbsp;&nbsp;</a></li>';
   navbarSupportedContentHtml += '  <li class="nav-item"><a class="nav-link" href="../cn/index.html">中文</a></li>';
-  // navbarSupportedContentHtml += '  <li class="nav-item dropdown">';
-  // navbarSupportedContentHtml += '    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&#x1F30F;</a>';
-  // navbarSupportedContentHtml += '    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item         " href="../cn/index.html">&#x1F35A; 中文</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../jp/index.html">&#x1F363; にほん</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../kr/index.html">&#x1F35C; 한국어</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item         " href="../en/index.html">&#x1F354; English</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../es/index.html">&#x1F357; Español</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../fr/index.html">&#x1F35E; Français </a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../it/index.html">&#x1F355; Italiano</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="../ed/index.html">&#x1F37A; Deutsch</a></li>';
-  // navbarSupportedContentHtml += '      <li><a class="dropdown-item disabled" href="..ru/index.html">&#x1F37A; русский</a></li>';
-  // navbarSupportedContentHtml += '    </ul>';
-  // navbarSupportedContentHtml += '   </li>';
   navbarSupportedContentHtml += '</ul>';
 
 var footerHtml='';
@@ -43,10 +23,83 @@ footerHtml +=   '<div class="row" style="text-align:center;background-color:#353
 footerHtml +=     '<div class="col-12 col-sm-12 col-md-6 col-lg-4">&#169;2021 DiTINOW LLC</div>';
 footerHtml +=     '<div class="col-12 col-sm-12 col-md-6 col-lg-4">Donate ARDOR-49CE-CXZZ-3QHW-AH4JK</div>';
 footerHtml +=     '<div class="col-12 col-sm-3 col-md-3 col-lg-4">'
-footerHtml +=       '<a class="lightLink" href="aboutus.html">About us&nbsp;&nbsp;</a>'
-footerHtml +=       '<a class="lightLink" href="contactus.html">&nbsp;Contact us&nbsp;&nbsp;</a>'
-footerHtml +=       '<a class="lightLink" href="terms.html">&nbsp;Terms&nbsp;&nbsp;</a>'
-footerHtml +=       '<a class="lightLink" href="legal.html">&nbsp;Legal</a>'
+footerHtml +=       '<span class="spanModal" onclick="aboutUsModal.show()"> About Us&nbsp;</span>'
+footerHtml +=       '<span class="spanModal" onclick="contactUsModal.show()"> Contact Us&nbsp;</span>'
+footerHtml +=       '<span class="spanModal" onclick="termModal.show()"> Term&nbsp;</span>'
+footerHtml +=       '<span class="spanModal" onclick="legalModal.show()"> Legal</span>'
 footerHtml +=     '</div>';
 footerHtml +=   '</div>';
 footerHtml += '</div>';
+
+var footerModal ='<div name="Modal - About Us">';
+   footerModal +='  <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">';
+   footerModal +='    <div class="modal-dialog">';
+   footerModal +='      <div class="modal-content">';
+   footerModal +='        <div class="modal-header">';
+   footerModal +='          <h5 class="modal-title" id="aboutUsleModalLabel">About Us</h5>';
+   footerModal +='          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-body">';
+   footerModal +='          <p>coming soon ...</p>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-footer">';
+   footerModal +='          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
+   footerModal +='        </div>';
+   footerModal +='      </div>';
+   footerModal +='    </div>';
+   footerModal +='  </div>';
+   footerModal +='</div>';
+   footerModal +='<div name="Modal - Contact Us">';
+   footerModal +='  <div class="modal fade" id="contactUsModal" tabindex="-1" aria-labelledby="contactUsModalLabel" aria-hidden="true">';
+   footerModal +='    <div class="modal-dialog">';
+   footerModal +='      <div class="modal-content">';
+   footerModal +='        <div class="modal-header">';
+   footerModal +='          <h5 class="modal-title" id="contactUsModalLabel">Contact Us</h5>';
+   footerModal +='          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-body">';
+   footerModal +='          <p>coming soon ...</p>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-footer">';
+   footerModal +='          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
+   footerModal +='        </div>';
+   footerModal +='      </div>';
+   footerModal +='    </div>';
+   footerModal +='  </div>';
+   footerModal +='</div>';
+   footerModal +='<div name="Modal - Term">';
+   footerModal +='  <div class="modal fade" id="termModal" tabindex="-1" aria-labelledby="termModalLabel" aria-hidden="true">';
+   footerModal +='    <div class="modal-dialog">';
+   footerModal +='      <div class="modal-content">';
+   footerModal +='        <div class="modal-header">';
+   footerModal +='          <h5 class="modal-title" id="termModalLabel">Term</h5>';
+   footerModal +='          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-body">';
+   footerModal +='          <p>coming soon ...</p>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-footer">';
+   footerModal +='          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
+   footerModal +='        </div>';
+   footerModal +='      </div>';
+   footerModal +='    </div>';
+   footerModal +='  </div>';
+   footerModal +='</div>';
+   footerModal +='<div name="Modal - Legal">';
+   footerModal +='  <div class="modal fade" id="legalModal" tabindex="-1" aria-labelledby="legalModalLabel" aria-hidden="true">';
+   footerModal +='    <div class="modal-dialog">';
+   footerModal +='      <div class="modal-content">';
+   footerModal +='        <div class="modal-header">';
+   footerModal +='          <h5 class="modal-title" id="legalModalLabel">Legal</h5>';
+   footerModal +='          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-body">';
+   footerModal +='          <p>coming soon ...</p>';
+   footerModal +='        </div>';
+   footerModal +='        <div class="modal-footer">';
+   footerModal +='           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
+   footerModal +='        </div>';
+   footerModal +='      </div>';
+   footerModal +='    </div>';
+   footerModal +='  </div>';
+   footerModal +='</div>';

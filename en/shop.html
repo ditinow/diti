@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>CryptoC14 one stop blockchain dApp</title>
   <meta charset="utf-8">
   <meta name="description" content="一站式区块链应用">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -25,12 +25,28 @@
   <div style="min-height: calc(100vh - 50px);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
         </div>
       </div>
     </nav>

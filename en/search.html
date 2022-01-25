@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 One stop blockchain DApp</title>
+  <title>CryptoC14 one stop blockchain dApp</title>
   <meta charset="utf-8">
   <meta name="description" content="Crypto C14 One stop blockchain DApp">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -9,7 +9,7 @@
   <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
   <meta name="integrity" content="token...">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel = "icon" href ="../images/icon-ditinow.png" type = "image/x-icon">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style-cc14.css">
   <style>
@@ -25,7 +25,7 @@
   <div style="min-height: calc(100vh - 50px);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -387,10 +387,9 @@
                           <span class="input-group-text" data-bs-toggle="tooltip" title="Registration Code"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage"></span>
                           <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
                           <datalist id="requestDTregCode">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
                             <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
-                            <option value="6de8b7df4cf1e1c4f2ef8d428970799ac7742737051f3fe3f877748290784504"></option>
-                            <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
-                            <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
@@ -432,9 +431,9 @@
                           <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage"></span>
                           <input type="text" class="form-control" name='regCode'  placeholder="Scan blue QR code with CC14 logo..." list="validateRegCodeList">
                           <datalist id="validateRegCodeList">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
                             <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
-                            <option value="6de8b7df4cf1e1c4f2ef8d428970799ac7742737051f3fe3f877748290784504"></option>
-                            <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
@@ -596,6 +595,9 @@
       <h1><a class="text-decoration-none" href="#footer">&#9196;</a></h1>
     </div>
   </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
   <footer id="footer" style="height: 50px;">
     <!-- load by nav_footer.js -->
   </footer>
@@ -630,5 +632,12 @@ function resetPubKey(){
   document.getElementById("consumerPubKey").value = "";
   console.log(document.getElementById("consumerPubKey").value);
 }
+</script>
+<script>
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
 </script>
 </html>

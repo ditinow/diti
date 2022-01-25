@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>DiTiNOW One stop DApp</title>
-  <meta http-equiv = "refresh" content = "5; url = search.html" />
+  <title>CryptoC14 一站式区块链应用</title>
+  <meta http-equiv = "refresh" content = "3; url = search.html" />
   <meta charset="utf-8">
   <meta name="description" content="DiTiNOW One stop DApp">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -10,7 +10,7 @@
   <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
   <meta name="integrity" content="token...">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel = "icon" href ="../images/icon-ditinow.png" type = "image/x-icon">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <style>
     p a{
@@ -36,32 +36,40 @@
     .validationToken:hover{
       text-shadow: 2px 2px 8px #000000;
     }
+    .spanModal:hover{
+      background-color: #999999;
+    }
+    .navbar .navbar-nav .nav-link:hover {
+      background-color: #e1e6ea;
+      color: #000000;
+    }
 </style>
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm" id="navbar" name="navbar">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../images/logo-ditinow.png" width="180" height="30" loading="lazy"></a>
+      <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
-            <form id="selectNodeUrlForm" >
-              <div class="input-group">
-                <select class="form-select" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to blockchain @" id="selectedNodeAddress">
-                  <option value="http://13.52.217.197:19886/">AWS US California</option>
-                  <option value="http://52.87.243.104:19886/">AWS US North Virginia</option>
-                  <option value="http://40.124.110.187:19886/" selected>Azure US South Central Zone 1</option>
-                  <option value="http://106.52.243.178:19886/">腾讯 广州 Tencent Guangzhou</option>
-                  <option value="http://101.34.178.164:19886/">腾讯 上海 Tencent Shanghai</option>
-                </select>
-                <button type="submit" class="btn btn-outline-secondary " >设置</button>
-              </div>
-            </form>
-          </li>
-        </ul>
+        <!-- load by src='js/nav_footer.js' -->
+      </div>
+      <div class="col-12 col-sm-auto" style="padding: 0px">
+        <form class="d-flex" id="selectNodeUrlForm" >
+          <div class="input-group">
+            <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+              <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+              <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+              <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+              <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+              <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+              <option value="http://localhost:19886/" disabled>CC14@ 本地电脑</option>
+              <option value="http://192.168.1.7:19886/" disabled>CC14@ 本地网络</option>
+            </select>
+            <button type="submit" class="btn btn-outline-secondary " >Set</button>
+          </div>
+        </form>
       </div>
     </div>
   </nav>
@@ -99,32 +107,17 @@
       </div>
     </div>
   </main>
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
   <footer class=" fixed-bottom" id="footer" style="height: 50px;">
-    <div class="container-fluid" style="font-size:90%">
-      <div class="row">
-        <div style="text-align:center;margin-bottom: 5px;">
-          <a href="https://github.com/ditinow"><img src="../images/logo-github.png" width="25" height="25" alt="github"></a>&nbsp;&nbsp;
-          <a href="index.html"><img src="../images/logo-twitter.png" width="25" height="25" alt="twitter"></a>&nbsp;&nbsp;
-          <a href="index.html"><img src="../images/logo-linkedin.png" width="25" height="25" alt="linkedin"></a>&nbsp;&nbsp;
-          <a href="index.html"><img src="../images/logo-wechat.png" width="25" height="25" alt="wechat"></a>&nbsp;&nbsp;
-          <a href="index.html"><img src="../images/logo-weibo.png" width="25" height="25" alt="weibo"></a>&nbsp;&nbsp;
-        </div>
-      </div>
-      <div class="row" style="text-align:center;background-color:#E9ECEF; color:#fff;">
-        <div class="col-lg-4"><span style="color:black">&#169;2021 - 2022 DiTiNOW LLC</span></div>
-        <div class="col-lg-4"><span style="color:black">Donate ARDOR-49CE-CXZZ-3QHW-AH4JK</span></div>
-        <div class="col-lg-4">
-          <span class="mt-auto"><a class="darkLink" href="">关于我们&nbsp;&nbsp;</a></span>
-          <span class="mt-auto"><a class="darkLink" href="">&nbsp;使用条款&nbsp;&nbsp;</a></span>
-          <span class="mt-auto"><a class="darkLink" href="">&nbsp;联系我们&nbsp;&nbsp;</a></span>
-          <span class="mt-auto"><a class="darkLink" href="">&nbsp;法律声明</a></span>
-        </div>
-      </div>
-    </div>
+    <!-- load by nav_footer.js -->
   </footer>
 </body>
 <script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
 <script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src='scripts-cc14.js' ></script>
+<script src='nav_footer.js' ></script>
 <script>
   console.log(localStorage.getItem("selectedNodeUrl"));
   if(localStorage.getItem("selectedNodeUrl") != undefined){
@@ -132,26 +125,14 @@
     console.log(nodeUrl);
   };
 </script>
+
 <script>
-  //user update blockchain node address
-  $("#selectNodeUrlForm").submit(function(event){
-    event.preventDefault();
-    var formData = $(this).serializeArray();
-    var apiNodeUrl = formData[0].value+"nxt";
-    var getStateData= [
-      {name:"requestType",  value:"getState"},
-      {name:"includeCounts",value:true},
-    ];
-    $.ajax({
-      type:"POST",
-      url: apiNodeUrl,
-      data:getStateData,
-      success:function(response){
-        var getStateObj = JSON.parse(response);
-        localStorage.setItem("selectedNodeUrl", formData[0].value);
-        alert("Your are connecting to blockchain node at: \n" + formData[0].value);
-      }
-    });
-  });
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
 </script>
 </html>

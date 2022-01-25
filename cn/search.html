@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>CryptoC14 一站式区块链应用</title>
   <meta charset="utf-8">
   <meta name="description" content="Crypto C14 一站式区块链应用">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style-cc14.css">
   <style>
+  .spanModal:hover{
+    background-color: #999999;
+  }
   @media all and (min-width: 992px) {
 	  .navbar .nav-item .dropdown-menu{ display: none; }
     .navbar .nav-item:hover .nav-link{ color: #000;  }
@@ -25,14 +28,13 @@
   <div style="min-height: calc(100vh - 50px);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- load by src='js/nav_footer.js' -->
         </div>
-
         <div class="col-12 col-sm-auto" style="padding: 0px">
           <form id="getAssetInfoAll" >
             <div class="input-group ">
@@ -52,7 +54,7 @@
               <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;">
             </div>
           </form>
-        </div>
+        <!-- </div> -->
 
       </div>
     </nav>
@@ -184,29 +186,29 @@
                       <td class="td-2" id="issuerInfoTbl-r5d2">无记录</td>
                     </tr>
                     <tr id="issuerInfoTbl-r6">
-                      <td class="td-1">验证码</td>
+                      <td class="td-1">核实码</td>
                       <td class="td-2" id="issuerInfoTbl-r6d2">无记录</td>
                     </tr>
                     <tr id="issuerInfoTbl-r7">
                       <td class="td-1"></td>
                       <td class="td-2" id="issuerInfoTbl-r7d2">
                         <div class="row align-items-center" id="blockWalletValidation">
-                          <div class="col-12 col-sm-10 mx-auto " >
-                            <div class="d-flex justify-content-center ">
-                              <input type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#walletValidation" value="确认" id="validateWalletBtn">&nbsp;&nbsp;
-                              <div class="modal fade" id="walletValidation" tabindex="-1" aria-labelledby="validateWalletLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="validateWalletLabel">确认钱包数据</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="container-fluid">
-                                        <div class="row">
-                                          <form id="validateWalletInfoForm">
-                                              <div class="input-group mb-3">
-                                                <textarea name="walletInfomation" class="form-control" rows='15' id="validateWalletInfoFormCode">
+                          <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#walletValidation" id="validateWalletBtn">
+                            核实
+                          </button>
+                          <div class="modal fade" id="walletValidation" tabindex="-1" aria-labelledby="validateWalletLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="validateWalletLabel">核实钱包信息</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="container-fluid">
+                                    <div class="row">
+                                      <form id="validateWalletInfoForm">
+                                              <div class="input-group ">
+                                                <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormCode">
                                                 </textarea>
                                               </div>
                                               <div class="input-group d-none" >
@@ -218,16 +220,13 @@
                                                 <input type='submit' class='btn btn-outline-secondary' value='提交'/>
                                             </div>
                                           </form>
+                                    </div>
+                                    <div class="row">
+                                      <div class="d-none" id="validateWalletInfoResponse"  >
+                                        <div  class="overflow-auto">
+                                          <span id="validateWalletInfoResult"></span>
                                         </div>
-                                        <div class="row">
-                                          <div class="d-none" id="validateWalletInfoResponse"  >
-                                            <div  class="overflow-auto">
-                                              <span id="validateWalletInfoResult"></span>
-                                            </div>
-                                              <span id="validateWalletInfoJSON"></span>
-                                            </div>
-                                          </div>
-                                        </div>
+                                          <span id="validateWalletInfoJSON"></span>
                                       </div>
                                     </div>
                                   </div>
@@ -235,6 +234,7 @@
                               </div>
                             </div>
                           </div>
+                        </div>
                         </div><!-- Action modal end ===========================================-->
                       </td>
                     </tr>
@@ -397,10 +397,9 @@
                           <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;验证码</span>
                           <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色注册码..." list="requestDTregCode">
                           <datalist id="requestDTregCode">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
                             <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
-                            <option value="6de8b7df4cf1e1c4f2ef8d428970799ac7742737051f3fe3f877748290784504"></option>
-                            <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
-                            <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
@@ -442,9 +441,9 @@
                           <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;验证码</span>
                           <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色注册码..." list="validateRegCodeList">
                           <datalist id="validateRegCodeList">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
                             <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
-                            <option value="6de8b7df4cf1e1c4f2ef8d428970799ac7742737051f3fe3f877748290784504"></option>
-                            <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
@@ -600,6 +599,9 @@
     </div>
     </div><!-- container end =============================================== -->
   </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
   <footer id="footer" style="height: 50px;">
     <!-- load by nav_footer.js -->
   </footer>
@@ -627,6 +629,7 @@ var isNode = false;
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
+  $("#footerModalContainer").html(footerModal);
   $("input[type='text']").on("click", function () {$(this).select();});
   $('#consumerWallet').val(localStorage.getItem("myWalletLS"));
   $('#consumerPubKey').val(localStorage.getItem("myPubKeyLS"));
@@ -634,6 +637,10 @@ var isNode = false;
   function resetPubKey(){
     document.getElementById("consumerPubKey").value = "";
     console.log(document.getElementById("consumerPubKey").value);
-  }
+  };
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
 </script>
 </html>

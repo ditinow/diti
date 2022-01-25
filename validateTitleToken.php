@@ -2,8 +2,9 @@
 $key   = hex2bin("d0e84ed3edceb0c92db2621f64ae4f8d");
 $iv    = hex2bin("f5547c653a7022e9958d3c9de1fcc1af");
 
-$mes        = hex2bin($_POST["regCode"]);
-$asset      = $_POST["asset"];
+// $mes   = hex2bin($_POST["regCode"]);
+$mes   = base64_decode($_POST["regCode"]);
+$asset = $_POST["asset"];
 
 $res = openssl_decrypt($mes, 'AES-128-CBC', $key, OPENSSL_RAW_DATA,$iv);
 if($res==""){

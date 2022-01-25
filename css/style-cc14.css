@@ -29,4 +29,11 @@ td.alert3{color: red; font-weight:  bold; font-size: 0.8em}
         max-height: 400px;
     }
 }
+.spanModal:hover{
+  background-color: #747e8b;
+}
+.navbar .navbar-nav .nav-link:hover {
+  background-color: #e1e6ea;
+  color: #000000;
+}
 /* textarea.input{height: 100px} */
