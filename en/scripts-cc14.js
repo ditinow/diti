@@ -28,7 +28,7 @@ $("#selectNodeUrlForm").submit(function(event){
         $("#nodeAddress").val(formData[0].value).change();
         alert("Your are connecting to blockchain node at: \n" + formData[0].value);
       }else if (getStateObj.blockchainState =="DOWNLOADING") {
-        alert("Your MAY connecting to fork, please choice another node.");
+        alert("Your may connecting to fork, please select another node.");
       };
     }
   });
@@ -150,7 +150,7 @@ $("#requestCC14Form").submit(function(event){
       }else if(responseObj.request =="unconfirmedTX"){
         $("#requestCC14Result").html("Unconfirmed transactions found. Please wait 60 seconds then reload the page and retry.");
       }else if(responseObj.request =="exceed"){
-        $("#requestCC14Result").html(formData[0].value.trim() + " received more than 2000 CC14 from CryptoC14.com. Please contact WeChat_ID: fengyun_houston for additional amount.");
+        $("#requestCC14Result").html(formData[0].value.trim() + " received more than 2000 CC14 from CryptoC14.com. Please contact WeChat_ID: fengyun_houston or jieh.lei@gmail.com for additional amount.");
       }else{
         $("#requestCC14Result").html("Request approved");
         $("#requestCC14JSON").html("<h6>sendMoney</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");

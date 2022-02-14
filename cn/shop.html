@@ -42,9 +42,9 @@
                 <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
                 <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
                 <option value="http://localhost:19886/" disabled>CC14@ 本地电脑</option>
-                <option value="http://192.168.1.7:19886/" disabled>CC14@ 本地网络</option>
+                <option value="http://192.168.1.7:19886/" >CC14@ 本地网络</option>
               </select>
-              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+              <button type="submit" class="btn btn-outline-secondary " >设置</button>
             </div>
           </form>
         </div>
@@ -209,10 +209,8 @@
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
-  $("input[type='text']").on("click", function () {$(this).select();});
-</script>
-<script>
   $("#footerModalContainer").html(footerModal);
+  $("input[type='text']").on("click", function () {$(this).select();});
   var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});

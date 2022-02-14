@@ -13,9 +13,7 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style-cc14.css">
   <style>
-  .spanModal:hover{
-    background-color: #999999;
-  }
+
   @media all and (min-width: 992px) {
 	  .navbar .nav-item .dropdown-menu{ display: none; }
     .navbar .nav-item:hover .nav-link{ color: #000;  }
@@ -42,7 +40,7 @@
               <input type="text" class="form-control" name='asset' placeholder="扫描带NFT标识的绿色防伪码..." list="assetsList">
                 <datalist id="assetsList">
                   <option value="14980595911452706870">示范：产品已获得授权生产及销售，有附加信息 </option>
-                  <option value="15570819586364247890">示范：权益令牌未在指定钱包有效期内生成</option>
+                  <option value="10829953154869632130">示范：权益令牌未在指定钱包有效期内生成</option>
                   <option value="8979558791471997978">示范：权益令牌被丢弃</option>
                   <option value="9335630831293964334">示范：没有可供转让的权益令牌</option>
                   <option value="9515666061890261866">示范：产品获得授权生产，但未获销售授权</option>
@@ -54,8 +52,6 @@
               <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;">
             </div>
           </form>
-        <!-- </div> -->
-
       </div>
     </nav>
     <br id="toTop">
@@ -114,31 +110,31 @@
                     <tbody>
                       <tr id="titleSearch-Q1">
                         <td class="td-t1">权益令牌是否由<code class="yourCompanyName">贵公司名称</code>生成?</td>
-                        <td  class="td-qa" id="titleSearch-Q1-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q1-resultYes">是</span><span class="d-none paRed" id="titleSearch-Q1-resultNo">否</span></td>
                       </tr>
                       <tr id="titleSearch-Q2">
                         <td class="td-2">权益令牌是否在钱包有效期内生成？</td>
-                        <td  class="td-qa" id="titleSearch-Q2-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q2-resultYes">是</span><span class="d-none paRed" id="titleSearch-Q2-resultNo">否</span><span class="d-none paNA" id="titleSearch-Q2-resultNA">不适用</span></td>
                       </tr>
                       <tr id="titleSearch-Q3">
                         <td class="td-2">权益令牌是否仍旧存在？</td>
-                        <td  class="td-qa" id="titleSearch-Q3-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q3-resultYes">是</span><span class="d-none paRed" id="titleSearch-Q3-resultNo">否</span></td>
                       </tr>
                       <tr id="titleSearch-Q4">
                         <td class="td-2">产品是否获得销售授权？</td>
-                        <td  class="td-qa" id="titleSearch-Q4-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q4-resultYes">是</span><span class="d-none paRed" id="titleSearch-Q4-resultNo">否</span></td>
                       </tr>
                       <tr id="titleSearch-Q5">
                         <td class="td-2">产品状态是否适合销售？</td>
-                        <td  class="td-qa" id="titleSearch-Q5-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q5-resultYes">是</span><span class="d-none paRed" id="titleSearch-Q5-resultNo">否</span></td>
                       </tr>
                       <tr id="titleSearch-Q6">
                         <td class="td-2">产品是否曾经被召回或维修？</td>
-                        <td  class="td-qa" id="titleSearch-Q6-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q6-resultNo">否</span><span class="d-none paYellow" id="titleSearch-Q6-resultYes">是</span></td>
                       </tr>
                       <tr id="titleSearch-Q7">
                         <td class="td-2">产品是否曾经出售？</td>
-                        <td  class="td-qa" id="titleSearch-Q7-result"></td>
+                        <td  class="td-qa"><span class="d-none paGreen" id="titleSearch-Q7-resultNo">否</span><span class="d-none paYellow" id="titleSearch-Q7-resultYes">是</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -200,26 +196,25 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="validateWalletLabel">核实钱包信息</h5>
+                                  <h5 class="modal-title" id="validateWalletLabel">核实钱包数据</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <div class="container-fluid">
                                     <div class="row">
                                       <form id="validateWalletInfoForm">
-                                              <div class="input-group ">
-                                                <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormCode">
-                                                </textarea>
-                                              </div>
-                                              <div class="input-group d-none" >
-                                                <span class="input-group-text" >钱包密钥</span>
-                                                <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
-                                                <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
-                                              </div>
-                                              <div class="input-group justify-content-end" >
-                                                <input type='submit' class='btn btn-outline-secondary' value='提交'/>
-                                            </div>
-                                          </form>
+                                        <div class="input-group">
+                                          <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormCode"></textarea>
+                                        </div>
+                                        <div class="input-group d-none" >
+                                          <span class="input-group-text" >钱包密钥</span>
+                                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                                          <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
+                                        </div>
+                                        <div class="input-group justify-content-end" >
+                                          <input type='submit' class='btn btn-outline-secondary w-100' value='提交'/>
+                                        </div>
+                                      </form>
                                     </div>
                                     <div class="row">
                                       <div class="d-none" id="validateWalletInfoResponse"  >
@@ -235,7 +230,6 @@
                             </div>
                           </div>
                         </div>
-                        </div><!-- Action modal end ===========================================-->
                       </td>
                     </tr>
                   </table>
@@ -297,12 +291,10 @@
                       <td class="td-1">保质期</td>
                       <td class="td-2" id="assetInforTbl-goodFor"></td>
                     </tr>
-
                   </table>
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" name="Transfer history">
               <h2 class="accordion-header" id="flipHistory">
                 <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelHistory" aria-expanded="false" aria-controls="panelHistory">
@@ -311,27 +303,27 @@
               </h2>
               <div id="panelHistory" class="accordion-collapse collapse" aria-labelledby="flipHistory" >
                 <div class="accordion-body">
-                  <table class="table word-break table-bordered table-sm caption-top" id="assetIssuerTbl">
-                    <caption>交易 0</caption>
+                  <table class="table word-break table-bordered border-info table-sm caption-top" id="assetIssuerTbl">
+                    <caption>授权信息</caption>
                     <tbody>
                       <tr>
-                        <td class="td-1">授权机构</td>
+                        <td class="td-3">授权机构</td>
                         <td class="td-2" id="transactionZero-issuer">无记录</td>
                       </tr>
                       <tr>
-                        <td class="td-1">授权钱包</td>
+                        <td class="td-3">授权钱包</td>
                         <td class="td-2" id="transactionZero-issuerRS">无记录</td>
                       </tr>
                       <tr>
-                        <td class="td-1">机构职责</td>
+                        <td class="td-3">机构职责</td>
                         <td class="td-2" id="transactionZero-duty">无记录</td>
                       </tr>
                       <tr>
-                        <td class="td-1">授权数量</td>
+                        <td class="td-3">授权数量</td>
                         <td class="td-2" id="transactionZero-qty">无记录</td>
                       </tr>
                       <tr>
-                        <td class="td-1">授权时间</td>
+                        <td class="td-3">授权时间</td>
                         <td class="td-2 text-break" id="transactionZero-date">无记录</td>
                       </tr>
                     <tbody>
@@ -362,8 +354,10 @@
       <div class="row align-items-center d-none" style="height:100px" id="modalBlockRequest">
         <div class="col-12 col-sm-10 mx-auto " >
           <div class="d-flex justify-content-center ">
-            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#requestTitle" value="&#x1F4E5; 申请权益令牌" id="requestTitleBtn">&nbsp;&nbsp;
-            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#validateTitle" value="&#x1F510; 核对权益令牌" id="validateTitleBtn">
+            <div class="input-group" >
+              <input type="button" class="btn btn-outline-dark btn-lg w-50" data-bs-toggle="modal" data-bs-target="#requestTitle" value="&#x1F4E5; 申请权益令牌" id="requestTitleBtn">
+              <input type="button" class="btn btn-outline-dark btn-lg w-50" data-bs-toggle="modal" data-bs-target="#validateTitle" value="&#x1F510; 核对权益令牌" id="validateTitleBtn">
+            </div>
             <div class="modal fade" id="requestTitle" tabindex="-1" aria-labelledby="requestTitleLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -373,29 +367,29 @@
                   </div>
                   <div class="modal-body">
                     <div id="requestTitlTokenAction">
-                      <form id="pin2newWallet">
-                        <div class="input-group mb-3" >
-                          <input type="number" class="form-control" name='passphrase' min="99999" max="999999"  placeholder="请输入6位数字">
-                          <input type="submit" class="btn btn-outline-secondary" value="生成新钱包">
+                      <form id="genNewWalletForm">
+                        <div class="input-group" >
+                          <!-- <input type="number" class="form-control" name='passphrase' min="99999" max="999999"  placeholder="请输入6位数字"> -->
+                          <input type="submit" class="btn btn-outline-secondary w-100" value="生成新钱包">
                         </div>
                       </form>
-                      <div>
-                        <p class="text-center text-muted">&#128071;填写现有地址<b> 或 </b>生成钱包地址&#128070;</p>
-                      </div>
+                        <p class="text-center text-muted mb-3 mt-0"><b> 或 </b></p>
                       <form id="requestTitlTokenForm">
                         <div class="input-group mb-3" >
-                          <input type="hidden" id="consumerPubKey" name='publicKey'>
-                          <span class="input-group-text" >钱包地址</span>
-                          <input type="text" class="form-control" name='recipient' autocomplete="on" id="consumerWallet" onfocus="resetPubKey()" value="CC14-">
+                          <span class="input-group-text" >现有钱包</span>
+                          <input type="text" class="form-control" name='recipient' autocomplete="on" id="consumerWallet" onfocus="resetInputFn('consumerPubKey')" value="CC14-" required>
                         </div>
-                          <input type="hidden" class="form-control" id="consumerPubKey" name='publicKey' placeholder="选项，可留空">
+                        <div class="input-group  mb-3" >
+                          <span class="input-group-text" >钱包公钥</span>
+                          <input type="text" class="form-control" id="consumerPubKey" name='publicKey' placeholder="选项" readonly>
+                        </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
-                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode" placeholder="带有NFT标识的绿色防伪码..." list="requestDTasset">
+                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode" placeholder="带有NFT标识的绿色防伪码..." readonly>
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;验证码</span>
-                          <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色注册码..." list="requestDTregCode">
+                          <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色验证码..." list="requestDTregCode" required>
                           <datalist id="requestDTregCode">
                             <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
                             <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
@@ -403,19 +397,33 @@
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
-                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                          <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714;递交申请">
+                          <input type="submit" class="btn btn-dark w-100" id="requestDTbtn" value="&#x2714;递交申请">
                         </div>
                       </form>
                     </div>
-                    <div class="d-none" id="requestTitlTokeneResponse"  >
+                    <div class="d-none" id="requestTitlTokeneResponse">
+                      <div class="d-none" id="genNewWalletResult">
+                        <h6>新钱包信息:</h6>
+                        <div class="input-group input-group-sm mb-1" >
+                          <span class="input-group-text border border-info">地址</span>
+                          <input type="text" class="form-control border border-info" id="genNewWalletResultWallet">
+                        </div>
+                        <div class="input-group input-group-sm mb-1" >
+                          <span class="input-group-text border border-info">公钥</span>
+                          <input type="text" class="form-control border border-info" id="genNewWalletResultPubKey">
+                        </div>
+                        <div class="input-group input-group-sm mb-3" >
+                          <span class="input-group-text border border-info">密钥</span>
+                          <input type="text" class="form-control border border-info" id="genNewWalletResultSecret">
+                        </div>
+                      </div>
+                      <div id="genNewWalletQRCode"></div>
                       <div class="text-wrap text-break overflow-auto">
-                        <h5>事件总结:</h5>
-                        <p id="requestTitlTokeneResult"></p>
-                        <span id="newWalletQRCode"></span>
+                        <p class="d-none" id="requestTitlTokeneResultMismatch"><span class="paRed">验证失败，谨防假冒！</span><br>验证码解密结果 <span id="requestTitlTokeneResultMismatchDecrypted"></span> 与提供的防伪码不符。</p>
+                        <p class="d-none" id="requestTitlTokeneResultFail"><span class="paRed">解密失败，谨防假冒！</span><br>验证码并非由您正在查询的品牌企业生成。</p>
+                        <p class="d-none" id="requestTitlTokeneResultPass"><span class="paGreen">验证码有效！</span><br>您申请的权益令牌NFT将于一分钟以后到账。区块链标识：<br><span id="requestTitlTokeneResultPassFullHash"></span></p>
                       </div>
                       <div class="text-wrap text-break overflow-auto">
-                        <h5>区块链响应</h5>
                         <span id="requestTitlTokeneJSON"></span>
                       </div>
                     </div>
@@ -435,11 +443,11 @@
                       <form id="validateTitlTokenForm">
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
-                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode3" placeholder="带有NFT标识的绿色防伪码..." value="">
+                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode3" placeholder="带有NFT标识的绿色防伪码..." readonly>
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;验证码</span>
-                          <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色注册码..." list="validateRegCodeList">
+                          <input type="text" class="form-control" name='regCode'  placeholder="带有CC14标识的蓝色注册码..." list="validateRegCodeList" required>
                           <datalist id="validateRegCodeList">
                             <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
                             <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
@@ -447,21 +455,16 @@
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
-                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                          <input type="submit" class="btn btn-outline-secondary" id="validateTTbtn" value="&#x2714;核对">
+                          <input type="submit" class="btn btn-dark w-100" id="validateTTbtn" value="&#x2714;核对">
                         </div>
                       </form>
                     </div>
                     <div class="d-none" id="validateTitleTokeneResponse"  >
                       <div class="text-wrap text-break overflow-auto">
-                        <h5>事件总结:</h5>
-                        <span id="validateTitlTokeneResult"></spanp>
-                        <!-- <span id="newWalletQRCode"></span> -->
+                        <p class="d-none" id="validateTitlTokeneResultMismatch"><span class="paRed">验证失败，谨防假冒！</span><br>验证码解密结果 <span id="validateTitlTokeneResultMismatchDecrypted"></span> 与提供的防伪码不符。</p>
+                        <p class="d-none" id="validateTitlTokeneResultFail"><span class="paRed">解密失败，谨防假冒！</span><br>验证码并非由您正在查询的品牌生成。</p>
+                        <p class="d-none" id="validateTitlTokeneResultPass"><span class="paGreen">验证码有效！</span><br>经所查询的品牌企业核实，您提供的验证码解密结果与防伪码相符。</p>
                       </div>
-                      <!-- <div class="text-wrap text-break overflow-auto">
-                        <h5>区块链响应</h5>
-                        <span id="validateTitleTokeneJSON"></span>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -473,13 +476,15 @@
       <div class="row align-items-center d-none" style="height:100px" id="modalBlockTransfer">
         <div class="col-12 col-sm-10 mx-auto " >
           <div class="d-flex justify-content-center ">
-            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#receiveTitle" value="&#x1F4E5; 接收权益令牌" id="receiveTitleBtn">&nbsp;&nbsp;
-            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#transferTitle" value="&#x1F4E4; 转让权益令牌" id="transferTitleBtn">
+            <div class="input-group">
+              <input type="button" class="btn btn-outline-dark btn-lg w-50" data-bs-toggle="modal" data-bs-target="#receiveTitle" value="&#x1F4E5; 接收权益令牌" id="receiveTitleBtn">
+              <input type="button" class="btn btn-outline-dark btn-lg w-50" data-bs-toggle="modal" data-bs-target="#transferTitle" value="&#x1F4E4; 转让权益令牌" id="transferTitleBtn">
+            </div>
             <div class="modal fade" id="receiveTitle" tabindex="-1" aria-labelledby="receiveTitleLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="receiveTitleLabel">接收权益令牌</h5>
+                    <h5 class="modal-title" id="receiveTitleLabel">接收令牌</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -488,10 +493,11 @@
                         <form id="modalReceiveTitleForm" >
                           <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text">消费者钱包</span>
-                            <input type="text" name='wallet' maxlength="26" class="form-control" value="CC14-" id="recipientWallet" >
+                            <input type="text" name='wallet' maxlength="26" class="form-control" value="CC14-" id="recipientWallet" required>
                           </div>
                           <div class="input-group justify-content-md-end mb-3">
-                            <input type="button" class="btn btn-outline-secondary" style="width:100%" value="&#x2705; 生成二维码" onClick="qrCodeFn(modalReceiveTitleForm.wallet.value)" >
+                            <input type="reset" class="btn btn-outline-dark w-50" value="&#x1F503; 重置" >
+                            <input type="button" class="btn btn-dark w-50" value="&#x2705; 生成二维码" onClick="genQRCodeFn(modalReceiveTitleForm.wallet.value, '../images/logo-cc14-qr.png', 'dispQRCode', 'green')" >
                           </div>
                         </form>
                       </div>
@@ -509,7 +515,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="transferTitleLabel">转让权益令牌</h5>
+                    <h5 class="modal-title" id="transferTitleLabel">转让令牌</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -528,7 +534,7 @@
                           <input type="text" name='quantity' class="form-control" value="1">
                         </div>
                         <div class="input-group mb-3">
-                          <span class="input-group-text">附加信息</span>
+                          <span class="input-group-text">操作信息</span>
                           <input type="text" name='message' class="form-control" placeholder="Optional" >
                         </div>
                         <div class="input-group mb-3">
@@ -537,8 +543,8 @@
                           <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
                         </div>
                         <div class="input-group justify-content-md-end mb-3">
-                          <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="location.reload()">
-                          <input type="submit" class="btn btn-outline-secondary" value="&#x2705; 生成交易字节" >
+                          <input type="reset" class="btn btn-outline-dark w-50" value="&#x1F503; 重置" >
+                          <input type="submit" class="btn btn-dark w-50" value="&#x2705; 生成交易数据" >
                         </div>
                       </form>
                       <form id="broadcastTransactionForm">
@@ -547,13 +553,13 @@
                           </textarea>
                         </div>
                         <div class="input-group justify-content-md-end mb-3">
-                          <input type="submit" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;广播交易字节">
+                          <input type="submit" class="btn btn-success btn-lg w-100" value="&#x2714;确认转让">
                         </div>
                       </form>
                     </div>
                     <div class="d-none" id="transferAssetResponse"  >
                       <div class="text-wrap text-break overflow-auto">
-                        <h5>总结:</h5>
+                        <!-- <h5>总结:</h5> -->
                         <p id="transferAssetResult"></p>
                         <p id="transferAssetBroadcastTransactionResult"></p>
                         <table class="table table-sm fs-6 table-bordered border-info caption-top">
@@ -598,6 +604,12 @@
       </div><!-- Action modal end ===========================================-->
     </div>
     </div><!-- container end =============================================== -->
+    <div style="position:fixed; opacity:0.5; bottom:100px; right:20px" >
+      <h1><a class="text-decoration-none" href="#toTop">&#9195;</a></h1>
+    </div>
+    <div style="position:fixed; opacity:0.5; bottom:60px; right:20px" >
+      <h1><a class="text-decoration-none" href="#footer">&#9196;</a></h1>
+    </div>
   </div><!-- 100% vh end =================================================== -->
   <div id="footerModalContainer" name="Footer modal container">
     <!-- load by nav_footer.js -->
@@ -612,17 +624,22 @@ var isNode = false;
 <script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
 <script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
 <script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
 <script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/curve25519.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
 <script src="../js/3rdparty/jsbn.js"></script>
 <script src="../js/3rdparty/jsbn2.js"></script>
-<script src="../js/3rdparty/extensions.js"></script>
-<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/nrs.constants.js"></script>
+<script src="../js/3rdparty/nrs.encryption.js"></script>
 <script src="../js/3rdparty/nrs.util.js"></script>
-<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src="../js/3rdparty/nxtaddress.js"></script>
+<script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/scripts.cryptoc14.js" ></script>
 <script src='../data/conf.js' ></script>
 <script src='../data/myAddressBook.js' ></script>
 <script src='../data/myAssetBook.js' ></script>
-<script src='scripts-cc14.js' ></script>
 <script src='nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -631,16 +648,15 @@ var isNode = false;
   $("#footer").html(footerHtml);
   $("#footerModalContainer").html(footerModal);
   $("input[type='text']").on("click", function () {$(this).select();});
-  $('#consumerWallet').val(localStorage.getItem("myWalletLS"));
-  $('#consumerPubKey').val(localStorage.getItem("myPubKeyLS"));
-  $('#recipientWallet').val(localStorage.getItem("myWalletLS"));
-  function resetPubKey(){
-    document.getElementById("consumerPubKey").value = "";
-    console.log(document.getElementById("consumerPubKey").value);
-  };
   var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
+</script>
+<script>
+  $('#consumerWallet').val(localStorage.getItem("myWalletLS"));
+  $('#consumerPubKey').val(localStorage.getItem("myPubKeyLS"));
+  $('#recipientWallet').val(localStorage.getItem("myWalletLS"));
 </script>
 </html>

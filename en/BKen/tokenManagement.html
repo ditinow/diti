@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CryptoC14 one stop blockchain dApp</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Crypto C14 One stop blockchain DApp">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style-cc14.css">
+  <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+      <div class="row" name="actionBlock"><!-- actionBlock ==================-->
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion"><br>
+
+            <div class="accordion-item" name="Issue anti-counterfeiting product">
+              <h2 class="accordion-header" id="issueNFTflip">
+                <button id="issueNFTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTpanel" aria-expanded="false" aria-controls="issueNFTpanel" >
+                  <h4>&#x1F430; Issue title token (NFT)</h4>
+                </button>
+              </h2>
+              <div id="issueNFTpanel" class="accordion-collapse collapse" aria-labelledby="issueNFTflip" >
+                <div class="accordion-body">
+                  <div id="issueNFTFormAction">
+                    <form id="issueNFTForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" placeholder="8 to 14 digits barcode" required>
+                        <datalist id="barcodeList">
+                          <option value="6901234567890">CC14 Collapsible Umbrella, Sky 43-inch</option>
+                          <option value="6903456789012">CC14 logo polo shirts, set of two</option>
+                          <option value="6902345678901">Green tea</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3 d-none" >
+                        <span class="input-group-text">Description</span>
+                        <input type="text" class="form-control" placeholder="text ..." name='description' maxlength="500"  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="optional ..."  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Quantity</span>
+                        <input type="number" class="form-control" name='issueQty' value='5' min="2" max="100">
+                      </div>
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="only 2 token issuance transactions will bebroadcasted for prefilled passpharse" value="&#x2714; Confirm broadcast">
+                      </div>
+                    </form>
+                    <!-- <form id="issueNFTBroadcastForm">
+                      <input type="hidden" name="requestType" value="broadcastTransaction">
+                      <input type="hidden" name="transactionBytes" value="">
+                      <input type="submit" id="issueNFTBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm broadcast">
+                    </form> -->
+                  </div>
+                  <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
+                    <div class="overflow-auto" name="issueNFTResult">
+                        <h5>Summary:</h5>
+                        <span>Save to <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
+                      <div class="table-responsive">
+                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Product ID</th>
+                              <th>Title Token(short ID)</th>
+                              <th>Title Token(long ID)</th>
+                              <th>Verification Code</th>
+                              <th>Barcode</th>
+                              <th>Asset name</th>
+                              <th>Mssage</th>
+                              <th>Issuer wallet</th>
+                              <th>Issuance time</th>
+                              <th>fee</th>
+                            </tr>
+                          </thead>
+                          <tbody id="myTable">
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="justify-content-center overflow-auto" id="issueNFTQRCode" style="max-height:320px"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="issueNFTJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Issue anti-counterfeiting product with predefined serial number">
+              <h2 class="accordion-header" id="issueNFTwSNoflip">
+                <button id="issueNFTwSNobtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTwSNopanel" aria-expanded="false" aria-controls="issueNFTwSNopanel" >
+                  <h4>&#128220; Issue title token with pre-defined serial number</h4>
+                </button>
+              </h2>
+              <div id="issueNFTwSNopanel" class="accordion-collapse collapse" aria-labelledby="issueNFTwSNoflip" >
+                <div class="accordion-body">
+                  <div id="issueNFTwSNoFormAction">
+                    <form id="issueNFTwSNoForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value="6902345678901">
+                        <datalist id="barcodeList">
+                          <option value="6901234567890">CC14 Collapsible Umbrella, Sky 43-inch</option>
+                          <option value="6903456789012">CC14 logo polo shirts, set of two</option>
+                          <option value="6902345678901">Green tea</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3 " >
+                        <span class="input-group-text">Serial No.</span>
+                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003"]</textarea>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="optional ..."  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group mb-3 d-none" >
+                        <span class="input-group-text">Quantity</span>
+                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
+                        <datalist id="issueNFTList1">
+                          <option value="2">Quantity 2</option>
+                          <option value="5">Quantity 5</option>
+                          <option value="10">Quantity 10</option>
+                        </datalist>
+                      </div>
+                      <!-- <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-secondary" value="&#x1F503;Reset"> -->
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="only 2 token issuance transactions will bebroadcasted for prefilled passpharse" value="&#x2714; Confirm broadcast">
+                      </div>
+                    </form>
+                    <!-- <form id="issueNFTwSNoBroadcastForm">
+                      <input type="hidden" name="requestType" value="broadcastTransaction">
+                      <input type="hidden" name="transactionBytes" value="">
+                      <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm broadcast">
+                    </form> -->
+                  </div>
+                  <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
+                    <div class="overflow-auto" name="issueNFTwSNoResult">
+                        <h5>Summary:</h5>
+                        <span>Save to <button id="table2excelwSNo" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
+                        <!-- <span><br><b>Note: </b>in order to maintain minimum  blance in demonstration account, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> will be disabled if issue more than 2 title tokens.</span> -->
+                      <div class="table-responsive">
+                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Serial No</th>
+                              <th>Title Token(short ID)</th>
+                              <th>Title Token(long ID)</th>
+                              <th>Verification Code</th>
+                              <th>Barcode</th>
+                              <th>Asset name</th>
+                              <th>Mssage</th>
+                              <th>Issuer wallet</th>
+                              <th>Issuance time</th>
+                              <th>fee</th>
+                            </tr>
+                          </thead>
+                          <tbody id="issueNFTwSNoTable">
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="justify-content-center overflow-auto" id="issueNFTwSNoQRCode" style="max-height:320px"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="issueNFTwSNoJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Product activation">
+              <h2 class="accordion-header" id="activationSearchFlip">
+                <button id="activationSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activationSearchPanel" aria-expanded="false" aria-controls="activationSearchPanel" >
+                  <h4>&#x1F426; Product Activation</h4>
+                </button>
+              </h2>
+              <div id="activationSearchPanel" class="accordion-collapse collapse" aria-labelledby="activationSearchFlip" >
+                <div class="accordion-body">
+                  <div id="activationAction">
+                    <form id="activationSearchForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Wallet</span>
+                        <input type="text" class="form-control" name="account" list="activationSearchList" >
+                        <datalist id="activationSearchList">
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">Issuance wallet one - demo account</option>
+                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">Issuance wallet two - demo account</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Comments</span>
+                        <input type="text"  class="form-control" name="message" placeholder="lot No, Operator ID...">
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; Search ">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="table-responsive mb-3 d-none" id="activationSearchTblDisplay" >
+                    <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="activationSearchTbl">
+                      <thead class="thead-light">
+                        <tr class="filters">
+                          <th>Barcode</th>
+                          <th>Secure Code</th>
+                          <th>Issue Date</th>
+                          <th>Issuer wallet</th>
+                          <th>qty</th>
+                          <th>decimals</th>
+                        </tr>
+                      </thead>
+                      <tbody id="activationSearchTbody">
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">Search barcode</span></th>
+                          <th><span style="opacity:0.3">Secure Code</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">Search date</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">Search issuer</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">Search qty</span></th>
+                          <th><span style="opacity:0.3">decimals</span></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <div class="mb-3">
+                    <form id="activationConfirmForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Activation</span>
+                        <select class="form-select" type="text" name="recipient">
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">Product activation one - demo account</option>
+                          <option value="CC14-DUPL-QDTD-ZGDJ-7YJTW">Product activation wallet two - demo account</option>
+                          </select>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input class="form-control" type="password" id="activationConfirmFormPassword" name="secretPhrase" value="">
+                        <span class="input-group-text fs-4"  id="activationConfirmFormPasswordIcon" onclick="togglePasswordFn('activationConfirmFormPassword')">&#128584;</span>
+                      </div>
+                      <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by DApp...">
+                      <input type="submit" id="activationConfirmBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Confirm activation">
+                    </form>
+                  </div>
+                  <div class="table-responsive d-none" id="activationConfirmTblDisp">
+                    <p>Filtered products keeps in <b id="activationConfirmWallet"></b>, a dedicated wallet for <span id="walletType">product activation</span>.Fee is paid in CC14</p>
+                    <table class="table table-sm table-bordered text-nowrap" id="activationConfirmTbl">
+                      <thead class="thead-light">
+                        <tr class="filters">
+                          <th id="activationConfirmTblThead">Activated</th>
+                          <th>Wallet</th>
+                          <th>fee</th>
+                          <th>time</th>
+                          <th>Transaction full hash</th>
+                        </tr>
+                      </thead>
+                      <tbody id="activationConfirmTbody">
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th><span style="opacity:0.3">Asset ID</span></th>
+                          <th><span style="opacity:0.3">Wallet</span></th>
+                          <th><span style="opacity:0.3">fee</span></th>
+                          <th><span style="opacity:0.3">time</span></th>
+                          <th><span style="opacity:0.3">Transaction full hash</span></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <div class="col-12 col-sm-12 d-none" id="activationJSONDisplay">
+                  <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                    <h5>JSON response</h5>
+                    <span id="activationJSON"></span>
+                    </div>
+                  </div>
+
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Burning unwanted title token">
+              <h2 class="accordion-header" id="burningSearchFlip">
+                <button id="burningSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#burningSearchPanel" aria-expanded="false" aria-controls="burningSearchPanel" >
+                  <h4>&#x1F426; Burning unwanted title token</h4>
+                </button>
+              </h2>
+              <div id="burningSearchPanel" class="accordion-collapse collapse" aria-labelledby="burningSearchFlip" >
+                <div class="accordion-body">
+                  <div id="burningAction">
+                    <form id="burningSearchForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Wallet</span>
+                        <input type="text" class="form-control" name="account" list="burningSearchList" >
+                        <datalist id="burningSearchList">
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">Issuance wallet one - demo account</option>
+                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">Issuance wallet two - demo account</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Comments</span>
+                        <input type="text"  class="form-control" name="message" placeholder="lot No, Operator ID...">
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; Search ">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="table-responsive mb-3 d-none" id="burningSearchTblDisplay" >
+                    <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="burningSearchTbl">
+                      <thead class="thead-light">
+                        <tr class="filters">
+                          <th>Barcode</th>
+                          <th>Secure Code</th>
+                          <th>Issue Date</th>
+                          <th>Issuer wallet</th>
+                          <th>qty</th>
+                          <th>decimals</th>
+                        </tr>
+                      </thead>
+                      <tbody id="burningSearchTbody">
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th><span style="opacity:0.3" onclick="dataTablesBurningFn()">Search barcode</span></th>
+                          <th><span style="opacity:0.3">Secure Code</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesBurningFn()">Search date</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesBurningFn()">Search issuer</span></th>
+                          <th><span style="opacity:0.3" onclick="dataTablesBurningFn()">Search qty</span></th>
+                          <th><span style="opacity:0.3">decimals</span></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <div class="mb-3">
+                    <form id="burningConfirmForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Burning</span>
+                        <select class="form-select" type="text" name="recipient">
+                          <option value="CC14-9QS5-MBBX-56MF-ESNEB">Dumpster - demo account</option>
+                        </select>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input class="form-control" type="password" id="burningConfirmFormPassword" name="secretPhrase" value="">
+                        <span class="input-group-text fs-4"  id="burningConfirmFormPasswordIcon" onclick="togglePasswordFn('burningConfirmFormPassword')">&#128584;</span>
+                      </div>
+                      <input type="hidden"  name="message" id="burningConfirmFormMessage" value="autocomplete by DApp...">
+                      <input type="submit" id="burningConfirmBtn" class="btn btn-success btn-lg btn-danger" style="width:100%"  value=" 🔥 Confirm burning">
+                    </form>
+                  </div>
+                  <div class="table-responsive d-none" id="burningConfirmTblDisp">
+                    <p>Filtered products keeps in <b id="burningConfirmWallet"></b>, a dedicated wallet for <span id="walletType">buring title token</span>.Fee is paid in CC14</p>
+                    <table class="table table-sm table-bordered text-nowrap" id="burningConfirmTbl">
+                      <thead class="thead-light">
+                        <tr class="filters">
+                          <th id="burningConfirmTblThead">Burned</th>
+                          <th>Dumpster Wallet</th>
+                          <th>fee</th>
+                          <th>time</th>
+                          <th>Transaction full hash</th>
+                        </tr>
+                      </thead>
+                      <tbody id="burningConfirmTbody">
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th><span style="opacity:0.3">Asset ID</span></th>
+                          <th><span style="opacity:0.3">Wallet</span></th>
+                          <th><span style="opacity:0.3">fee</span></th>
+                          <th><span style="opacity:0.3">time</span></th>
+                          <th><span style="opacity:0.3">Transaction full hash</span></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <div class="col-12 col-sm-12 d-none" id="burningJSONDisplay">
+                  <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                    <h5>JSON response</h5>
+                    <span id="burningJSON"></span>
+                    </div>
+                  </div>
+
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Set product properties">
+              <h2 class="accordion-header" id="setAssetPropertyFlip">
+                <button id="setAssetPropertyBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#setAssetPropertyPanel" aria-expanded="false" aria-controls="setAssetPropertyPanel" >
+                  <h4>&#x1F41F; Set product properties</h4>
+                </button>
+              </h2>
+              <div id="setAssetPropertyPanel" class="accordion-collapse collapse " aria-labelledby="setAssetPropertyFlip" >
+                <div class="accordion-body">
+                  <div id="setAssetPropertyAction">
+                    <form id="setAssetPropertyForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Token ID</span>
+                        <input type="text" class="form-control" name="asset" value="14980595911452706870">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Property</span>
+                        <input type="text" class="form-control rounded-end" name="property" list="setAssetPropertyList1" required>
+                        <datalist id="setAssetPropertyList1">
+                          <option value="tracking">Tracking</option>
+                          <option value="recall">Recall</option>
+                          <option value="warning">Warning</option>
+                          <option value="marketing">Marketing</option>
+                        </datalist>
+                        <span class="input-group-text" >Value</span>
+                        <input type="text" class="form-control" maxlength="160" name="value" placeholder="text...">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >message</span>
+                        <input type="text" class="form-control rounded-end" name="message" list="setAssetPropertyList2" placeholder="选项..." >
+                        <datalist id="setAssetPropertyList2">
+                          <option value='{"operator":"No201912345"}'>operator 1</option>
+                          <option value='{"operator":"No201702345"}'>operator 2</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='setAssetPropertyPassword' value="ci di wu yin 302 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="setAssetPropertyPasswordIcon" onclick="togglePasswordFn('setAssetPropertyPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepare transactionBytes ">
+                      </div>
+                    </form>
+                    <div>
+                      <form id="setAssetPropertyBroadcastForm">
+                        <input type="text" id="setAssetPropertyTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp ...">
+                        <input type="submit" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Boradcast transactionBytes">
+                      </form>
+                    </div>
+                  </div>
+                  <div class="d-none" id="setAssetPropertyDisplay">
+                    <div class="overflow-auto" name="setAssetPropertyResult">
+                      <div>
+                        <h5 >Summary:</h5>
+                        <span id="setAssetPropertyBroadcastResult" ></span>
+                        <div id="setAssetPropertyResult" ></div>
+                      </div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                      <span id="setAssetPropertyJSON"><h5>JSON response</h5></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Reproduce verification code">
+              <h2 class="accordion-header" id="reproduceRegCode">
+                <button id="reproduceRegCodeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reproduceRegCodeFPanel" aria-expanded="false" aria-controls="reproduceRegCodeFPanel">
+                  <h4>&#9749; Reproduce verification code</h4>
+                </button>
+              </h2>
+              <div id="reproduceRegCodeFPanel" class="accordion-collapse collapse" aria-labelledby="reproduceRegCodeFlip" >
+                <div class="accordion-body">
+                  <div id="reproduceRegCodeAction" >
+                    <form id="reproduceRegCodeForm" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Title token ID</span>
+                        <input type="text" class="form-control" name='secureCode' id="secureCode" required>
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Reproduce">
+                      </div>
+                    </form>
+                  </div>
+                  <div id="reproduceRegCodeResponse" >
+                    <h5>Verification code:</h5>
+                    <p id="dispReproduceRegCode"></p>
+                    <span id="reproduceRegCodeQRCode"></span>
+                  </div >
+                </div>
+              </div>
+            </div><!-- Reproduce regCode with given secure code============== -->
+
+            <div class="accordion-item" name="generate aes key and iv">
+              <h2 class="accordion-header" id="aesKeyIv">
+                <button id="aesKeyIvBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aesKeyIvFPanel" aria-expanded="false" aria-controls="aesKeyIvFPanel">
+                  <h4>&#128273; AES key and iv generator</h4>
+                </button>
+              </h2>
+              <div id="aesKeyIvFPanel" class="accordion-collapse collapse" aria-labelledby="aesKeyIvFlip" >
+                <div class="accordion-body">
+                  <div id="aesKeyIvAction" >
+                    <form id="aesKeyIvForm" >
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="submit" class="btn btn-outline-secondary" style="width:100%" value="&#x1F528; Generate">
+                      </div>
+                    </form>
+                  </div>
+                  <div>
+                    <span id="aesKeyIvResponse"></span>
+                    <span id="dispKeyIvQRCode"></span>
+                  </div >
+                </div>
+              </div>
+            </div><!-- Generate AES keu and iv end ========================= -->
+
+            <div class="accordion-item d-none" name="Request Title Token">
+              <h2 class="accordion-header" id="requestTitlTokenFlip">
+                <button id="RequestDTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestTitlTokenPanel" aria-expanded="false" aria-controls="requestTitlTokenPanel">
+                  <h4>&#x1F41E; Request Title Token</h4>
+                </button>
+              </h2>
+              <div id="requestTitlTokenPanel" class="accordion-collapse collapse" aria-labelledby="requestTitlTokenFlip" >
+                <div class="accordion-body">
+                  <div id="requestTitlTokenAction">
+                    <form id="pin2newWalletForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Create new wallet</span>
+                        <input type="text" class="form-control" name='userInput' minlength="6" id="newWalletUserInput">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#128296;create">
+                      </div>
+                    </form>
+                    <div>
+                      <p class="text-center text-muted">OR</p>
+                    </div>
+                    <form id="requestTitlTokenForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Use existing wallet</span>
+                        <input type="text" class="form-control" id="consumerWallet" name='recipient' value="CC14-" placeholder="Enter consumer wallet address with prefix CC14-">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Public Key</span>
+                        <input type="text" class="form-control" id="consumerPubKey" name='publicKey'>
+                      </div>
+                        <hr>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;Secure Code</span>
+                        <input type="text" class="form-control" name='asset' placeholder="Scan green QR code with CC14 logo..." list="requestDTasset">
+                        <datalist id="requestDTasset">
+                          <option value="6081132971218252451"></option>
+                          <option value="8780717788303414133"></option>
+                          <option value="15200409551401343201"></option>
+                          <option value="1961837512695565320"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;Registration Code</span>
+                        <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
+                        <datalist id="requestDTregCode">
+                          <option value="8df242f13ec2a0af99fb41efa0f90ca2d98fde83e663a48581d3e8045a505a75"></option>
+                          <option value="f43829fd08c04ca880b267d1bccad0a5f4771120961e6f78c5157c296b09607d"></option>
+                          <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
+                          <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; Request">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="requestTitlTokeneResponse"  >
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Summary：</h5>
+                      <p id="requestTitlTokeneResult"></p>
+                      <span id="newWalletQRCode"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>JSON response</h5>
+                      <span id="requestTitlTokeneJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ===================================-->
+
+            <div class="accordion-item d-none" name="Transfer Asset">
+              <h2 class="accordion-header" id="transferAssetFlip">
+                <button id="transferAssetBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transferAssetPanel" aria-expanded="false" aria-controls="transferAssetPanel">
+                  <h4>&#x1F41A; Transfer Title Token</h4>
+                </button>
+              </h2>
+              <div id="transferAssetPanel" class="accordion-collapse collapse" aria-labelledby="transferAssetFlip" >
+                <div class="accordion-body">
+                  <div id="transferAssetAction">
+                    <form id="transferAssetForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Recipient Wallet</span>
+                        <input type="text" name='recipient' maxlength="26" class="form-control" value="CC14-U9BK-FRCM-ZX2W-H9K4R" placeholder="please enter your wallet address with prefix CC14-" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Asset ID</span>
+                        <input type="text" name='asset' maxlength="26" class="form-control" value="1191924593202748656">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Quantity</span>
+                        <input type="text" name='quantity' class="form-control" value="5" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Note:</span>
+                        <input type="text" name='message' class="form-control" placeholder="" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Sender's Passphrase</span>
+                        <input type="password" name='secretPhrase' class="form-control" id='transferAssetPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x2705; Create transactionBytes" >
+                      </div>
+                    </form>
+                    <form id="broadcastTransactionForm">
+                      <div class="input-group mb-3" >
+                        <textarea style="height:120px" class="form-control" name='transactionBytes' id="transferAssetTransactionBytes">autocomplete by DApp...
+                        </textarea>
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="submit" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;Boradcast transactionBytes">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="transferAssetResponse">
+                    <div class="overflow-auto" id="transferAssetResult" >
+                      <h5>Summary</h5>
+                      <span ></span>
+                      <p id="transferAssetBroadcastTransactionResult"></p>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <tbody>
+                          <tr><td>Qty</td><td id="transferAssetTbl-qty"></td></tr>
+                          <tr><td>Fee</td><td id="transferAssetTbl-fee"></td></tr>
+                          <tr><td>time</td><td id="transferAssetTbl-time"></td></tr>
+                          <tr><td>senderRS</td><td id="transferAssetTbl-senderRS"></td></tr>
+                          <tr><td>recipientRS</td><td id="transferAssetTbl-recipientRS"></td></tr>
+                          <tr><td>message</td><td id="transferAssetTbl-message"></td></tr>
+                          <tr><td>Full Hash</td><td id="transferAssetTbl-fullHash"></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto"  >
+                      <h5>JSON response: </h5>
+                      <span id="transferAssetJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse collapse end =================== -->
+            </div><!-- accordion-item end ===================================-->
+
+            <div class="accordion-item" name="Issue fungiable token">
+              <h2 class="accordion-header" id="issueAssetFlip">
+                <button id="issueAssetbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueAssetPanel" aria-expanded="false" aria-controls="issueAssetPanel" >
+                  <h4>&#x1F426; Issue fungible token</h4>
+                </button>
+              </h2>
+              <div id="issueAssetPanel" class="accordion-collapse collapse" aria-labelledby="issueAssetFlip">
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="issueAssetForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Quantity</span>
+                        <input type="text" class="form-control" name="quantity" value="1234.500">
+                        <span class="input-group-text" >decimals</span>
+                        <input type="text" class="form-control" name="decimals" value="3" >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="text" class="form-control" name='barcode' list="barcodeList2" maxlength="14" value="9876123456789">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Description</span>
+                        <input type="text" class="form-control" value='{"unit":"kg", "lotNo":"GX-45678"}' name='description' maxlength="500" >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="optional ...">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='issueAssetPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueAssetPasswordIcon" onclick="togglePasswordFn('issueAssetPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset" disabled>
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepear transactionBytes" disabled>
+                      </div>
+                    </form>
+                    <div>
+                      <form id="issueAssetBroadcastTransactionForm">
+                        <input type="text" id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp...">
+                        <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Boradcast transactionBytes" onClick="broadcastTransactionFn('issueAsset')" disabled>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="d-none" id="issueAssetDisplay">
+                    <div overflow-auto>
+                      <h5>Summary:</h5>
+                      <span id="issueAssetBroadcastTransactionResult"></span>
+                      <div id="issueAssetResult"></div>
+                      <div class="justify-content-center overflow-auto" id="issueAssetQRCode" style="max-height:320px"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                      <span id="issueAssetJSON"><h5>JSON response</h5></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+          </div><!-- accordion end ========================================= -->
+        </div>
+      </div><!-- actionBlock end ============================================-->
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+  var isNode = false;
+</script>
+<script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/curve25519.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
+<script src="../js/3rdparty/jsbn.js"></script>
+<script src="../js/3rdparty/jsbn2.js"></script>
+<script src="../js/3rdparty/nrs.constants.js"></script>
+<script src="../js/3rdparty/nrs.encryption.js"></script>
+<script src="../js/3rdparty/nrs.util.js"></script>
+<script src="../js/3rdparty/nxtaddress.js"></script>
+<script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/scripts.cryptoc14.js" ></script>
+<script src='../data/conf.js' ></script>
+<script src='../data/myAddressBook.js' ></script>
+<script src='../data/myAssetBook.js' ></script>
+<script src='nav_footer.js' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("input[type='text']").on("click", function () {$(this).select();});
+</script>
+<script>
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+</script>
+</html>

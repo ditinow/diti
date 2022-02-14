@@ -42,24 +42,23 @@
                 <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
                 <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
                 <option value="http://localhost:19886/" disabled>CC14@ 本地电脑</option>
-                <option value="http://192.168.1.7:19886/" disabled>CC14@ 本地网络</option>
+                <option value="http://192.168.1.7:19886/" >CC14@ 本地网络</option>
               </select>
-              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+              <button type="submit" class="btn btn-outline-secondary " >设置</button>
             </div>
           </form>
         </div>
       </div>
     </nav>
     <div class="container-fluid"><!-- container ============================ -->
-
       <div class="row"><!-- action block ====================================-->
         <div class="col-12 col-sm-10 mx-auto">
           <div class="accordion">
             <br>
-            <div class="accordion-item" name="电子存证 - 文件存证(离线)">
+            <div class="accordion-item" name="文件存证(离线)">
               <h2 class="accordion-header" id="genFileTokenFlip">
                 <button id="fileTokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genFileTokenPanel" aria-expanded="false" aria-controls="genFileTokenPanel">
-                  <h4>&#x1F42C; 电子存证 - 文件存证</h4>
+                  <h4>&#x1F42C; 文件存证(离线)</h4>
                 </button>
               </h2>
               <div id="genFileTokenPanel" class="accordion-collapse collapse " aria-labelledby="genFileTokenFlip" >
@@ -73,32 +72,35 @@
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >钱包密钥</span>
-                          <input class="form-control" type='password' name='secretPhrase' id="genFileTokenFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                          <input class="form-control demoAccount5RS" type='password' name='secretPhrase' id="genFileTokenFormPassword" required>
                           <span class="input-group-text fs-4"  id="genFileTokenFormPasswordIcon" onclick="togglePasswordFn('genFileTokenFormPassword')">&#128584;</span>
                         </div>
                         <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='生成存证哈希'/>
+                          <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                          <input type='submit' class='btn btn-secondary w-25' value='&#128295; 生成存证哈希'/>
                       </div>
                     </form>
                   </div><!-- form section end ============================== -->
                   <div class="col-12 col-sm-12 d-none" id="genFileTokenDisplay">
                     <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
                       <h5>事件总结:</h5>
-                      <p id="genFileTokenResult"></p>
-                      <p>存证哈希 fileToken 不上链也不产生任何费用，是一种离线存证的方式。它将用户上传文件进行数字签字后得到160个字符，具有时间戳的存证哈希。ARDOR共识算法保障这串存证哈希的不可篡改性以及时间戳的真实性，并通过数字签字确定生成者与这个字符串的必然必要关系。</p>
-                      <p>存证文件保存方式: 自选 - 本地存储、云盘、ARDOR 数据云、IPFS ... </p>
-                      <p>存证哈希保存方式: 自选 - 打印、 下载并保存 <a id="save2txt" href="" download="date.txt" >电子文档 </a>。 或者像《三体》里罗辑一样把它刻在石头上 ...</p>
+                      <p>存证时间: <span id="genFileTokenTime"></span></p>
+                      <p>存证钱包: <span id="genFileTokenAccountRS"></span></p>
+                      <p>存证文件: <span id="genFileTokenFile"></span></p>
+                      <p>存证哈希: <span id="genFileTokenHash"></span><br><a id="save2txt" href="" download="date.txt" >&#128229; 存证哈希</a></p>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <span id="genFileTokenJSON"></span>
                     </div>
                   </div><!-- display result JSON end ======================= -->
                 </div><!-- accordion-body end ============================== -->
               </div><!-- accordion-collapse end ============================ -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="电子存证 - 文件验证(离线)">
+            <div class="accordion-item" name="文件验证(离线)">
               <h2 class="accordion-header" id="decFileTokenFlip">
                 <button id="evidenceToolsBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#decFileTokenPanel" aria-expanded="false" aria-controls="decFileTokenPanel">
-                  <h4>&#x1F419; 电子存证 - 文件验证</h4>
+                  <h4>&#x1F419; 文件验证(离线)</h4>
                 </button>
               </h2>
               <div id="decFileTokenPanel" class="accordion-collapse collapse " aria-labelledby="decFileTokenFlip" >
@@ -112,112 +114,190 @@
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >存证哈希</span>
-                          <textarea class="form-control" style="height:60px" name='token' id="decFileTokenFormToken" placeholder="fileToken..."></textarea>
+                          <textarea class="form-control" style="height:60px" name='token' id="decFileTokenFormToken" placeholder="fileToken..." required></textarea>
                         </div>
                         <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='验证存证哈希'/>
+                          <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                          <input type='submit' class='btn btn-secondary w-25' value='验证存证哈希'/>
                       </div>
                     </form>
                   </div><!-- form section end ============================== -->
                   <div class="col-12 col-sm-12 d-none" id="decFileTokenResponse">
                     <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
                       <h5>事件总结:</h5>
                       <span id="decFileTokenResult"></span>
-                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
-                        <tbody>
-                          <tr><td>存证钱包: </td><td id="decFileTokenTbl-generator"></td></tr>
-                          <tr><td>存证时间: </td><td id="decFileTokenTbl-time"></td></tr>
-                          <tr><td>求证文件: </td><td id="decFileTokenTbl-file"></td></tr>
-                        </tbody>
-                      </table>
+                      <p class="d-none" id="decFileTokenPassed">验证通过！</p>
+                      <p class="d-none" id="decFileTokenFailed">验证失败！求证文件的内容与原始文件内容不符。</p>
+                      <p>存证时间: <span id="decFileTokenTbl-time"></p>
+                      <p>存证钱包: <span id="decFileTokenTbl-generator"></span></p>
+                      <p>求证文件: <span id="decFileTokenTbl-file"></span></p>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <span id="decFileTokenJSON"></span>
                     </div>
                   </div><!-- display result JSON end ======================= -->
                 </div><!-- accordion-body end ============================== -->
               </div><!-- accordion-collapse end ============================ -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="电子存证 - 存证上链(NFT)">
-              <h2 class="accordion-header" id="tokenizeFlip">
-                <button id="tokenizeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tokenizePanel" aria-expanded="false" aria-controls="tokenizePanel">
-                  <h4>&#x1F433; 电子存证 - 存证上链 (NFT)</h4>
+            <div class="accordion-item" name="文件存证(令牌化)">
+              <h2 class="accordion-header" id="fileNFTFlip">
+                <button id="fileNFTBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fileNFTPanel" aria-expanded="false" aria-controls="fileNFTPanel">
+                  <h4>&#x1F433; 文件存证：发行令牌</h4>
                 </button>
               </h2>
-              <div id="tokenizePanel" class="accordion-collapse collapse " aria-labelledby="tokenizeFlip" >
+              <div id="fileNFTPanel" class="accordion-collapse collapse" aria-labelledby="fileNFTFlip" >
                 <div class="accordion-body">
                   <div class="col-12 col-sm-12 mb-3">
-                    <form id="tokenizeForm">
+                    <form id="fileNFTForm">
                       <div class="input-group mb-3">
-                        <span class="input-group-text" >NFT 名称</span>
-                        <input class="form-control" type='text' name='name' value="NFT" >
+                        <span class="input-group-text" >选择文件</span>
+                        <input type="file" class="form-control" name="file" id="fileNFTFormFile" required/>
                       </div>
                       <div class="input-group mb-3">
-                        <span class="input-group-text" >文件哈希</span>
-                        <textarea class="form-control" style="height:90px" name='description' id='tokenizeFormDescription' placeholder="autocomplete by DApp..."></textarea>
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" >文件细节</span>
-                        <input type="text" class="form-control" name='message' id='tokenizeFormMessage' placeholder="autocomplete by DApp...">
+                        <span class="input-group-text" >令牌名称</span>
+                        <input class="form-control demoNFTName" type='text' name='name' minlength="3" maxlength="10" id="fileNFTName" placeholder="Eneter name of NFT" required>
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" >协议类型</span>
-                        <!-- <input type="text" class="form-control" name='license' list="liceseList"> -->
-                        <select class="form-select" type="text" name='license' id="liceseList">
-                          <!-- <option selected></option> -->
-                          <option value="CC BY" selected>Creative Commons Attribution</option>
-                          <option value="CC BY-SA">Creative Commons Attribution-ShareAlike</option>
-                          <option value="CC BY-ND">Creative Commons Attribution-NoDerivs</option>
-                          <option value="CC BY-NC">Creative Commons Attribution-NonCommercial</option>
-                          <option value="CC BY-NC-SA">Creative Commons Attribution-NonCommercial-ShareAlike</option>
-                          <option value="CC BY-NC-ND">Creative Commons Attribution-NonCommercial-NoDerivs</option>
+                        <select class="form-select" type="text" name='license' >
+                          <option value="CC BY">CC BY 知识共享: 姓名标示</option>
+                          <option value="CC BY-SA" selected>CC BY-SA 知识共享: 姓名标示-相同方式分享</option>
+                          <option value="CC BY-ND">CC BY-ND 知识共享: 姓名标示-禁止改作</option>
+                          <option value="CC BY-NC">CC BY-NC 知识共享: 姓名标示-非商业性</option>
+                          <option value="CC BY-NC-SA">CC BY-NC-SA 知识共享: 姓名标示-非商业性-相同方式分享</option>
+                          <option value="CC BY-NC-ND">CC BY-NC-ND 知识共享: 姓名标示-非商业性-禁止改作</option>
                         </select>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >操作信息</span>
+                        <input class="form-control" type='text' name='message' maxlength="500" placeholder="(选项)操作信息">
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text" >钱包密钥</span>
-                        <input class="form-control" type='password' name='secretPhrase' id="tokenizeFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou' required>
-                        <span class="input-group-text fs-4"  id="tokenizeFormPasswordIcon" onclick="togglePasswordFn('tokenizeFormPassword')">&#128584;</span>
+                        <input class="form-control demoAccount4PW" type='password' name='secretPhrase' id="fileNFTFormPassword" required>
+                        <span class="input-group-text fs-4"  id="ileNFTFormPasswordIcon" onclick="togglePasswordFn('fileNFTFormPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3" >
-                        <input type='submit' class='btn btn-outline-secondary' value='准备上链字节' />
+                        <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                        <input type='submit' class='btn btn-secondary w-25' value='准备存证数据' />
                       </div>
                     </form>
-                    <form id="tokenizeBroadcastTransactionForm" onsubmit="return broadcastTransactionFn('tokenize')">
-                      <input type="hidden" class="form-control" name="transactionBytes" value="" id="tokenizeBroadcastTransactionBytes">
-                      <input type="submit" id="tokenizeBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认上链">
+                    <form id="fileNFTBroadcast" onclick="broadcastFn('fileNFTBroadcast')">
+                      <textarea class="form-control mb-3" rows="3" name="transactionBytes" value="" id="fileNFTTransactionBytes" placeholder="应用自动填写" readonly></textarea>
+                      <input type="button" id="fileNFTBroadcastBtn" class="btn btn-success btn-lg w-100" value="&#x2714; 发行存证令牌">
                     </form>
                   </div><!-- form section end ============================== -->
-                  <div class="col-12 col-sm-12 d-none" id="tokenizeDisplay">
-                    <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
-                      <h4>事件总结:</h4>
-                      <span id="tokenizeResult"></span>
-                      <span id="tokenizeBroadcastTransactionResult"></span>
-                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
-                        <caption>NFT细节</caption>
-                        <tbody>
-                          <tr><td>上链钱包</td><td id="tokenizeTblAccountRS"></td></tr>
-                          <tr><td>上链时间</td><td id="tokenizeTblTime"></td></tr>
-                          <tr><td>NFT编号</td><td id="tokenizeTblAssetID"></td></tr>
-                          <tr><td>费用</td><td id="tokenizeTblFee"></td></tr>
-                          <tr><td>区块链标识</td><td id="tokenizeTblFullHash"></td></tr>
-                          <tr><td>存证哈希</td><td id="tokenizeTblFielToken"></td></tr>
-                          <tr><td>存证文件</td><td id="tokenizeTblFile"></td></tr>
-                        </tbody>
-                      </table>
+                  <div class="d-none" id="fileNFTResponse">
+                    <div overflow-auto>
+                      <p class="d-none" id="fileNFTResult">文件存证已上链。详情请点击区块链标识</p>
+                      <p class="d-none" id="fileNFTResultError">未知账号，请核对钱包密钥。</p>
+                      <p class="d-none" id="fileNFTResultNoFunds">账号余额不足。</p>
+                      <div class="table-responsive">
+                        <table class='table table-sm text-nowrap fs-6 table-bordered border-info caption-top ' id="fileNFTResultTable">
+                          <tr><td>存证费用  </td><td><span id="fileNFTResultFee"></span> CC14 通证</td></tr>
+                          <tr><td>存证钱包  </td><td><span id="fileNFTResultAccountRS"></span></td></tr>
+                          <tr><td>令牌名称  </td><td><span id="fileNFTResultName"></span></span></td></tr>
+                          <tr><td>令牌编号  </td><td><span id="fileNFTResultTokenID"></span></span></td></tr>
+                          <tr><td>存证细节  </td><td><input class="form-control border-0" type="text" id="fileNFTResultDescription"></td></tr>
+                          <tr><td>操作信息  </td><td><span id="fileNFTResultMessage"></span></td></tr>
+                          <tr><td>区块链标识</td><td><span id="fileNFTResultFullHash"></span></td></tr>
+                        </table>
+                      </div>
                     </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
-                      <span id="tokenizeBroadcastResult" style="text-shadow: 3px 3px 6px #999; font-weight: bold;"></span>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                      <h5>区块链响应</h5>
+                      <span id="fileNFTJSON"></span>
+                      <span id="fileNFTBroadcastJSON"></span>
                     </div>
-                  </div><!-- display result JSON end ======================= -->
+                  </div>
                 </div><!-- accordion-body end ============================== -->
               </div><!-- accordion-collapse end ============================ -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="电子存证 - 信息存证(离线)">
+            <div class="accordion-item" name="文件存证(令牌化)-核对">
+              <h2 class="accordion-header" id="fileNFTValidateFlip">
+                <button id="fileNFTValidateBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fileNFTValidatePanel" aria-expanded="false" aria-controls="fileNFTValidatePanel">
+                  <h4>&#x1F433; 文件存证：验证令牌</h4>
+                </button>
+              </h2>
+              <div id="fileNFTValidatePanel" class="accordion-collapse collapse" aria-labelledby="fileNFTValidateFlip" >
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="fileNFTValidateForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >选择文件</span>
+                        <input type="file" class="form-control" name="file" id="fileNFTValidateFormFile" required/>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >令牌编号</span>
+                        <input class="form-control demoTokenID" type='text' name='tokenID' id='fileNFTValidatTokenID_2'  placeholder="enter token ID" required>
+                      </div>
+                      <div class="input-group justify-content-end mb-3" >
+                        <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                        <input type='submit' class='btn btn-secondary w-25' value='验证文件' />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="fileNFTValidateResponse">
+                    <div>
+                      <p class="d-none" id="fileNFTValidatePassed"><b>验证结果：</b>通过！求证文件的求证哈希和与存证哈希一致，求证文件未经修改。</p>
+                      <p class="d-none" id="fileNFTValidateFailed"><b>验证结果：</b>失败！求证文件的求证哈希和与存证哈希不一致，求证文件与存证文件内容有异。</p>
+                      <p class="d-none" id="fileNFTValidateUnknown"><b>验证结果：</b>未知令牌编号！请核对。</p>
+                      <div class="table-responsive">
+                        <table class='table table-sm text-nowrap fs-6 table-bordered border-info caption-top'>
+                          <caption>存证细节</caption>
+                          <tr><td style="width:160px">存证钱包  </td><td><span id="fileNFTValidateResultAccountRS"></span></td></tr>
+                          <tr><td>令牌名称  </td><td><span id="fileNFTValidateResultName"></span></span></td></tr>
+                          <tr><td>令牌编号  </td><td><span id="fileNFTValidateResultTokenID"></span></span></td></tr>
+                          <tr><td>区块链标识</td><td><span id="fileNFTValidateResultFullHash"></span></td></tr>
+                          <tr>
+                            <td>存证细节  </td>
+                            <td>
+                              <div>文件名称：<span id="fileNFTValidateResultFileName"></span></div>
+                              <div>文件大小：<span id="fileNFTValidateResultFileSize"></span></div>
+                              <div>协议类型：
+                                <select class="border-0 autoComplete" type="text" id='licenseList' disabled>
+                                  <option value=""></option>
+                                  <option value="CC BY">CC BY 知识共享: 姓名标示</option>
+                                  <option value="CC BY-SA">CC BY-SA 知识共享: 姓名标示-相同方式分享</option>
+                                  <option value="CC BY-ND">CC BY-ND 知识共享: 姓名标示-禁止改作</option>
+                                  <option value="CC BY-NC">CC BY-NC 知识共享: 姓名标示-非商业性</option>
+                                  <option value="CC BY-NC-SA">CC BY-NC-SA 知识共享: 姓名标示-非商业性-相同方式分享</option>
+                                  <option value="CC BY-NC-ND">CC BY-NC-ND 知识共享: 姓名标示-非商业性-禁止改作</option>
+                                </select>
+                              </div>
+                              <div>加密算法：<span id="fileNFTValidateResultAlgo"></span></div>
+                              <div>存证哈希：<span id="fileNFTValidateResultFileHash"></span></div>
+                            </td></tr>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="table-responsive">
+                      <table class='table table-sm text-nowrap fs-6 table-bordered border-info caption-top'>
+                        <tr>
+                          <td style="width:160px">求证文件  </td>
+                          <td>
+                            <div>文件名称：(仅供参考) <span id="fileToValidateFileName"></span></div>
+                            <div>文件大小：(仅供参考) <span id="fileToValidateFileSize"></span></div>
+                            <div>加密算法：SHA1</div>
+                            <div>求证哈希：<span id="fileToValidateFileHash"></span></div>
+                          </td></tr>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:640px">
+                      <h5>区块链响应</h5>
+                      <span id="fileNFTValidateJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="短信存证(离线)">
               <h2 class="accordion-header" id="tokenFlip">
                 <button id="tokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tokenPanel" aria-expanded="false" aria-controls="tokenPanel">
-                  <h4>&#x1F423; 电子存证 - 信息存证(离线)</h4>
+                  <h4>&#x1F423; 短消息存证(离线)</h4>
                 </button>
               </h2>
               <div id="tokenPanel" class="accordion-collapse collapse " aria-labelledby="tokenFlip" >
@@ -227,33 +307,39 @@
                         <input type='hidden' name='requestType' value='generateToken'/>
                         <div class="input-group mb-3">
                           <span class="input-group-text" >存证信息</span>
-                          <textarea name="website" class="form-control" onclick="this.select();" id="genTokenInput">此地无银300两 隔壁王2不曾偷 ...</textarea>
+                          <input type="text" name="website" class="form-control" onclick="this.select();" id="genTokenInput" required>
+                          <input type="button" class="btn btn-outline-secondary" value="随机词组" onClick="newRandomSecretFn('genTokenInput')">
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >钱包密钥</span>
-                          <input class="form-control" type='password' name='secretPhrase' id="genTokenFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                          <input class="form-control demoAccount4PW" type='password' name='secretPhrase' id="genTokenFormPassword" required>
                           <span class="input-group-text fs-4"  id="genTokenFormPasswordIcon" onclick="togglePasswordFn('genTokenFormPassword')">&#128584;</span>
                         </div>
                         <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='生成存证哈希'/>
+                          <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                          <input type='submit' class='btn btn-secondary w-25' value='生成存证哈希'/>
                       </div>
                     </form>
                   </div><!-- form section end ============================== -->
                   <div class="col-12 col-sm-12 d-none" id="genTokenDisplay">
                     <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
                       <h5>事件总结:</h5>
-                      <span id="genTokenResult"></span>
+                      <p>存证时间: <span id="genTokenTime"></span></p>
+                      <p>存证钱包: <span id="genTokenAccountRS"></span></p>
+                      <p>存证哈希: <span id="genTokenToken"></span></p>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <span id="genTokenJSON"></span>
                     </div>
                   </div><!-- display result JSON end ======================= -->
                 </div><!-- accordion-body end ============================== -->
               </div><!-- accordion-collapse end ============================ -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="电子存证 - 信息验证(离线)">
+            <div class="accordion-item" name="短信验证(离线)">
               <h2 class="accordion-header" id="decTokenFlip">
                 <button id="tokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#decTokenPanel" aria-expanded="false" aria-controls="decTokenPanel">
-                  <h4>&#x1F424; 电子存证 - 信息验证(离线)</h4>
+                  <h4>&#x1F424; 短消息验证(离线)</h4>
                 </button>
               </h2>
               <div id="decTokenPanel" class="accordion-collapse collapse " aria-labelledby="decTokenFlip" >
@@ -263,119 +349,32 @@
                         <input type='hidden' name='requestType' value='decodeToken'/>
                         <div class="input-group mb-3">
                           <span class="input-group-text" >求证信息</span>
-                          <textarea name="website" class="form-control" id="decTokenFormWebsite"></textarea>
+                          <input type="text" name="website" class="form-control" id="decTokenFormWebsite">
                         </div>
                         <div class="input-group mb-3" >
-                          <span class="input-group-text" >求证哈希</span>
+                          <span class="input-group-text" >存证哈希</span>
                           <textarea class="form-control" name='token' id="decTokenFormToken" ></textarea>
                         </div>
                         <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='验证存证哈希'/>
+                          <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; 重置'/>
+                          <input type='submit' class='btn btn-secondary w-25' value='验证存证哈希'/>
                       </div>
                     </form>
                   </div><!-- form section end ============================== -->
                   <div class="col-12 col-sm-12 d-none" id="decTokenDisplay">
                     <div class="text-wrap text-break overflow-auto">
-                      <hr style="color:red;border-top: 1px solid blue">
                       <h5>事件总结:</h5>
-                      <span id="decTokenResult"></span>
-                    </div>
-                  </div><!-- display result JSON end ======================= -->
-                </div><!-- accordion-body end ============================== -->
-              </div><!-- accordion-collapse end ============================ -->
-            </div><!-- accordion-item end ================================== -->
-
-            <div class="accordion-item" name="区块链响应">
-              <h2 class="accordion-header" id="evidenceJSONFlip">
-                <button id="evidenceJSONBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#evidenceJSONPanel" aria-expanded="false" aria-controls="evidenceJSONPanel">
-                  <h4>&#128279; 区块链响应</h4>
-                </button>
-              </h2>
-              <div id="evidenceJSONPanel" class="accordion-collapse collapse " aria-labelledby="evidenceJSONFlip" >
-                <div class="accordion-body">
-                  <div class="col-12 col-sm-12 " id="evidenceJSONDisplay">
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>文件存证</h5>
-                      <span id="genFileTokenJSON"></span>
+                      <p class="d-none" id="decTokenPassed">验证通过！</p>
+                      <p class="d-none" id="decTokenFailed">验证失败！求证信息与原始信息不符。</p>
+                      <p>存证时间: <span id="decTokenTime"></span></p>
+                      <p>存证钱包: <span id="decTokenAccountRS"></span></p>
                     </div>
                     <div class="text-wrap text-break overflow-auto">
-                      <h5>文件验证</h5>
-                      <span id="decFileTokenJSON"></span>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>存证上链-生成字节</h5>
-                      <span id="tokenizeJSON"></span>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>存证上链-确认广播</h5>
-                      <span id="tokenizeBroadcastTransactionJSON"></span>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>信息存证</h5>
-                      <span id="genTokenJSON"></span>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>信息验证</h5>
                       <span id="decTokenJSON"></span>
                     </div>
                   </div><!-- display result JSON end ======================= -->
                 </div><!-- accordion-body end ============================== -->
               </div><!-- accordion-collapse end ============================ -->
-            </div><!-- accordion-item end ================================== -->
-
-            <div class="accordion-item" name="数据安全">
-              <h2 class="accordion-header" id="integrityFlip">
-                <button id="integrityBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#integrityPanel" aria-expanded="false" aria-controls="integrityPanel">
-                  <h4>&#x1F512; 钱包数据安全</h4>
-                </button>
-              </h2>
-              <div id="integrityPanel" class="accordion-collapse collapse" aria-labelledby="integrityFlip" >
-                <div class="accordion-body">
-                  <div id="validateWalletInfoAction">
-                    <form id="validateWalletInfoForm">
-                        <!-- <input type='hidden' name='requestType' value='decodeToken'/> -->
-                        <div class="input-group mb-3">
-                          <!-- <span class="input-group-text" >Wallet Information</span> -->
-                          <textarea name="walletInfomation" class="form-control" rows='15' id="validateWalletInfoFormWebsite">
-{
-  "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncifcliqohusrf84dqt56k5n88fuqrf0dokigkvv7e65d0sba5hlnq44lm1g64ovc30cbim4t1v3k8qc7e05man44p3de7t1pgopmtpoqi8bj0l1",
-  "walletInfo":{
-    "accountRS":"CC14-5KKJ-TXML-FKM3-4SLZB",
-    "entityName":"demoissuance wallet one. 演示品牌",
-    "physicalAddress":"somewhere",
-    "noFakeURL":"http://13.52.217.197/diti/",
-    "expDate":"2022-12-31T23:59:59+00:00",
-    "walletAssignment":"issuance"
-  }
-}
-                          </textarea>
-                        </div>
-                        <div class="input-group mb-3" >
-                          <span class="input-group-text" >钱包密钥</span>
-                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
-                          <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
-                        </div>
-                        <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='验证钱包数据'/>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="d-none" id="validateWalletInfoResponse"  >
-                    <div  class="overflow-auto">
-                      <h5>Summary:</h5>
-                      <span id="validateWalletInfoResult"></span>
-                    </div>
-                    <div  class="overflow-auto">
-                      <span id="validateWalletInfoNewTokenResult"></span>
-                    </div>
-                    <div>
-                      <h5>JSON response</h5>
-                      <span id="validateWalletInfoJSON"></span>
-                      <span id="validateWalletInfoNewTokenJSON"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div><!-- accordion-item end ================================== -->
 
           </div><!-- accordion end ========================================= -->
@@ -396,30 +395,44 @@
 <script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
 <script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
 <script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/jquery.dataTables.min.js" ></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
 <script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/curve25519.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
 <script src="../js/3rdparty/jsbn.js"></script>
 <script src="../js/3rdparty/jsbn2.js"></script>
-<script src="../js/3rdparty/extensions.js"></script>
-<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/nrs.constants.js"></script>
+<script src="../js/3rdparty/nrs.encryption.js"></script>
 <script src="../js/3rdparty/nrs.util.js"></script>
-<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src="../js/3rdparty/nxtaddress.js"></script>
+<script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/scripts.cryptoc14.js" ></script>
 <script src='../data/conf.js' ></script>
 <script src='../data/myAddressBook.js' ></script>
 <script src='../data/myAssetBook.js' ></script>
-<script src='scripts-cc14.js' ></script>
 <script src='nav_footer.js' ></script>
+<script>
+  //load this section for demonstration
+  $(".demoAccount4RS").val("CC14-6LFR-HCTG-F2LR-87ZB4");
+  $(".demoAccount4PW").val("ci di wu yin 304 liang ge bi wang er bu ceng tou");
+  $(".demoAccount5RS").val("CC14-CWWS-4MHT-ZKHY-DGUYC");
+  $(".demoAccount5RS").val("ci di wu yin 305 liang ge bi wang er bu ceng tou");
+  $(".demoNFTName").val("FileNFT101");
+  $(".demoTokenID").val("9672428710107462724");
+</script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
-  $("input[type='text']").on("click", function () {$(this).select();});
-</script>
-<script>
   $("#footerModalContainer").html(footerModal);
+  $("input[type='text']").on("click", function () {$(this).select();});
   var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
 </script>
 </html>

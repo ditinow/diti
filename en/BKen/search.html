@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CryptoC14 one stop blockchain dApp</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Crypto C14 One stop blockchain DApp">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form id="getAssetInfoAll" >
+            <div class="input-group ">
+              <input type="button" class="btn btn-outline-secondary " style="border-color: #ced4da" onclick="reloadClearFn()" value="&#128259;">
+              <input type="text" class="form-control" name='asset' placeholder="scan QR code with NFT logo..." list="assetsList">
+                <datalist id="assetsList">
+                  <option value="14980595911452706870">demo: authorized to built and sell. recall record found </option>
+                  <option value="10829953154869632130">demo: token issued after wallet expired</option>
+                  <option value="8979558791471997978">demo: title token dumped, not for sale</option>
+                  <option value="9335630831293964334">demo: title token destroyed, not available for transaction</option>
+                  <option value="9515666061890261866">demo: authorized to built, but not for sale</option>
+                  <option value="16451992241381698202">demo: sold record found, return history found</option>
+                  <option value="1191924593202748656">demo: non-NFT product, tracebility only</option>
+                  <option value="130725379765346402">NFT issued by unknown account</option>
+                  <option value="1472173891428945831">unknown token ID</option>
+                </datalist>
+              <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;">
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <br id="toTop">
+    <div class="container-fluid"><!-- container ============================ -->
+      <div class="row align-items-center" name="image slider">
+        <div class="col-12 col-sm-10 mx-auto mt-4" >
+          <div  class="carousel slide carousel-dark" data-bs-ride="carousel" id="productImages">
+            <ol class="carousel-indicators">
+              <li data-target="#productImages" data-slide-to="0" class="active"></li>
+              <li data-target="#productImages" data-slide-to="1"></li>
+              <li data-target="#productImages" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-1" src="../images/upc-image-1.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-2" src="../images/upc-image-2.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-3" src="../images/upc-image-3.png" alt=""></a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#productImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </a>
+            <a class="carousel-control-next" href="#productImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- image slider end ===========================================-->
+
+<!-- 搜索结果 ================================================================-->
+      <div class="row d-none" id="searchResult" name="Search result">
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion">
+            <div class="accordion-item" name="Purchase Advisory">
+              <h2 class="accordion-header" id="flipAdvisory">
+                <button id="btnAdvisory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelAdvisory" aria-expanded="false" aria-controls="panelAdvisory">
+                  <h4>&#x1F4AC; Purchase Advisory</h4>
+                </button>
+              </h2>
+              <div id="panelAdvisory" class="accordion-collapse collapse" aria-labelledby="flipAdvisory">
+                <div class="accordion-body">
+                  <table class="table table-sm fs-6 table-bordered border-info caption-top" id="titleSearchTable">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>TITLE SEARCH</th>
+                        <th style="text-align:center">RESULT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="titleSearch-Q1">
+                        <td class="td-t1">Was the title token minted by <code class="yourCompanyName">YOUR COMPANY NAME</code>?</td>
+                        <td  class="td-qa" id="titleSearch-Q1-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q2">
+                        <td class="td-2">Was the title token issued befor the wallet expired?</td>
+                        <td  class="td-qa" id="titleSearch-Q2-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q3">
+                        <td class="td-2">Is the title token available?</td>
+                        <td  class="td-qa" id="titleSearch-Q3-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q4">
+                        <td class="td-2">Is the product authorized to sell?</td>
+                        <td  class="td-qa" id="titleSearch-Q4-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q5">
+                        <td class="td-2">Is the product status valid?</td>
+                        <td  class="td-qa" id="titleSearch-Q5-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q6">
+                        <td class="td-2">Are there any records of this item being recalled/RMA?</td>
+                        <td  class="td-qa" id="titleSearch-Q6-result"></td>
+                      </tr>
+                      <tr id="titleSearch-Q7">
+                        <td class="td-2">Are there sold records of this item?</td>
+                        <td  class="td-qa" id="titleSearch-Q7-result"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                    <p class="d-none" id="advisoryA0"><strong style="color:red">STOP! </strong>Unknown secure code, no blockchain record found. Please try again.</p>
+                    <p class="d-none" id="advisoryA1"><strong style="color:red">STOP! </strong>Product was not authorized to built by <span class="bradnOwner">BRAND OWNER</span>.</p>
+                    <p class="d-none" id="advisoryA2"><strong style="color:red">STOP! </strong>Product was authorized to builts after issuance wallet expired.</p>
+                    <p class="d-none" id="advisoryA3"><strong style="color:red">STOP! </strong>Title token (Proof-of-Authenticity) destroyed by last owner, Possible causes: last owner deleted the title token due to product lost, stolen, damaged, contaminated or QC failure.</p>
+                    <p class="d-none" id="advisoryA4"><strong style="color:red">STOP! </strong>Product is not activated for sale.</p>
+                    <p class="d-none" id="advisoryA5"><strong style="color:red">STOP! </strong>Title token (Proof-of-Authenticity) is not available for transfer. Possible causes: brand owner marked un-claimed title token as "sold", when associated product is out of warranty.</p>
+                    <p class="d-none" id="advisoryA6"><strong style="background-color: yellow">WANRING </strong> Services record found, please review warranty/return/exchange policy.</p>
+                    <p class="d-none" id="advisoryA7"><strong style="background-color: yellow">WANRING </strong> Sold record found. Beweare of new wine in an old bottle. Suggest to move on to another item with clean title.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" name="Issuer infomation">
+              <h2 class="accordion-header" id="flipIssuer">
+                <button id="btnIssuer" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelIssuer" aria-expanded="false" aria-controls="panelIssuer">
+                  <h4>&#x1F3E2; Issuer Information</h4>
+                </button>
+              </h2>
+              <div id="panelIssuer" class="accordion-collapse collapse" aria-labelledby="flipIssuer" >
+                <div class="accordion-body">
+                  <table class="table table-sm table-borderless" id="issuerInfoTbl" style="margin-bottom:0">
+                    <tr id="issuerInfoTbl-r1">
+                      <td class="td-1">Issuer</td>
+                      <td class="td-2" id="issuerInfoTbl-r1d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r2">
+                      <td class="td-1">Wallet address</td>
+                      <td class="td-2" id="issuerInfoTbl-r2d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r3">
+                      <td class="td-1">Physical address</td>
+                      <td class="td-2" id="issuerInfoTbl-r3d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r4">
+                      <td class="td-1">Offical website</td>
+                      <td class="td-2" id="issuerInfoTbl-r4d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r5">
+                      <td class="td-1">Wallet exp. date</td>
+                      <td class="td-2" id="issuerInfoTbl-r5d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r6">
+                      <td class="td-1">Validation code</td>
+                      <td class="td-2" id="issuerInfoTbl-r6d2">no record found</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r7">
+                      <td class="td-1"></td>
+                      <td class="td-2" id="issuerInfoTbl-r7d2">
+                        <div class="row align-items-center" id="blockWalletValidation">
+                          <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#walletValidation" id="validateWalletBtn">
+                            Validate
+                          </button>
+                          <div class="modal fade" id="walletValidation" tabindex="-1" aria-labelledby="validateWalletLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="validateWalletLabel">Validate wallet information</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="container-fluid">
+                                    <div class="row">
+                                      <form id="validateWalletInfoForm">
+                                              <div class="input-group ">
+                                                <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormCode">
+                                                </textarea>
+                                              </div>
+                                              <div class="input-group d-none" >
+                                                <span class="input-group-text" >Passphrase</span>
+                                                <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                                                <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
+                                              </div>
+                                              <div class="input-group justify-content-end" >
+                                                <input type='submit' class='btn btn-outline-secondary' value='Submit'/>
+                                            </div>
+                                          </form>
+                                    </div>
+                                    <div class="row">
+                                      <div class="d-none" id="validateWalletInfoResponse"  >
+                                        <div  class="overflow-auto">
+                                          <span id="validateWalletInfoResult"></span>
+                                        </div>
+                                          <span id="validateWalletInfoJSON"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" name="Product infomation">
+              <h2 class="accordion-header" id="flipProduct">
+                <button id="btnProduct" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelProduct" aria-expanded="false" aria-controls="panelProduct">
+                  <h4>&#x1F4D6; Product Information</h4>
+                </button>
+              </h2>
+              <div id="panelProduct" class="accordion-collapse collapse" aria-labelledby="flipProduct" >
+                <div class="accordion-body">
+                  <table class="table table-sm table-borderless" id="assetInforTbl">
+                    <tr id="assetInforTbl-r2">
+                      <td class="td-1">Barcode</td>
+                      <td class="td-2" id="assetInforTbl-barcode"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r1">
+                      <td class="td-1">Title Token ID</td>
+                      <td class="td-2" id="assetInforTbl-assetID"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r2">
+                      <td class="td-1">Product ID</td>
+                      <td class="td-2" id="assetInforTbl-PID"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r3">
+                      <td class="td-1">Model</td>
+                      <td class="td-2" id="assetInforTbl-model"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r4">
+                      <td class="td-1">Description</td>
+                      <td class="td-2" id="assetInforTbl-description"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r4">
+                      <td class="td-1">Qty. issued</td>
+                      <td class="td-2" id="assetInforTbl-qty"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r7">
+                      <td class="td-1">Unit</td>
+                      <td class="td-2" id="assetInforTbl-unit"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r5">
+                      <td class="td-1">Made in</td>
+                      <td class="td-2" id="assetInforTbl-madeIn"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r7">
+                      <td class="td-1">Issuance</td>
+                      <td class="td-2" id="assetInforTbl-issueDate"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r8">
+                      <td class="td-1">Activation</td>
+                      <td class="td-2" id="assetInforTbl-activateDate"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r6">
+                      <td class="td-1">Coverage</td>
+                      <td class="td-2" id="assetInforTbl-goodFor"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" name="Transfer history">
+              <h2 class="accordion-header" id="flipHistory">
+                <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelHistory" aria-expanded="false" aria-controls="panelHistory">
+                  <h4>&#x27B2; Transaction Detail</h4>
+                </button>
+              </h2>
+              <div id="panelHistory" class="accordion-collapse collapse" aria-labelledby="flipHistory" >
+                <div class="accordion-body">
+                  <table class="table word-break table-bordered table-sm caption-top" id="assetIssuerTbl">
+                    <caption>Transaction 0 (token issuance) </caption>
+                    <tbody>
+                      <tr>
+                        <td class="td-1">Issuer</td>
+                        <td class="td-2" id="transactionZero-issuer">no record found</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">Issuer wallet</td>
+                        <td class="td-2" id="transactionZero-issuerRS">no record found</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">Issuer duty</td>
+                        <td class="td-2" id="transactionZero-duty">no record found</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">Qty issued</td>
+                        <td class="td-2" id="transactionZero-qty">no record found</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">Time issued</td>
+                        <td class="td-2" id="transactionZero-date">no record found</td>
+                      </tr>
+                    <tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" name="JSON Response">
+              <h4 class="accordion-header" id="flipJSONresponse">
+                <button id="btnJSONresponse" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelJSONresponse" aria-expanded="false" aria-controls="panelJSONresponse">
+                  <h4>&#128279; JSON response</h4>
+                </button>
+              </h4>
+              <div id="panelJSONresponse" class="accordion-collapse collapse" aria-labelledby="flipJSONresponse" >
+                <div  class="accordion-body">
+                  <div id="JSONresponse" class="text-wrap text-break">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- 搜索结果 ================================================================-->
+<!-- Action modal start======================================================-->
+    <div id="modalBlockContainer">
+      <div class="row align-items-center d-none" style="height:100px" id="modalBlockRequest">
+        <div class="col-12 col-sm-10 mx-auto " >
+          <div class="d-flex justify-content-center ">
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#requestTitle" value="&#x1F4E5; Request Title" id="requestTitleBtn">&nbsp;&nbsp;
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#validateTitle" value="&#x1F510; Validate Title" id="validateTitleBtn">
+            <div class="modal fade" id="requestTitle" tabindex="-1" aria-labelledby="requestTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="requestTitleLabel">Request Title Token</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="requestTitlTokenAction">
+                      <form id="pin2newWallet">
+                        <div class="input-group mb-3" >
+
+                          <input type="number" class="form-control" name='passphrase' min="99999" max="999999"  placeholder="Please enter 6-digit number">
+                          <input type="submit" class="btn btn-outline-secondary" value="Create">
+                        </div>
+                      </form>
+                      <div>
+                        <p class="text-center text-muted">&#128071; use existing address<b> OR </b>create new wallet &#128070; </p>
+                      </div>
+                      <form id="requestTitlTokenForm">
+                        <input type="hidden" id="consumerPubKey" name='publicKey'>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >&#128176;</span>
+                          <input type="text" class="form-control" name='recipient' onfocus="resetPubKey()" id="consumerWallet" value="CC14-">
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" data-bs-toggle="tooltip" title="Secure Code"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage"></span>
+                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode" readonly>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" data-bs-toggle="tooltip" title="Registration Code"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage"></span>
+                          <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
+                          <datalist id="requestDTregCode">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
+                            <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
+                          </datalist>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                          <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; Request">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="d-none" id="requestTitlTokeneResponse"  >
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>Summary：</h5>
+                        <p id="requestTitlTokeneResult"></p>
+                        <span id="newWalletQRCode"></span>
+                      </div>
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>JSON response</h5>
+                        <span id="requestTitlTokeneJSON"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="validateTitle" tabindex="-1" aria-labelledby="validateTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="validateTitleLabel">Validate Title Token</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="validateTitlTokenAction">
+                      <form id="validateTitlTokenForm">
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage"></span>
+                          <input type="text" class="form-control" name='asset' id="modalBlockSecureCode3" readonly >
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage"></span>
+                          <input type="text" class="form-control" name='regCode'  placeholder="Scan blue QR code with CC14 logo..." list="validateRegCodeList">
+                          <datalist id="validateRegCodeList">
+                            <option value="wUvpYPstSV+oqIXZZ4PROpCdyugc4BPZzd54UgkQEqQ="></option>
+                            <option value="bei330zx4cTy741CiXB5msd0JzcFHz/j+Hd0gpB4RQQ="></option>
+                            <option value="c14be960fb2d495fa8a885d96783d13a909dcae81ce013d9cdde7852091012a4"></option>
+                          </datalist>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                          <input type="submit" class="btn btn-outline-secondary" id="validateTTbtn" value="&#x2714;Validate">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="d-none" id="validateTitleTokeneResponse"  >
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>Summary:</h5>
+                        <p id="validateTitlTokeneResult"></p>
+                        <!-- <span id="newWalletQRCode"></span> -->
+                      </div>
+                      <!-- <div class="text-wrap text-break overflow-auto">
+                        <h5>JSON Response</h5>
+                        <span id="validateTitleTokeneJSON"></span>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Action modal end ===========================================-->
+      <div class="row align-items-center d-none" style="height:100px" id="modalBlockTransfer">
+        <div class="col-12 col-sm-10 mx-auto " >
+          <div class="d-flex justify-content-center ">
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#receiveTitle" value="&#x1F4E5; Receive Title" id="receiveTitleBtn">&nbsp;&nbsp;
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#transferTitle" value="&#x1F4E4; Transfer Title" id="transferTitleBtn">
+            <div class="modal fade" id="receiveTitle" tabindex="-1" aria-labelledby="receiveTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="receiveTitleLabel">Receive Title Token</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <form id="modalReceiveTitleForm" >
+                          <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text">Recipient Wallet</span>
+                            <input type="text" name='wallet' maxlength="26" class="form-control" value="CC14-" id="recipientWallet" >
+                          </div>
+                          <div class="input-group justify-content-md-end mb-3">
+                            <input type="button" class="btn btn-outline-secondary" style="width:100%" value="&#x2705; Generate QR code" onClick="qrCodeFn(modalReceiveTitleForm.wallet.value)" >
+                          </div>
+                        </form>
+                      </div>
+                      <div class="row">
+                        <div class="border d-flex justify-content-center" >
+                            <span id="dispQRCode" ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="transferTitle" tabindex="-1" aria-labelledby="transferTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="transferTitleLabel">Transfer Title Token</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="transferTitlTokenAction">
+                      <form id="transferAssetForm">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Recipient</span>
+                          <input type="text" name='recipient' maxlength="26" class="form-control" value="CC14-NF2T-WVWC-YD53-9XVLY">
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Token ID</span>
+                          <input type="text" name='asset' maxlength="26" class="form-control" id="modalBlockSecureCode2" readonly>
+                        </div>
+                        <div class="input-group mb-3 d-none" id="transferQty">
+                          <span class="input-group-text">Quantity</span>
+                          <input type="text" name='quantity' class="form-control" value="1">
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Message</span>
+                          <input type="text" name='message' class="form-control" placeholder="Optional" >
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Passphrase</span>
+                          <input type="password" name='secretPhrase' class="form-control" id='transferAssetPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                          <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-md-end mb-3">
+                          <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reset" onClick="location.reload()">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#x2705; transactionByte" >
+                        </div>
+                      </form>
+                      <form id="broadcastTransactionForm">
+                        <div class="input-group mb-3" >
+                          <textarea style="height:120px" class="form-control" name='transactionBytes' id="transferAssetTransactionBytes">auto complete by dApp
+                          </textarea>
+                        </div>
+                        <div class="input-group justify-content-md-end mb-3">
+                          <input type="submit" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;broadcast transactionByte">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="d-none" id="transferAssetResponse"  >
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>Summary:</h5>
+                        <p id="transferAssetResult"></p>
+                        <p id="transferAssetBroadcastTransactionResult"></p>
+                        <table class="table table-sm fs-6 table-bordered border-info caption-top">
+                          <tbody>
+                            <tr>
+                              <td>Qty</td>
+                              <td id="transferAssetTbl-qty"></td>
+                              <td>Fee</td>
+                              <td id="transferAssetTbl-fee"></td>
+                            </tr>
+                            <tr>
+                              <td>Seller</td>
+                              <td id="transferAssetTbl-senderRS"  colspan="3">
+                              </td>
+                            </tr>
+                            <tr colspan="2">
+                              <td>Recipient</td>
+                              <td id="transferAssetTbl-recipientRS" colspan="3"></td>
+                            </tr>
+                            <tr>
+                              <td>MEssage</td>
+                              <td id="transferAssetTbl-message"  colspan="3"></td>
+                            </tr>
+                            <tr>
+                              <td style="width:90px">fullHash</td>
+                              <td id="transferAssetTbl-fullHash"  colspan="3"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>JSON Response</h5>
+                        <span id="transferAssetJSON"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Action modal end ===========================================-->
+    </div>
+    </div><!-- container end =============================================== -->
+    <div style="position:fixed; opacity:0.5; bottom:100px; right:20px" >
+      <h1><a class="text-decoration-none" href="#toTop">&#9195;</a></h1>
+    </div>
+    <div style="position:fixed; opacity:0.5; bottom:60px; right:20px" >
+      <h1><a class="text-decoration-none" href="#footer">&#9196;</a></h1>
+    </div>
+  </div><!-- 100% vh end =================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+var isNode = false;
+</script>
+<script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/jsbn.js"></script>
+<script src="../js/3rdparty/jsbn2.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/nrs.util.js"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src='../data/conf.js' ></script>
+<script src='../data/myAddressBook.js' ></script>
+<script src='../data/myAssetBook.js' ></script>
+<script src='scripts-cc14.js' ></script>
+<script src='nav_footer.js' ></script>
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+$("#navbarSupportedContent").html(navbarSupportedContentHtml);
+$("#footer").html(footerHtml);
+$("input[type='text']").on("click", function () {$(this).select();});
+$('#consumerWallet').val(localStorage.getItem("myWalletLS"));
+$('#recipientWallet').val(localStorage.getItem("myWalletLS"));
+function resetPubKey(){
+  document.getElementById("consumerPubKey").value = "";
+  console.log(document.getElementById("consumerPubKey").value);
+}
+</script>
+<script>
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+</script>
+</html>

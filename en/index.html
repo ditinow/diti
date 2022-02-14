@@ -59,13 +59,13 @@
         <form class="d-flex" id="selectNodeUrlForm" >
           <div class="input-group">
             <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
-              <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+              <option value="http://www.cryptoc14.com:19886/" selected>CC14@ CryptoC14.com</option>
               <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
-              <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+              <option value="http://40.124.110.187:19886/">CC14@ Azure US South Central Zone 1</option>
               <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
               <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
               <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
-              <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              <option value="http://192.168.1.7:19886/">CC14@ local network</option>
             </select>
             <button type="submit" class="btn btn-outline-secondary " >Set</button>
           </div>
@@ -114,9 +114,28 @@
     <!-- load by nav_footer.js -->
   </footer>
 </body>
+<script>
+  var isNode =false;
+</script>
 <script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
 <script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
-<script src='scripts-cc14.js' ></script>
+<script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/curve25519.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
+<script src="../js/3rdparty/jsbn.js"></script>
+<script src="../js/3rdparty/jsbn2.js"></script>
+<script src="../js/3rdparty/nrs.constants.js"></script>
+<script src="../js/3rdparty/nrs.encryption.js"></script>
+<script src="../js/3rdparty/nrs.util.js"></script>
+<script src="../js/3rdparty/nxtaddress.js"></script>
+<script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/scripts.cryptoc14.js" ></script>
+<script src='../data/conf.js' ></script>
+<script src='../data/myAddressBook.js' ></script>
+<script src='../data/myAssetBook.js' ></script>
 <script src='nav_footer.js' ></script>
 <script>
   if(localStorage.getItem("selectedNodeUrl") != undefined){

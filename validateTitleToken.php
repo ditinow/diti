@@ -12,6 +12,6 @@ if($res==""){
 }else if($res != $asset){
   echo '{"validateTitleToken":"mismatch","decrypted":"'.$res.'"}';
 }else if($res == $asset){
-  echo '{"validateTitleToken":"matched","decrypted":"'.$res.'"}';
+  echo '{"validateTitleToken":"passed","decrypted":"'.$res.'"}';
 };
 ?>

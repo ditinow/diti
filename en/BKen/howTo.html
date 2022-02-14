@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CryptoC14 one stop blockchain dApp</title>
+  <meta charset="utf-8">
+  <meta name="description" content="DiTiNOW One stop DApp">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style-cc14.css">
+  <style>
+    @media all and (min-width: 992px) {
+       .navbar .nav-item .dropdown-menu{ display: none; }
+       .navbar .nav-item:hover .nav-link{ color: #000;  }
+	     .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	      .navbar .nav-item .dropdown-menu{ margin-top:0; }
+     }
+   </style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);" name="navbar and main content">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div  id="toTop" name"toTop place holder"></div>
+    <main>
+      <div class="container-fluid" name="Title search">
+        <h4 class="text-center mt-3 mb-3">Title Search</h4>
+        <div class="col-lg-10 col-sm-12 mx-auto mt-3">
+          <div class="accordion">
+            <div class="accordion-item" name="Title Search">
+              <h2 class="accordion-header" id="flipTS">
+                <button id="btnTS" class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#panelTS" aria-expanded="false" aria-controls="panelTS">
+                  <h4 class="text-start">Title Search</h4>
+                </button>
+              </h2>
+              <div id="panelTS" class="accordion-collapse collapse show" aria-labelledby="flipTS" >
+                <div class="accordion-body">
+                  <p>Use to perform title search, aka blockchain based product authenticity / ownership check.</p>
+                  <div class="">
+                    <p class="mb-1">【Step 1】Scan title token ID into search input field. Title token ID can be found on product label or package, normally a QR code with NFT logo.</p>
+                    <img class="img-fluid border mb-3" src="images/howto003.jpg"></img>
+                    <p class="mb-1">【Step 2】Use &#9196; foun at the lower-right corner on diaplay to scroll down to the botton of the search page, application will provide two pair of actions for users depends on the outcome of title search.</p>
+                    <p class="mb-1">【Step 2.1】For consumers, click <input type="button" class="btn btn-outline-dark btn-sm" value="&#x1F4E5; Request Title"> to redeem corrsponging title token from brand owners. Use an existing wallet address or create a new one by prividing a 6-digit number, fill in the verification code  then click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x2714; Request">. Verification code is normally a partially covered QR code with CC14 logo, found inside of the product package.</p>
+                    <img class="img-fluid border mb-3" src="images/howto004.jpg"></img>
+                    <p class="mb-1">【Step 2.2】For inspector, click <input type="button" class="btn btn-outline-dark btn-sm" value="&#x1F510; Validate Title"> and fill in the verification code to validate the code without receiving the corrsponging title token. </p>
+                    <img class="img-fluid border mb-3" src="images/howto005.jpg"></img>
+                    <p class="mb-1">【Step 2.3】For comsumer, use <input type="button" class="btn btn-outline-dark btn-sm" value="&#x1F4E5; Receive Title"> to generate a wallet address QR code for recipient. In this case, the title token wasn't found inside the activation wallet approval by brand owner. Sellers who can transfer corrsponging title token are selling authentic product, otherwise fake.</p>
+                    <img class="img-fluid border mb-3" src="images/howto006.jpg"></img>
+                    <p class="mb-1">【Step 2.4】For seller, use <input type="button" class="btn btn-outline-dark btn-sm" value="&#x1F4E4; Transfer Title"> to transfer title token. </p>
+                    <p class="mb-1">【Step 2.4.1】To prepare transaction detail by fill in the required fields, then click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x2705; transactionByte">.  </p>
+                    <p class="mb-1">【Step 2.4.2】Click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F4E2;broadcast transactionByte"> to broadcast this transfer transaction.
+                      <ul>
+                        <li>Confirmation time is 60 seconds, buyer meight want to double check if the token arrive after one minute.</li>
+                        <li>Consumer should use this form for product reture/exchange. Title token need to be transfer to the designated wallet assigned by brand owners.</li>
+                      </ul>
+                    </p>
+                    <img class="img-fluid border mb-3" src="images/howto007.jpg"></img>
+                    <p class="mb-1">【Step 3】To validate the integrity of wallet data, please use 【Issuer information】-> Validation code-><input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F4E2;Validate">. Default link to official validator is <a href="../data/validator.json" target="_blank">YourCompany.com/diti/data/validator.json</a></p>
+                    <img class="img-fluid border mb-3" src="images/howto008.jpg"> 。</img>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" name="Token Management">
+        <h4 class="text-center mt-3 mb-3">Token Management</h4>
+        <div class="col-lg-10 col-sm-12 mx-auto mt-3">
+          <div class="accordion">
+            <div class="accordion-item" name="Issue title token (NFT)">
+              <h2 class="accordion-header" id="flipOne">
+                <button id="btnOne" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelOne" aria-expanded="false" aria-controls="panelOne">
+                  <h4 class="text-start">Issue title token (NFT)</h4>
+                </button>
+              </h2>
+              <div id="panelOne" class="accordion-collapse collapse " aria-labelledby="flipOne" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for tokenize certification</p>
+                  <div class="border border-info p-3 mb-1">
+                    <form>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="number" class="form-control" list="barcodeList" placeholder="(required) enter 8 to 14 digits product barcode, or select from dropdown, unmber only" required>
+                        <datalist id="barcodeList">
+                          <option value="1234567890123">Bardoce list maintain by Your Company</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="(optional) operator ID, batch number ..., up to 500 characters"  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" id="issueNFTPassword" name='secretPhrase' placeholder="(required) enter the passphrase for the wallet address designated for token issuance">
+                        <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Quantity</span>
+                        <input type="number" class="form-control" placeholder="(required) enter quanality of title token to be issued, numbers up to 100">
+                      </div>
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " value="&#x2714; Confirm broadcast">
+                      </div>
+                    </form>
+                  </div>
+                  <p>Once <input type="submit" class="btn btn-success btn-sm" value="&#x2714; Confirm broadcast"> clicked, the token issuance tranasction will be broadcast to CC14 blockchain, if there is enought CC14 utility token in the issuance wallet. New title toke (NFT) should show up in the issuance wallet after 60 seconds.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Issue title token with pre-defined serial number">
+              <h2 class="accordion-header" id="flipTwo">
+                <button id="btnTwo" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTwo" aria-expanded="false" aria-controls="panelTwo">
+                  <h4 class="text-start">Issue title token with pre-defined serial number</h4>
+                </button>
+              </h2>
+              <div id="panelTwo" class="accordion-collapse collapse " aria-labelledby="flipTwo" >
+                <div class="accordion-body">
+                  <p>Uses for tokenize certification of product with existing serial number</p>
+                  <div class="border border-info p-3 mb-1">
+                    <form >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="number" class="form-control" list="barcodeList2" placeholder="(required) enter 8 to 14 digits product barcode, or select from dropdown">
+                        <datalist id="barcodeList2">
+                          <option value="1234567890123">Bardoce list maintain by Your Company</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3 " >
+                        <span class="input-group-text">Serial No.</span>
+                        <textarea class="form-control" id='textarea1'></textarea>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="(optional) operator ID, batch number ..., up to 500 characters"  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword2' placeholder="(required) enter the passphrase for the wallet address designated for token issuance">
+                        <span class="input-group-text fs-4"  id="issueNFTwSNoPassword2Icon" onclick="togglePasswordFn('issueNFTwSNoPassword2')">&#128584;</span>
+                      </div>
+                      <div class="d-md-flex justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-success " id="requestDTbtn" data-bs-toggle="tooltip" data-bs-placement="top" title="only 2 token issuance transactions will bebroadcasted for prefilled passpharse" value="&#x2714; Confirm broadcast">
+                      </div>
+                    </form>
+                  </div>
+                  <p>Serial number will be set to the value of the "desceiption" found in token metadata. Confirmation time is 60 seconds.</p>
+
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Product activation">
+              <h2 class="accordion-header" id="flipFour">
+                <button id="btnFour" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelFour" aria-expanded="false" aria-controls="panelFour">
+                  <h4 class="text-start">Product activation</h4>
+                </button>
+              </h2>
+              <div id="panelFour" class="accordion-collapse collapse " aria-labelledby="flipFour" >
+                <div class="accordion-body">
+                  <p>Change product status from <i>AUTHORIZE TO BUILT</i> to <i>AUTHORIZE FOR SALE</i>, simeply by transfer corresponding title toke from ISSUANCE wallet to ACTIVATION wallet. </p>
+                  <p class="mb-1">【Step 1】 You might need to click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F50D; Search "> twice to load result.</p>
+                  <div class="border border-info p-3 mb-3">
+                    <form >
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Wallet</span>
+                        <input type="text" class="form-control" name="account" list="activationSearchList" placeholder="(required) select one of the ISSUANCE wallet from dropdown">
+                        <datalist id="activationSearchList">
+                          <option value="CC14-XXXX-XXXX-XXXX-XXXXX">Issuance wallet list maintain by Your Company</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Comments</span>
+                        <input type="text"  class="form-control" name="message" placeholder="(Optional) batch number, operator ID...">
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; Search ">
+                      </div>
+                    </form>
+                  </div>
+                  <p class="mb-1">【Step 2】 Please use fileter to narrow down your selections.</p>
+                  <div class="mb-3">
+                    <img class="img-fluid border border-info" src="images/howto001.jpg"></img>
+                  </div>
+                  <p class="mb-1">【Step 3】 Select one of the activation wallet address from dropdown, then click <input type="submit" class="btn btn-success btn-sm" value="&#x2714; Confirm activation"> to broadcast the blockchain transaction. Confirmation time is 60 seconds.</p>
+                  <div class="border border-info p-3 mb-3">
+                    <form id="activationConfirmForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Activation</span>
+                        <select class="form-select" type="text" name="recipient">
+                          <option value="CC14-XXXX-XXXX-XXXX-XXXXX">CC14-XXXX-XXXX-XXXX-XXXXX</option>
+                        </select>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input class="form-control" type="password" placeholder="(required) enteren the passpharse of the issuance wallet you just searched">
+                        <span class="input-group-text fs-4"  id="activationConfirmFormPasswordIcon" placeholder onclick="togglePasswordFn('activationConfirmFormPassword')">&#128584;</span>
+                      </div>
+                      <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by DApp...">
+                      <input type="submit" id="activationConfirmBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Confirm activation">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Burning unwanted title token">
+              <h2 class="accordion-header" id="flipFive">
+                <button id="btnFive" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelFive" aria-expanded="false" aria-controls="panelFive">
+                  <h4 class="text-start">Burning unwanted title token</h4>
+                </button>
+              </h2>
+              <div id="panelFive" class="accordion-collapse collapse " aria-labelledby="flipFive" >
+                <div class="accordion-body">
+                  <p>Change status of unwanted products by transfer corresponding title tokens to dumpster wallet. Unwanted procducts include unauthorized, defective, damaged, stolen, warranty expired, etc. </p>
+                  <p class="mb-1">【Step 1】 You might need to click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F50D; Search "> twice to load the result.</p>
+                  <div class="border border-info p-3 mb-3">
+                    <form>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Wallet</span>
+                        <input type="text" class="form-control" name="account" list="activationSearchList" placeholder="(required) select one of the ISSUANCE wallet from dropdown">
+                        <datalist id="activationSearchList">
+                          <option value="CC14-XXXX-XXXX-XXXX-XXXXX">Issuance wallet list maintain by Your Company</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Comments</span>
+                        <input type="text"  class="form-control" name="message" placeholder="(Optional) batch number, operator ID...">
+                      </div>
+                      <div class="input-group justify-content-end">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; Search ">
+                      </div>
+                    </form>
+                  </div>
+                  <p class="mb-1">【Step 2】 Use fileter to narrow down your selections. Token issued by unauthorized wallet was transfered to brand owners' designated ISSUANCE, try to deseave comsuner. Howwever, the origin of issuence cannot be fake. </p>
+                  <div class="mb-1">
+                    <img class="img-fluid border border-info" src="images/howto002.jpg"></img>
+                    <figcaption class="figure-caption mb-1">Unauthorized issuer shown in red</figcaption>
+                  </div>
+                  <p class="mb-1">【Step 3】 Select one of the action wallet address from dropdown, then click <input type="submit" class="btn btn-danger btn-sm" value="🔥 Confirm burning"> to broadcast the blockchain transaction. Confirmation time is 60 seconds.</p>
+                  <div class="border border-info p-3 mb-1">
+                    <form id="activationConfirmForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Burning</span>
+                        <select class="form-select" type="text" name="recipient">
+                          <option value="CC14-XXXX-XXXX-XXXX-XXXXX">CC14-XXXX-XXXX-XXXX-XXXXX</option>
+                          </select>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input class="form-control" type="password" placeholder="(required) enteren the passpharse of the issuance wallet you just searched">
+                        <span class="input-group-text fs-4"  id="activationConfirmFormPasswordIcon" placeholder onclick="togglePasswordFn('activationConfirmFormPassword')">&#128584;</span>
+                      </div>
+                      <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by DApp...">
+                      <input type="submit" id="burningConfirmBtn" class="btn btn-success btn-lg btn-danger" style="width:100%"  value=" 🔥 Confirm burning">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Set product properties">
+              <h2 class="accordion-header" id="flipSix">
+                <button id="btnSix" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelSix" aria-expanded="false" aria-controls="panelSix">
+                  <h4 class="text-start">Set product properties</h4>
+                </button>
+              </h2>
+              <div id="panelSix" class="accordion-collapse collapse " aria-labelledby="flipSix" >
+                <div class="accordion-body">
+                  <p>Uses to sep additional procud information, such as tracking information, recall, warning, marketing, etc.</p>
+                  <p class="mb-1">【Step 1】Prepear the information to be boradcast.</p>
+                  <div class="border border-info p-3 mb-3">
+                    <form>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Token ID</span>
+                        <input type="text" class="form-control" name="asset" placeholder="(required) enter title token ID">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Property</span>
+                        <input type="text" class="form-control rounded-end" name="property" list="setAssetPropertyList1" placeholder="(required) select type of information from dropdown" required>
+                        <datalist id="setAssetPropertyList1">
+                          <option value="tracking">Tracking</option>
+                          <option value="recall">Recall</option>
+                          <option value="warning">Warning</option>
+                          <option value="marketing">Marketing</option>
+                        </datalist>
+                        <span class="input-group-text" >Value</span>
+                        <input type="text" class="form-control" name="value" placeholder="(required) detail information">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >message</span>
+                        <input type="text" class="form-control rounded-end" name="message" list="setAssetPropertyList2" placeholder="(optional) batch number, operator ID, etc." >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='setAssetPropertyPassword' placeholder="(required) enter the passphrase of the wallet where the title token is parking">
+                        <span class="input-group-text fs-4"  id="setAssetPropertyPasswordIcon" onclick="togglePasswordFn('setAssetPropertyPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepare transactionBytes ">
+                      </div>
+                    </form>
+                  </div>
+                  <p class="mb-1">【Step 2】Boradcast the additional information by clicking <input type="submit" class="btn btn-success btn-sm" value="&#x2714; Boradcast transactionBytes">. </p>
+                  <div class="border border-info p-3 mb-1">
+                    <form id="setAssetPropertyBroadcastTransactionForm">
+                      <input type="text" id="setAssetPropertyTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="(autocomplete by CryptoC14 dApp)">
+                      <input type="submit" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Boradcast transactionBytes">
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Reproduct verification code">
+              <h2 class="accordion-header" id="flipSeven">
+                <button id="btnSeven" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelSeven" aria-expanded="false" aria-controls="panelSeven">
+                  <h4 class="text-start">Reproduct verification code</h4>
+                </button>
+              </h2>
+              <div id="panelSeven" class="accordion-collapse collapse " aria-labelledby="flipSeven" >
+                <div class="accordion-body">
+                  <p>Use for reproducting verification code. Enter title token ID then click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F528; Reproduce">.</p>
+                  <div class="border border-info p-3 mb-1">
+                    <form>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Title token ID</span>
+                        <input type="text" class="form-control" name='secureCode' placeholder="(required) enter title token ID" required>
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Reproduce">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="AES key and iv generator">
+              <h2 class="accordion-header" id="flipEight">
+                <button id="btnEight" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelEight" aria-expanded="false" aria-controls="panelEight">
+                  <h4 class="text-start">AES key and iv generator</h4>
+                </button>
+              </h2>
+              <div id="panelEight" class="accordion-collapse collapse " aria-labelledby="flipEight" >
+                <div class="accordion-body">
+                  <p>Uses to generate 128 bit key and iv for AES algorithm. Click <input type="submit" class="btn btn-outline-secondary btn-sm"  value="&#x1F528; Generate"> to generate a new pair.</p>
+                  <div class="border border-info p-3 mb-1">
+                    <form>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="submit" class="btn btn-outline-secondary" style="width:100%" value="&#x1F528; Generate">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Issue fungible token">
+              <h2 class="accordion-header" id="flipEleven">
+                <button id="btnEleven" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelEleven" aria-expanded="false" aria-controls="panelEleven">
+                  <h4 class="text-start">Issue fungible token</h4>
+                </button>
+              </h2>
+              <div id="panelEleven" class="accordion-collapse collapse " aria-labelledby="flipEleven" >
+                <div class="accordion-body">
+                  <p>Fungible token can be use to tokize property such as none pre-packaged product (i.e. coffee bean sold by weighing it), reward point, event tickets (not seated).</p>
+                  <p class="mb-1">【Step 1】 Prepare token,  click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x2705;Prepear transactionBytes" > when ready.</p>
+                  <div class="border border-info p-3 mb-3">
+                    <form >
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Quantity</span>
+                        <input type="text" class="form-control" name="quantity" placeholder="(required) amount of property in based unit, number only. I.e. 62.5 lbs of coffee enter '62.5'">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >decimals</span>
+                        <input type="text" class="form-control" name="decimals" placeholder="(required) smallest dividable amount, number only. I.e. if the smallest selling amount is 0.01 lb, then enter '2'" >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="text" class="form-control" placeholder="(required) enter 8 to 14 digits product barcode, or select from dropdown, unmber only">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Description</span>
+                        <input type="text" class="form-control" placeholder='{"unit":"lb", "lotNo":"GX-45678", "controlDoc":"x-file-101"}' name='description' maxlength="500" >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="(optional) batch number, operator IS, etc.">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" placeholder="(required) enter the passphrase for the wallet address designated for token issuance">
+                        <span class="input-group-text fs-4"  id="issueAssetPasswordIcon" onclick="togglePasswordFn('issueAssetPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end ">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset" >
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepear transactionBytes" >
+                      </div>
+                    </form>
+                  </div>
+                  <p class="mb-1">【Step 2】 Boradcast the transaction. </p>
+                  <div class="border border-info p-3 mb-1">
+                    <form id="issueAssetBroadcastTransactionForm">
+                      <input type="text" id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp...">
+                      <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Boradcast transactionBytes" onClick="broadcastTransactionFn('issueAsset')" >
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" name="Crypto Evidence">
+        <h4 class="text-center mt-3 mb-3">Crypto Evidence</h4>
+        <div class="col-lg-10 col-sm-12 mx-auto mt-3">
+          <div class="accordion">
+            <div class="accordion-item" name="General file token">
+              <h2 class="accordion-header" id="flipCE1">
+                <button id="btnCE1" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE1" aria-expanded="false" aria-controls="panelCE1">
+                  <h4 class="text-start">Generate file token</h4>
+                </button>
+              </h2>
+              <div id="panelCE1" class="accordion-collapse collapse" aria-labelledby="flipCE1" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for generating a crypto evidence of any file, the result is a 160-characters hash called file token. Note, if connect to a publick API node, the file size is limited to 512KB. Suggest to set up your own node for large file.</p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】</p>
+                    <div class="border border-info p-3 mb-1">
+                      <form enctype="multipart/form-data"  onsubmit="return genFileTokenFn(this,['file'])">
+                          <input type='hidden' name='requestType' value='generateFileToken'/>
+                          <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="file" id="genFileTokenFormFile" />
+                          </div>
+                          <div class="input-group mb-3" >
+                            <span class="input-group-text" >Passphrase</span>
+                            <input class="form-control" type='password' id="genFileTokenFormPassword" placeholder="(required) enter the passpharse of creator's wallet address">
+                            <span class="input-group-text fs-4"  id="genFileTokenFormPasswordIcon" onclick="togglePasswordFn('genFileTokenFormPassword')">&#128584;</span>
+                          </div>
+                          <div class="input-group justify-content-end " >
+                            <input type='submit' class='btn btn-outline-secondary' value='Generate fileToken'/>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Validate file token">
+              <h2 class="accordion-header" id="flipCE2">
+                <button id="btnCE2" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE2" aria-expanded="false" aria-controls="panelCE2">
+                  <h4 class="text-start">Validate file token</h4>
+                </button>
+              </h2>
+              <div id="panelCE2" class="accordion-collapse collapse " aria-labelledby="flipCE2" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses to validate file token. Any modification of content of the file will failed the validation. The validation also extract file token creator's wallet address and time of creation.</p>
+                  <div class="row mb-3">
+                    <div class="border border-info p-3 mb-1">
+                      <form enctype="multipart/form-data" onsubmit="return decodeFileTokenFn(this,['file'])">
+                          <input type='hidden' name='requestType' value='decodeFileToken'/>
+                          <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="file" />
+                          </div>
+                          <div class="input-group mb-3" >
+                            <span class="input-group-text" >File token</span>
+                            <textarea class="form-control" style="height:60px" name='token' id="decFileTokenFormToken" placeholder="(required) enter the 160-characters hash gererated the Generate File Token utility"></textarea>
+                          </div>
+                          <div class="input-group justify-content-end" >
+                            <input type='submit' class='btn btn-outline-secondary' value='Valide file token'/>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Tokenize file token (NFT)">
+              <h2 class="accordion-header" id="flipCE3">
+                <button id="btnCE3" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE3" aria-expanded="false" aria-controls="panelCE3">
+                  <h4 class="text-start">Tokenize file token (NFT)</h4>
+                </button>
+              </h2>
+              <div id="panelCE3" class="accordion-collapse collapse " aria-labelledby="flipCE3" >
+                <div class="accordion-body">
+                  <p class="mb-1">File token without broadcast to blockchain can be use as an evidence. Creator can also write the 160-characters hash into the metedata of NFT for easy access.</p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】Fill in the form and click <input type='submit' class='btn btn-outline-secondary btn-sm' value='prepare transactionBytes' /> to get NFT metadata ready for boradcast.</p>
+                    <p class="mb-1">【Step 2】broadcast the transaction of NFT issurance by clikcing <input type="submit"  class="btn btn-success btn-sm" value="&#x2714; Confirm tokenize"></p>
+                    <div class="border border-info p-3 mb-1">
+                      <form>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >Name of NFT</span>
+                          <input class="form-control" type='text' name='name' placeholder="(required) give a name to your NFT, 3 to 10 alphanumeric characters" >
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >File token</span>
+                          <textarea class="form-control" style="height:90px" name='description' id='tokenizeFormDescription' placeholder="(autocomplete by 【Generate file token】utility)"></textarea>
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >File detail</span>
+                          <input type="text" class="form-control" name='message' id='tokenizeFormMessage' placeholder="(autocomplete by CryptoC14 dApp -> Generate file token)">
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >Licenses</span>
+                          <select class="form-select" type="text" name='license' id="liceseList">
+                            <option selected></option>
+                            <option value="_" selected>(optional) Select license type from dropdown</option>
+                            <option value="CC BY">Creative Commons Attribution</option>
+                            <option value="CC BY-SA">Creative Commons Attribution-ShareAlike</option>
+                            <option value="CC BY-ND">Creative Commons Attribution-NoDerivs</option>
+                            <option value="CC BY-NC">Creative Commons Attribution-NonCommercial</option>
+                            <option value="CC BY-NC-SA">Creative Commons Attribution-NonCommercial-ShareAlike</option>
+                            <option value="CC BY-NC-ND">Creative Commons Attribution-NonCommercial-NoDerivs</option>
+                          </select>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Passphrase</span>
+                          <input class="form-control" type='password' name='secretPhrase' id="tokenizeFormPassword" placeholder="(required) enter the passpharse or token issuer, not necessary the same as file token creator.">
+                          <span class="input-group-text fs-4"  id="tokenizeFormPasswordIcon" onclick="togglePasswordFn('tokenizeFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='prepare transactionBytes' />
+                        </div>
+                      </form>
+                      <form id="tokenizeBroadcastTransactionForm" onsubmit="return broadcastTransactionFn('tokenize')">
+                        <input type="hidden" class="form-control" name="transactionBytes" value="" id="tokenizeBroadcastTransactionBytes">
+                        <input type="submit" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm tokenize">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="General message token">
+              <h2 class="accordion-header" id="flipCE4">
+                <button id="btnCE4" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE4" aria-expanded="false" aria-controls="panelCE4">
+                  <h4 class="text-start">Generate message token</h4>
+                </button>
+              </h2>
+              <div id="panelCE4" class="accordion-collapse collapse " aria-labelledby="flipCE4" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for generate a 160-characters hash called message token. This tool can be uses to validate the ownership of a walldet address.</p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】 Entered required information then click <input type='submit' class='btn btn-outline-secondary btn-sm' value='Generate token'/>.</p>
+                    <div class="border border-info p-3 mb-1">
+                      <form>
+                          <input type='hidden' name='requestType' value='generateToken'/>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" >Message</span>
+                            <textarea name="website" class="form-control" maxlength="500">(required) enter arbitrarily message to generate a message token</textarea>
+                          </div>
+                          <div class="input-group mb-3" >
+                            <span class="input-group-text" >Passphrase</span>
+                            <input class="form-control" type='password' name='secretPhrase' id="genTokenFormPassword" placeholder="(required) enter the passpharse of the wallet you want to generate the message token">
+                            <span class="input-group-text fs-4"  id="genTokenFormPasswordIcon" onclick="togglePasswordFn('genTokenFormPassword')">&#128584;</span>
+                          </div>
+                          <div class="input-group justify-content-end" >
+                            <input type='submit' class='btn btn-outline-secondary' value='Generate token'/>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Validate file token">
+              <h2 class="accordion-header" id="flipCE5">
+                <button id="btnCE5" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE5" aria-expanded="false" aria-controls="panelCE5">
+                  <h4 class="text-start">Validate message token</h4>
+                </button>
+              </h2>
+              <div id="panelCE5" class="accordion-collapse collapse " aria-labelledby="flipCE5" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for validating message token, any modification of origin message will failed the validation. The tool also extract token creator and time of creation.</p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】Entered required information then click <input type='submit' class='btn btn-outline-secondary btn-sm' value='Validate message token'/>.</p>
+                    <div class="border border-info p-3 mb-1">
+                      <form>
+                          <input type='hidden' name='requestType' value='decodeToken'/>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" >Message</span>
+                            <textarea name="website" class="form-control" placeholder="(required) enter the message to be validate"></textarea>
+                          </div>
+                          <div class="input-group mb-3" >
+                            <span class="input-group-text" >Message token</span>
+                            <textarea class="form-control" name='token' placeholder="(required) enter the 160-characters message token" ></textarea>
+                          </div>
+                          <div class="input-group justify-content-end" >
+                            <input type='submit' class='btn btn-outline-secondary' value='Validate message token'/>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Validate wallet information">
+              <h2 class="accordion-header" id="flipCE6">
+                <button id="btnCE6" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelCE6" aria-expanded="false" aria-controls="panelCE6">
+                  <h4 class="text-start">Validate wallet information</h4>
+                </button>
+              </h2>
+              <div id="panelCE6" class="accordion-collapse collapse " aria-labelledby="flipCE6" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for tokenize certification</p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】Enter the complete wallet JSON into the text area, including the <code>validationCode</code>. Example shown below.</p>
+                    <p class="mb-1">【Step 2】(optional) Enter the passpharse of validator wallet to generate a new <code>validationCode</code>.</p>
+                    <p class="mb-1">【Step 3】click <input type='submit' class='btn btn-outline-secondary btn-sm' value='Validate wallet information'/> to validate.</p>
+                    <div class="border border-info p-3 mb-1">
+                      <form id="validateWalletInfoForm">
+                          <!-- <input type='hidden' name='requestType' value='decodeToken'/> -->
+                          <div class="input-group mb-3">
+                            <!-- <span class="input-group-text" >Wallet Information</span> -->
+                            <textarea name="walletInfomation" class="form-control" rows='13' id="validateWalletInfoFormWebsite">
+                            </textarea>
+                          </div>
+                          <div class="input-group mb-3" >
+                            <span class="input-group-text" >Passphrase</span>
+                            <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" placeholder="(optional) enter the passpharse of validator wallet to generate a new validationCode ">
+                            <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
+                          </div>
+                          <div class="input-group justify-content-end " >
+                            <input type='submit' class='btn btn-outline-secondary' value='Validate wallet information'/>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" name="Tools">
+        <h4 class="text-center mt-3 mb-3">Blockchain Tools</h4>
+        <div class="col-lg-10 col-sm-12 mx-auto mt-3">
+          <div class="accordion">
+            <div class="accordion-item" name="Create CC14/NXT/Ardor wallet">
+              <h2 class="accordion-header" id="flipTB1">
+                <button id="btnTB1" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB1" aria-expanded="false" aria-controls="panelTB1">
+                  <h4 class="text-start">Create CC14/NXT/Ardor wallet</h4>
+                </button>
+              </h2>
+              <div id="panelTB1" class="accordion-collapse collapse " aria-labelledby="flipTB1" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for creating new wallet. The wallet can be uses on CC14/NXT/Ardor platform with appropriate prefix. The wallet address is generated from your passphrase, there is no wallet file like wallet.dat. </p>
+                  <div class="row mb-3">
+                    <div class="border border-info p-3 mb-1">
+                      <form>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Passphrase</span>
+                          <input class="form-control input" type="password" name="secretPhrase" id="newWalletFormPassword" minlength='24' placeholder='(required) enter minimum 24 alphanumeric characters to generate a new wallet' required>
+                          <span class="input-group-text fs-4"  id="newWalletFormPasswordIcon" onclick="togglePasswordFn('newWalletFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Create">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Request CC14 token">
+              <h2 class="accordion-header" id="flipTB2">
+                <button id="btnTB2" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB2" aria-expanded="false" aria-controls="panelTB2">
+                  <h4 class="text-start">Request CC14 token</h4>
+                </button>
+              </h2>
+              <div id="panelTB2" class="accordion-collapse collapse " aria-labelledby="flipTB2" >
+                <div class="accordion-body">
+                  <p class="mb-1">CC14 token is need for paying any blockchain transaction broadcast to the public CC14 chain. a new wallet can request up to 2,000 CC14 tokens, for additional amount please contace <a href="mailto:jieh.lei@gmail.com">DiTiNOW LLC</a>. </p>
+                  <div class="row mb-3">
+                    <!-- <p class="mb-1">【Step 1】</p> -->
+                    <div class="border border-info p-3 mb-1">
+                      <form >
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Wallet address</span>
+                          <input class="form-control input" type="text" name="newCC14Wallet" id="newCC14Wallet" placeholder='(required) enter wallet address in the format of "CC14-XXXX-XXXX-XXXX-XXXXX"'>
+                        </div>
+                        <div class="input-group mb-3 " >
+                          <!-- <span class="input-group-text" >Public Key</span> -->
+                          <input class="form-control input" type="hidden" name="newCC14WalletPK" id="newCC14WalletPubKey" placeholder="(optional) autocomplete for new wallet address">
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; reset">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#128176; request">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Create QR code">
+              <h2 class="accordion-header" id="flipTB3">
+                <button id="btnTB3" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB3" aria-expanded="false" aria-controls="panelTB3">
+                  <h4 class="text-start">Create QR code</h4>
+                </button>
+              </h2>
+              <div id="panelTB3" class="accordion-collapse collapse " aria-labelledby="flipTB3" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for generate QR code with CC14 logo</p>
+                  <div class="row mb-3">
+                    <!-- <p class="mb-1">【Step 1】</p> -->
+                    <div class="border border-info p-3 mb-1">
+                      <form >
+                        <div class="form-group mb-3" >
+                          <textarea class="form-control input" name='text' maxlength="1000" rows="3" >(required) to generate a QR code, please enter up to 1,000 characters</textarea>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;reset">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Create">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Account balance">
+              <h2 class="accordion-header" id="flipTB4">
+                <button id="btnTB4" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB4" aria-expanded="false" aria-controls="panelTB4">
+                  <h4 class="text-start">Account balance</h4>
+                </button>
+              </h2>
+              <div id="panelTB4" class="accordion-collapse collapse " aria-labelledby="flipTB4" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for check CC14 utility token balance and lists of title tokens</p>
+                  <div class="row mb-3">
+                    <!-- <p class="mb-1">【Step 1】</p> -->
+                    <div class="border border-info p-3 mb-1">
+                      <form  >
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Wallet</span>
+                          <input type="text" name='account' maxlength="25" class="form-control" placeholder='(required) please enter wallet address in the form of "CC14-XXXX-XXXX-XXXX-XXXXX"'>
+                        </div>
+                        <div class="input-group justify-content-md-end ">
+                          <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#x1F50D;Search">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Token by issuer">
+              <h2 class="accordion-header" id="flipTB5">
+                <button id="btnTB5" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB5" aria-expanded="false" aria-controls="panelTB5">
+                  <h4 class="text-start">Token issued by wallet</h4>
+                </button>
+              </h2>
+              <div id="panelTB5" class="accordion-collapse collapse " aria-labelledby="flipTB5" >
+                <div class="accordion-body">
+                  <p class="mb-1">List tokens issued by wallet address. Up to 100 entries displayed if connected to public API node.</p>
+                  <div class="row mb-3">
+                    <!-- <p class="mb-1">【Step 1】</p> -->
+                    <div class="border border-info p-3 mb-1">
+                      <form >
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Wallet</span>
+                          <input type="text" name='account' maxlength="26" class="form-control" placeholder='(required) please enter wallet address in the form of "CC14-XXXX-XXXX-XXXX-XXXXX"'>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                          <input type="submit" class="btn btn-outline-secondary"  value="&#x1F50D;Search">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" name="Sent message via CC14 blockchain">
+              <h2 class="accordion-header" id="flipTB6">
+                <button id="btnTB6" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTB6" aria-expanded="false" aria-controls="panelTB6">
+                  <h4 class="text-start">Sent message via CC14 blockchain</h4>
+                </button>
+              </h2>
+              <div id="panelTB6" class="accordion-collapse collapse " aria-labelledby="flipTB6" >
+                <div class="accordion-body">
+                  <p class="mb-1">Uses for </p>
+                  <div class="row mb-3">
+                    <p class="mb-1">【Step 1】Prepare transaction by filling in required fields then click <input type="submit" class="btn btn-outline-secondary btn-sm" value="&#x1F4DD;Prepear transactionBytes"></p>
+                    <div class="border border-info p-3 mb-1">
+                      <form id="sendMessageForm" >
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Message</span>
+                          <input type="text" class="form-control" name='message' placeholder="(required) enter message here, message will be sent uneccrypted">
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text">To...</span>
+                          <input type="text" class="form-control" name='recipient' placeholder='(required) enter recipient wallet address in the form of "CC14-XXXX-XXXX-XXXX-XXXXX"'>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text">From...</span>
+                          <input type="password" class="form-control" name='secretPhrase' id='sendMessagePassword' placeholder="(required) enter sender's wallet passpharse here" >
+                          <span class="input-group-text fs-4"  id="sendMessagePasswordIcon" onclick="togglePasswordFn('sendMessagePassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group  justify-content-md-end">
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                          <input type="submit" class="btn btn-outline-secondary" value="&#x1F4DD;Prepear transactionBytes">
+                        </div>
+                      </form>
+                    </div>
+                    <p class="mb-1">【Step 2】Confirm boradcasting the sent message transaction by clicking <input type="button" class="btn btn-success btn-lg btn-sm" value="&#x1F4E2;Boradcast transactionBytes" >. </p>
+                    <div class="border border-info p-3 mb-1">
+                      <form id="sendMessageBroadcastTransactionForm">
+                        <div class="input-group mb-3" >
+                          <textarea style="height:90px" class="form-control" name='transactionBytes' id="broadcastTransactionInput" placeholder="(autocomplete by CryptoC14 dApp)"></textarea>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="button" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;Boradcast transactionBytes">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div style="position:fixed; opacity:0.5; bottom:100px; right:20px" >
+      <h1><a class="text-decoration-none" href="#toTop">&#9195;</a></h1>
+    </div>
+    <div style="position:fixed; opacity:0.5; bottom:60px; right:20px" >
+      <h1><a class="text-decoration-none" href="#footer">&#9196;</a></h1>
+    </div>
+  </div>
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
+  <footer id="footer" style="height: 50px;">
+    <div class="container-fluid" style="font-size:90%">
+      <div class="row">
+        <div style="text-align:center;margin-bottom: 5px;">
+          <a href="https://github.com/ditinow"><img src="images/logo-github.png" width="25" height="25" alt="github"></a>&nbsp;&nbsp;
+          <a href="index.html"><img src="images/logo-twitter.png" width="25" height="25" alt="twitter"></a>&nbsp;&nbsp;
+          <a href="index.html"><img src="images/logo-linkedin.png" width="25" height="25" alt="linkedin"></a>&nbsp;&nbsp;
+          <a href="index.html"><img src="images/logo-wechat.png" width="25" height="25" alt="wechat"></a>&nbsp;&nbsp;
+          <a href="index.html"><img src="images/logo-weibo.png" width="25" height="25" alt="weibo"></a>&nbsp;&nbsp;
+        </div>
+      </div>
+      <div class="row" style="text-align:center;background-color:#E9ECEF; color:#fff;">
+        <div class="col-lg-4"><span style="color:black">&#169;2021 - 2022 DiTiNOW LLC</span></div>
+        <div class="col-lg-4">
+          <span class="mt-auto"><a class="darkLink" href="aboutus.html">About us&nbsp;&nbsp;</a></span>
+          <span class="mt-auto"><a class="darkLink" href="terms.html">&nbsp;Terms&nbsp;&nbsp;</a></span>
+          <span class="mt-auto"><a class="darkLink" href="contactus.html">&nbsp;Contact&nbsp;&nbsp;</a></span>
+          <span class="mt-auto"><a class="darkLink" href="legal.html">&nbsp;Legal</a></span>
+        </div>
+        <div class="col-lg-4"><span style="color:black">Donate ARDOR-49CE-CXZZ-3QHW-AH4JK</span></div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='../js/3rdparty/bootstrap.bundle.min.js'></script>
+<script src='scripts-cc14.js' ></script>
+<script src='nav_footer.js' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+
+  var textarea1 = '(required) enter existing serial number in array format acceptable by JavaScript. For example: \r\n'+
+                  '["SN0001", "SN0002", "SN0003"]';
+  $("#textarea1").val(textarea1);
+</script>
+<script>
+  var textareaText ='{ \r\n\t'+
+    '"validationCode" : "crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncifcliqohusrf84dqt56k5n88fuqrf0dokigkvv7e65d0sba5hlnq44lm1g64ovc30cbim4t1v3k8qc7e05man44p3de7t1pgopmtpoqi8bj0l1", \r\n\t'+
+    '"walletInfo" : { \r\n\t\t'+
+      '"accountRS" : "CC14-5KKJ-TXML-FKM3-4SLZB", \r\n\t\t'+
+      '"entityName" : "demoissuance wallet one. 演示品牌", \r\n\t\t'+
+      '"physicalAddress" : "somewhere", \r\n\t\t'+
+      '"noFakeURL" : "http://www.ditinow.com/diti/", \r\n\t\t'+
+      '"expDate" : "2022-12-31T23:59:59+00:00", \r\n\t\t'+
+      '"walletAssignment" : "issuance" \r\n\t'+
+    '} \r\n'+
+  '}';
+  $("#validateWalletInfoFormWebsite").val(textareaText);
+</script>
+</html>

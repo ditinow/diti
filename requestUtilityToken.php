@@ -23,7 +23,8 @@
       'publicKey'     => $requestorPubKey,
       'feeNQT'        => '0',
       'deadline'      => '60',
-      'broadcast'     => 'true');
+      'broadcast'     => 'false');
+      // for active redeemption services, please change 'broadcast' => 'false' to 'broadcast' => 'false' => 'true'
 
     function curlFn($url, $requestNumber){
       $cURLrequest = curl_init($url);

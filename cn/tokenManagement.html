@@ -39,20 +39,19 @@
               <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
                 <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
                 <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
-                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://40.124.110.187:19886/" >CC14@ Azure US South Central Zone 1</option>
                 <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
                 <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
                 <option value="http://localhost:19886/" disabled>CC14@ 本地电脑</option>
-                <option value="http://192.168.1.7:19886/" disabled>CC14@ 本地网络</option>
+                <option value="http://192.168.1.7:19886/" selected>CC14@ 本地网络</option>
               </select>
-              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+              <button type="submit" class="btn btn-outline-secondary " >设置</button>
             </div>
           </form>
         </div>
       </div>
     </nav>
     <div class="container-fluid"><!-- container ============================ -->
-
       <div class="row" name="actionBlock"><!-- actionBlock ==================-->
         <div class="col-12 col-sm-10 mx-auto">
           <div class="accordion">
@@ -60,7 +59,7 @@
             <div class="accordion-item" name="Authorize anti-counterfeiting product">
               <h2 class="accordion-header" id="issueNFTflip">
                 <button id="issueNFTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTpanel" aria-expanded="false" aria-controls="issueNFTpanel" >
-                  <h4>&#x1F430; 防伪产品上链</h4>
+                  <h4>&#x1F430; 防伪产品授权</h4>
                 </button>
               </h2>
               <div id="issueNFTpanel" class="accordion-collapse collapse" aria-labelledby="issueNFTflip" >
@@ -69,55 +68,57 @@
                     <form id="issueNFTForm">
                       <div class="input-group mb-3" >
                         <span class="input-group-text" >产品条码</span>
-                        <input type="number" class="form-control" name='barcode' list="barcodeList" placeholder="8到14位数的商品条码"required>
+                        <input type="number" class="form-control demoBarcode" name='barcode' list="barcodeList" placeholder="输入的商品条码" required>
                         <datalist id="barcodeList">
                           <option value="6901234567890">CC14 雨伞, 天空之境 43寸</option>
                           <option value="6903456789012">CC14 工作 polo 杉, 两件套</option>
                           <option value="6902345678901">CC14 大红袍茶, 两件套</option>
                         </datalist>
                       </div>
-                      <div class="input-group mb-3 d-none" >
-                        <span class="input-group-text">产品描述</span>
-                        <input type="text" class="form-control" value="文本文字 ..." name='description' maxlength="500"  >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">授权数量</span>
+                        <input type="number" class="form-control demoIssueNFTqty" name='issueQty' min="2" max="100" id="issueNFTqty" placeholder="(选项) 授权数量或产品编号必须填写一项" onfocus="resetInputFn('issueNFTPID')">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">产品编号</span>
+                        <textarea class="form-control" name='description' id="issueNFTPID" maxlength="500" placeholder="(选项) 产品编号或授权数量必须填写一项。以逗号(ASCII)分隔，例：&#10;SNO00001,SNO00001,SNO00003,SNO00004" onfocus="resetInputFn('issueNFTqty')"></textarea>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">操作信息</span>
-                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="选项：操作员工号 ..."  >
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="(选项) 操作员工号 ..."  >
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control demoIssuancePW" name='secretPhrase' id="issueNFTPassword" required>
                         <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
-                        <span class="input-group-text">授权数量</span>
-                        <input type="number" class="form-control" name='issueQty' value='2' min="2" max="100">
-
+                        <span class="input-group-text">key Hash</span>
+                        <input type="password" class="form-control demoKeyHash" name='keyHash' id="demoKeyHash">
+                        <span class="input-group-text fs-4"  id="demoKeyHashIcon" onclick="togglePasswordFn('demoKeyHash')">&#128584;</span>
+                        <span class="input-group-text">iv Hash</span>
+                        <input type="password" class="form-control demoIvHash" name='ivHash' id="demoIvHash">
+                        <span class="input-group-text fs-4"  id="demoIvHashIcon" onclick="togglePasswordFn('demoIvHash')">&#128584;</span>
                       </div>
-                      <div class="d-md-flex justify-content-md-end mb-3">
-                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-success " id="issueNFTBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
+                      <div class="input-group justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-success btn-lg w-25" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-success btn-lg w-25" id="issueNFTBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用默认密钥时只有2个权益令牌被写入区块" value="&#x2705;确认发行权益令牌">
                       </div>
                     </form>
-                    <!-- <form id="issueNFTBroadcastForm">
-                      <input type="hidden" name="requestType" value="broadcastTransaction">
-                      <input type="hidden" name="transactionBytes" value="">
-                      <input type="submit" id="issueNFTBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认授权">
-                    </form> -->
                   </div>
                   <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
                     <div class="overflow-auto" name="issueNFTResult">
-                        <h5>事件总结:</h5>
-                        <span>下载 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为CC14令牌。</span><br>
-                        <!-- <p><b>注: </b>为节省演示账户余额，一次授权超过五件以上商品将不会被广播至CC14公链, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> 被停用，商用版将取消这个限制。</p> -->
+                      <p class="d-none" id="issueNFTResult">费用单位为CC14通证。点击 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>下载。</p>
+                      <p class="d-none" id="issueNFTResultError">未知账号，请核对钱包密钥。</p>
+                      <p class="d-none" id="issueNFTResultNoFunds">账号余额不足。资产上链需要至少 1000枚CC14通证。</p>
                       <div class="table-responsive">
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
                           <thead class="thead-light">
                             <tr>
                               <th>产品编号</th>
-                              <th>防伪码 (短码)</th>
-                              <th>防伪码 (长码, 区块链事件完整哈希)</th>
-                              <th>验证码</th>
+                              <th><b style="color:#0C8918">&#9632; </b>防伪码 (短码)</th>
+                              <th><b style="color:#FFA500">&#9632; </b>防伪码 (长码, 区块链标识)</th>
+                              <th><b style="color:#177CB0">&#9632; </b>验证码</th>
                               <th>产品条码</th>
                               <th>令牌名字</th>
                               <th>操作信息</th>
@@ -141,97 +142,10 @@
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="Authorize anti-counterfeiting product with predefined serial number">
-              <h2 class="accordion-header" id="issueNFTwSNoflip">
-                <button id="issueNFTwSNobtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTwSNopanel" aria-expanded="false" aria-controls="issueNFTwSNopanel" >
-                  <h4>&#128220; 防伪产品上链-已知序列号</h4>
-                </button>
-              </h2>
-              <div id="issueNFTwSNopanel" class="accordion-collapse collapse" aria-labelledby="issueNFTwSNoflip" >
-                <div class="accordion-body">
-                  <div id="issueNFTwSNoFormAction">
-                    <form id="issueNFTwSNoForm">
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text" >产品条码</span>
-                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value="690">
-                        <datalist id="barcodeList">
-                          <option value="6901234567890">CC14 雨伞, 天空之境 43寸</option>
-                          <option value="6903456789012">CC14 工作 polo 杉, 两件套</option>
-                          <option value="6902345678901">CC14 大红袍茶, 两件套</option>
-                        </datalist>
-                      </div>
-                      <div class="input-group mb-3 " >
-                        <span class="input-group-text">产品编号</span>
-                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003"]</textarea>
-                      </div>
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text">操作信息</span>
-                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="选项：批次号，操作员工号 ..."  >
-                      </div>
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
-                        <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
-                      </div>
-                      <div class="input-group mb-3 d-none" >
-                        <span class="input-group-text">授权数量</span>
-                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
-                        <datalist id="issueNFTList1">
-                          <option value="2">Quantity 2</option>
-                          <option value="5">Quantity 5</option>
-                          <option value="10">Quantity 10</option>
-                        </datalist>
-                      </div>
-                      <div class="d-md-flex justify-content-md-end mb-3">
-                        <input type="reset" class="btn btn-secondary me-md-2" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-success " id="issueNFTwSNoSubmitBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用表格预填钱包密钥时只有两个权益令牌上链" value="&#x2705;确认上链广播">
-                      </div>
-                    </form>
-                    <!-- <form id="issueNFTwSNoBroadcastForm">
-                      <input type="hidden" name="requestType" value="broadcastTransaction">
-                      <input type="hidden" name="transactionBytes" value="">
-                      <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认上链">
-                    </form> -->
-                  </div>
-                  <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
-                    <div class="overflow-auto" name="issueNFTwSNoResult">
-                      <h5>事件总结:</h5>
-                      <span>下载 <button id="table2excelwSno" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为CC14令牌。</span><br>
-                      <div class="table-responsive">
-                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
-                          <thead class="thead-light">
-                            <tr>
-                              <th>产品编号</th>
-                              <th>防伪码 (短码)</th>
-                              <th>防伪码 (长码, 区块链事件完整哈希)</th>
-                              <th>验证码</th>
-                              <th>产品条码</th>
-                              <th>令牌名字</th>
-                              <th>操作信息</th>
-                              <th>授权钱包</th>
-                              <th>授权时间</th>
-                              <th>费用</th>
-                            </tr>
-                          </thead>
-                          <tbody id="issueNFTwSNoTable">
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="justify-content-center overflow-auto" id="issueNFTwSNoQRCode" style="max-height:320px"></div>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
-                      <h5>JSON response</h5>
-                      <span id="issueNFTwSNoJSON"></span>
-                    </div>
-                  </div>
-                </div><!-- accordion-item panel body end =================== -->
-              </div><!-- accordion-item panel end ========================== -->
-            </div><!-- accordion-item end ================================== -->
-
             <div class="accordion-item" name="Activation">
               <h2 class="accordion-header" id="activationSearchFlip">
                 <button id="activationSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activationSearchPanel" aria-expanded="false" aria-controls="activationSearchPanel" >
-                  <h4>&#x1F426; 激活、销毁权益令牌</h4>
+                  <h4>&#x1F426; 产品激活</h4>
                 </button>
               </h2>
               <div id="activationSearchPanel" class="accordion-collapse collapse" aria-labelledby="activationSearchFlip" >
@@ -240,19 +154,19 @@
                     <form id="activationSearchForm">
                       <div class="input-group mb-3">
                         <span class="input-group-text" >钱包地址</span>
-                        <input type="text" class="form-control" name="account" list="activationSearchList" >
+                        <input type="text" class="form-control demoIssuanceRS" name="account" list="activationSearchList" required>
                         <datalist id="activationSearchList">
-                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">示范： 授权专用钱包之一</option>
-                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">示范： 授权专用钱包之二</option>
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">示范账号： 授权专用钱包之一</option>
+                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">示范账号： 授权专用钱包之二</option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" >操作信息</span>
-                        <input type="text"  class="form-control" name="message" placeholder="选项：批次号，操作员工号 ...">
+                        <input type="text"  class="form-control" name="message" maxlength="500" placeholder="选项：批次号，操作员工号 ...">
                       </div>
                       <div class="input-group justify-content-end mb-3">
-                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="reloadClearFn()">
-                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; 查询 ">
+                        <input type="button" class="btn btn-outline-secondary w-25" value="&#x1F503; 重置" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-secondary w-25" value="&#x1F50D; 查询 ">
                       </div>
                     </form>
                   </div>
@@ -266,7 +180,6 @@
                           <th>授权钱包</th>
                           <th>授权数量</th>
                           <th>小数点</th>
-                          <!-- <th>区块链标识</th> -->
                         </tr>
                       </thead>
                       <tbody id="activationSearchTbody">
@@ -279,28 +192,26 @@
                           <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">过滤钱包</span></th>
                           <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">过滤数量</span></th>
                           <th><span style="opacity:0.3" onclick="dataTablesActivationFn()">过滤小数点</span></th>
-                          <!-- <th><span style="opacity:0.3">区块链标识</span></th> -->
                         </tr>
                       </tfoot>
                     </table>
                   </div>
-
                   <div class="mb-3">
                     <form id="activationConfirmForm">
                       <div class="input-group mb-3" >
-                        <span class="input-group-text">选择钱包</span>
-                        <select class="form-select" type="text" name="recipient">
-                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">示范： 产品激活专用钱包之一</option>
-                          <option value="CC14-DUPL-QDTD-ZGDJ-7YJTW">示范： 产品激活专用钱包之二</option>
-                          </select>
+                        <span class="input-group-text">产品激活</span>
+                        <select class="form-select" type="text" name="recipient" value="demoActivationRS">
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">示范账号： 产品激活专用钱包之一</option>
+                          <option value="CC14-DUPL-QDTD-ZGDJ-7YJTW">示范账号： 产品激活专用钱包之二</option>
+                        </select>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input class="form-control" type="password" id="activationConfirmFormPassword" name="secretPhrase" value="">
+                        <input class="form-control demoIssuancePW" type="password" id="activationConfirmFormPassword" name="secretPhrase" required>
                         <span class="input-group-text fs-4"  id="activationConfirmFormPasswordIcon" onclick="togglePasswordFn('activationConfirmFormPassword')">&#128584;</span>
                       </div>
-                      <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by DApp...">
-                      <input type="submit" id="activationConfirmBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; 确认操作">
+                      <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by dApp...">
+                      <input type="submit" id="activationConfirmBtn" class="btn btn-success btn-lg w-100" value="&#x2714; 确认激活">
                     </form>
                   </div>
                   <div class="table-responsive d-none" id="activationConfirmTblDisp">
@@ -308,22 +219,22 @@
                     <table class="table table-sm table-bordered text-nowrap" id="activationConfirmTbl">
                       <thead class="thead-light">
                         <tr class="filters">
-                          <th id="activationConfirmTblThead">资产编号</th>
+                          <th id="activationConfirmTblThead">令牌编号</th>
                           <th>钱包地址</th>
                           <th>交易费用</th>
                           <th>交易时间</th>
-                          <th>区块链标识</th>
+                          <th>激活操作区块链标识</th>
                         </tr>
                       </thead>
                       <tbody id="activationConfirmTbody">
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th><span style="opacity:0.3">资产编号</span></th>
+                          <th><span style="opacity:0.3">令牌编号</span></th>
                           <th><span style="opacity:0.3">钱包地址</span></th>
                           <th><span style="opacity:0.3">交易费用</span></th>
                           <th><span style="opacity:0.3">交易时间</span></th>
-                          <th><span style="opacity:0.3">区块链标识</span></th>
+                          <th><span style="opacity:0.3">激活操作区块链标识</span></th>
                         </tr>
                       </tfoot>
                     </table>
@@ -351,20 +262,22 @@
                   <div id="burningAction">
                     <form id="burningSearchForm">
                       <div class="input-group mb-3">
-                        <span class="input-group-text" >钱包</span>
-                        <input type="text" class="form-control" name="account" list="burningSearchList" >
+                        <span class="input-group-text" >钱包地址</span>
+                        <input type="text" class="form-control demoIssuanceRS" name="account" list="burningSearchList" required >
                         <datalist id="burningSearchList">
-                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">示范： 产品授权专用钱包之一</option>
-                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">示范： 产品授权专用钱包之二</option>
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">示范账号： 产品授权专用钱包之一</option>
+                          <option value="CC14-UEM4-XQBX-HZWW-G2FNW">示范账号： 产品授权专用钱包之二</option>
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">示范账号： 产品激活专用钱包之一</option>
+                          <option value="CC14-DUPL-QDTD-ZGDJ-7YJTW">示范账号： 产品激活专用钱包之二</option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" >操作信息</span>
-                        <input type="text"  class="form-control" name="message" placeholder="lot No, Operator ID...">
+                        <input type="text"  class="form-control" name="message" maxlength="500" placeholder="lot No, Operator ID...">
                       </div>
                       <div class="input-group justify-content-end mb-3">
-                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="reloadClearFn()">
-                        <input type="submit" class="btn btn-outline-secondary " value="&#x1F50D; 搜索 ">
+                        <input type="button" class="btn btn-outline-secondary w-25" value="&#x1F503; 重置" onClick="reloadClearFn()">
+                        <input type="submit" class="btn btn-secondary w-25" value="&#x1F50D; 搜索 ">
                       </div>
                     </form>
                   </div>
@@ -394,45 +307,45 @@
                       </tfoot>
                     </table>
                   </div>
-
                   <div class="mb-3">
                     <form id="burningConfirmForm">
                       <div class="input-group mb-3" >
                         <span class="input-group-text">选择</span>
-                        <select class="form-select" type="text" name="recipient">
-                          <option value="CC14-9QS5-MBBX-56MF-ESNEB">示范： 废弃专用钱包</option>
-                        </select>
+                        <input class="form-select demoDumpsterRS" type="text" name="recipient" list="burningActionList">
+                        <datalist id="burningActionList">
+                          <option value="CC14-9QS5-MBBX-56MF-ESNEB">示范账号： 废弃专用钱包</option>
+                        </datalist>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input class="form-control" type="password" id="burningConfirmFormPassword" name="secretPhrase" value="">
+                        <input class="form-control demoIssuancePW" type="password" id="burningConfirmFormPassword" name="secretPhrase" required >
                         <span class="input-group-text fs-4"  id="burningConfirmFormPasswordIcon" onclick="togglePasswordFn('burningConfirmFormPassword')">&#128584;</span>
                       </div>
                       <input type="hidden"  name="message" id="burningConfirmFormMessage" value="autocomplete by DApp...">
-                      <input type="submit" id="burningConfirmBtn" class="btn btn-success btn-lg btn-danger" style="width:100%"  value=" 🔥 Confirm burning">
+                      <input type="submit" id="burningConfirmBtn" class="btn btn-success btn-lg btn-danger w-100" value=" 🔥 确认废弃">
                     </form>
                   </div>
                   <div class="table-responsive d-none" id="burningConfirmTblDisp">
-                    <p>过滤后的权益令牌将被转移至废品 <b id="burningConfirmWallet">专用钱包</b> <span id="walletType"></span>。区块链交易费用为CC14代币。</p>
+                    <p>过滤后的权益令牌将被转移至废品 <b id="burningConfirmWallet">专用钱包</b>。区块链交易费用为CC14代币。</p>
                     <table class="table table-sm table-bordered text-nowrap" id="burningConfirmTbl">
                       <thead class="thead-light">
                         <tr class="filters">
                           <th id="burningConfirmTblThead">被废弃的令牌</th>
-                          <th>钱包地址</th>
+                          <th>垃圾箱地址</th>
                           <th>费用</th>
                           <th>时间</th>
-                          <th>区块链标识</th>
+                          <th>废弃操作区块链标识</th>
                         </tr>
                       </thead>
                       <tbody id="burningConfirmTbody">
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th><span style="opacity:0.3">权益令牌</span></th>
-                          <th><span style="opacity:0.3">钱包地址</span></th>
-                          <th><span style="opacity:0.3">f费用ee</span></th>
+                          <th><span style="opacity:0.3">被废弃的令牌</span></th>
+                          <th><span style="opacity:0.3">垃圾箱地址</span></th>
+                          <th><span style="opacity:0.3">费用</span></th>
                           <th><span style="opacity:0.3">时间</span></th>
-                          <th><span style="opacity:0.3">区块链标识</span></th>
+                          <th><span style="opacity:0.3">废弃操作区块链标识</span></th>
                         </tr>
                       </tfoot>
                     </table>
@@ -444,7 +357,6 @@
                     <span id="burningJSON"></span>
                     </div>
                   </div>
-
                 </div><!-- accordion-item panel body end =================== -->
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
@@ -452,7 +364,7 @@
             <div class="accordion-item" name="Additional Product Information">
               <h2 class="accordion-header" id="setAssetPropertyFlip">
                 <button id="setAssetPropertyBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#setAssetPropertyPanel" aria-expanded="false" aria-controls="setAssetPropertyPanel" >
-                  <h4>&#x1F41F; 产品附加性质</h4>
+                  <h4>&#x1F41F;产品附加信息</h4>
                 </button>
               </h2>
               <div id="setAssetPropertyPanel" class="accordion-collapse collapse " aria-labelledby="setAssetPropertyFlip" >
@@ -460,52 +372,57 @@
                   <div id="setAssetPropertyAction">
                     <form id="setAssetPropertyForm">
                       <div class="input-group mb-3">
-                        <span class="input-group-text" >资产编号</span>
-                        <input type="text" class="form-control" name="asset" value="10670286826004572249">
+                        <span class="input-group-text" >令牌编号</span>
+                        <input type="text" class="form-control demoTokenID" name="asset"  required>
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" >信息类型</span>
                         <input type="text" class="form-control rounded-end" name="property" list="setAssetPropertyList1" required>
                         <datalist id="setAssetPropertyList1">
+                          <option value="tracking">追溯信息</option>
                           <option value="recall">产品召回</option>
                           <option value="warning">警告</option>
                           <option value="marketing">市场优惠</option>
+                          <option value="memo">遗失信息</option>
                         </datalist>
                         <span class="input-group-text" >性质内容</span>
-                        <input type="text" class="form-control" name="value" placeholder="text...">
+                        <input type="text" class="form-control" name="value" maxlength="160" placeholder="text..." required>
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" >操作信息</span>
-                        <input type="text" class="form-control rounded-end" name="message" list="setAssetPropertyList2" placeholder="选项..." >
-                        <datalist id="setAssetPropertyList2">
-                          <option value='{"operator":"No201912345"}'>操作员 001</option>
-                          <option value='{"operator":"No201702345"}'>操作员 002</option>
-                        </datalist>
+                        <input type="text" class="form-control rounded-end" name="message" placeholder="选项..." >
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id='setAssetPropertyPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control demoIssuancePW" name='secretPhrase' id='setAssetPropertyPassword' required>
                         <span class="input-group-text fs-4"  id="setAssetPropertyPasswordIcon" onclick="togglePasswordFn('setAssetPropertyPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-outline-secondary " id="setAssetPropertyTByteBtn" value="&#x2705;准备交易字节">
+                        <input type="reset" class="btn btn-outline-secondary w-25" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-secondary w-25" id="setAssetPropertyTByteBtn" value="&#x2705;准备上链数据">
                       </div>
                     </form>
                     <div>
-                      <form id="setAssetPropertyBroadcastTransactionForm">
-                        <input type="text" id="setAssetPropertyTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp ...">
-                        <input type="submit" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; 广播交易字节" onClick="broadcastTransactionFn('setAssetProperty')">
+                      <form>
+                        <input type="hidden" id="setAssetPropertyTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp ...">
+                        <input type="submit" class="btn btn-success btn-lg w-100" value="&#x2714; 确认发布" onClick="broadcastTransactionFn('setAssetProperty')">
                       </form>
                     </div>
                   </div>
-                  <div class="d-none" id="setAssetPropertyDisplay">
-                    <div class="overflow-auto" name="setAssetPropertyResult">
-                      <div>
-                        <h5 >事件总结:</h5>
-                        <span id="setAssetPropertyBroadcastTransactionResult" ></span>
-                        <div id="setAssetPropertyResult" ></div>
-                      </div>
+                  <div class="d-none" id="setAssetPropertyResponse">
+                    <div class="overflow-auto">
+                      <p class="d-none" id="setAssetPropertyBroadcastResult">操作已经发布。点击区块链标识查看详情。</p>
+                      <p class="d-none" id="setAssetPropertyResultError">未知账号，请核对钱包密钥。</p>
+                      <p class="d-none" id="setAssetPropertyResultNoFunds">账号余额不足。非NFT资产上链需要最低1000枚CC14通证。</p>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <tr><td>令牌编号</td><td><span id="setAssetPropertyResultAssetID"></span><span class="d-none" id="setAssetPropertyResultUnknownAsset">未知令牌编号</span></td></tr>
+                        <tr><td>设置钱包</td><td><span id="setAssetPropertyResultSetterRS"></span><span class="d-none" id="setAssetPropertyResultUnknownAccount">未知钱包地址</span></td></tr>
+                        <tr><td>设置时间</td><td><span id="setAssetPropertyResultSetTime"></span></td></tr>
+                        <tr><td>信息类型</td><td><span id="setAssetPropertyResultProperty"></span></td></tr>
+                        <tr><td>信息内容</td><td><span id="setAssetPropertyResultValue"></span></td></tr>
+                        <tr><td>区块链标识</td><td><span id="setAssetPropertyResultFullHash"></span></td></tr>
+                        <tr><td>费用</td><td><span id="setAssetPropertyResultFee"></span> CC14 通证</td></tr>
+                      </table>
                     </div>
                     <div class="text-wrap text-break overflow-auto" style="max-height:640px">
                       <h5>区块链响应</h5>
@@ -517,28 +434,38 @@
             </div><!-- accordion-item end ================================== -->
 
             <div class="accordion-item" name="reproduce regCode">
-              <h2 class="accordion-header" id="reproduceRegCode">
-                <button id="reproduceRegCodeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reproduceRegCodeFPanel" aria-expanded="false" aria-controls="reproduceRegCodeFPanel">
+              <h2 class="accordion-header" id="reproduceRedemptionCode">
+                <button id="reproduceRedemptionCodeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reproduceRedemptionCodeFPanel" aria-expanded="false" aria-controls="reproduceRedemptionCodeFPanel">
                   <h4>&#9749; 复制验证码</h4>
                 </button>
               </h2>
-              <div id="reproduceRegCodeFPanel" class="accordion-collapse collapse" aria-labelledby="reproduceRegCodeFlip" >
+              <div id="reproduceRedemptionCodeFPanel" class="accordion-collapse collapse" aria-labelledby="reproduceRedemptionCodeFlip" >
                 <div class="accordion-body">
-                  <div id="reproduceRegCodeAction" >
-                    <form id="reproduceRegCodeForm" >
+                  <div id="reproduceRedemptionCodeAction" >
+                    <form id="reproduceRedemptionCodeForm" >
                       <div class="input-group mb-3" >
                         <span class="input-group-text">防伪码</span>
-                        <input type="text" class="form-control" name='secureCode' id="secureCode">
+                        <input type="text" class="form-control demoTokenID" name='redemptionCode' required>
                       </div>
-                      <div class="input-group mb-3 justify-content-md-end">
-                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; 复制">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">key Hash</span>
+                        <input type="password" class="form-control demoKeyHash" name='keyHash' id="demoKeyHash">
+                        <span class="input-group-text fs-4"  id="demoKeyHashIcon" onclick="togglePasswordFn('demoKeyHash')">&#128584;</span>
+                        <span class="input-group-text">iv Hash</span>
+                        <input type="password" class="form-control demoIvHash" name='ivHash' id="demoIvHash">
+                        <span class="input-group-text fs-4"  id="demoIvHashIcon" onclick="togglePasswordFn('demoIvHash')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary w-25" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-secondary w-25" value="&#x2705;复制">
                       </div>
                     </form>
                   </div>
-                  <div id="reproduceRegCodeResponse" >
-                    <h5>注册码:</h5>
+                  <div class="d-none" id="reproduceRegCodeResponse" >
+                    <h5>验证码:</h5>
                     <p id="dispReproduceRegCode"></p>
-                    <span id="issueNFTQRCode"></span>
+                    <div id="dispReproduceRegCodeQRCode"></div>
+                    <!-- <span id="issueNFTQRCode"></span> -->
                   </div >
                 </div>
               </div>
@@ -555,165 +482,71 @@
                   <div id="aesKeyIvAction" >
                     <form id="aesKeyIvForm" >
                       <div class="input-group mb-3 justify-content-md-end">
-                        <input type="submit" class="btn btn-outline-secondary" style="width:100%" value="&#x1F528; 生成">
+                        <input type="submit" class="btn btn-outline-secondary w-100" value="&#x1F528; 生成">
                       </div>
                     </form>
                   </div>
                   <div id="aesKeyIvResponse" >
-                    <span id="dispKeyIvQRCode"></span>
                   </div >
                 </div>
               </div>
             </div><!-- Generate AES keu and iv end ========================= -->
 
-            <div class="accordion-item" name="Request Title Token">
-              <h2 class="accordion-header" id="requestTitlTokenFlip">
-                <button id="requestTitlTokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestTitlTokenPanel" aria-expanded="false" aria-controls="requestTitlTokenPanel">
-                  <h4>&#x1F41E; 申请权益令牌</h4>
+            <div class="accordion-item" name="数据安全">
+              <h2 class="accordion-header" id="integrityFlip">
+                <button id="integrityBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#integrityPanel" aria-expanded="false" aria-controls="integrityPanel">
+                  <h4>&#x1F512; 钱包数据安全</h4>
                 </button>
               </h2>
-              <div id="requestTitlTokenPanel" class="accordion-collapse collapse" aria-labelledby="requestTitlTokenFlip" >
+              <div id="integrityPanel" class="accordion-collapse collapse" aria-labelledby="integrityFlip" >
                 <div class="accordion-body">
-                  <div id="requestTitlTokenAction">
-                    <form id="pin2newWalletForm">
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text" >生成新钱包</span>
-                        <input type="text" class="form-control" name='userInput' minlength="6" id="newWalletUserInput">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;">
-                        <input type="submit" class="btn btn-outline-secondary" value="&#128296;生成">
+                  <div id="validateWalletInfoAction">
+                    <form id="validateWalletInfoForm">
+                        <!-- <input type='hidden' name='requestType' value='decodeToken'/> -->
+                        <div class="input-group mb-3">
+                          <!-- <span class="input-group-text" >Wallet Information</span> -->
+                          <textarea name="walletInfomation" class="form-control demoTextareaWallet" rows='12' placeholder='JSON 标准 &#10;{"property":"value", "property":"value}' required></textarea>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >钱包密钥</span>
+                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" placeholder="(Optional) for generating a new validation code">
+                          <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type="reset" class="btn btn-outline-secondary w-25" value="&#x1F503;重置">
+                          <input type='submit' class='btn btn-secondary w-25' value='核实钱包数据'/>
                       </div>
                     </form>
+                  </div>
+                  <div class="d-none" id="validateWalletInfoResponse"  >
+                    <div  class="overflow-auto">
+                      <h5>Summary:</h5>
+                      <p class="d-none" id="validateWalletInfoPassed">核实通过！钱包数据经由核实者核对无误。</p>
+                      <p class="d-none" id="validateWalletInfoFailed">核实失败！钱包信息与核对码不符。</p>
+                      <p>核实码生成时间: <span id="validationCodeTime"></span></p>
+                      <p>核实者钱包地址: <span id="validationCodeAccountRS"></span>。请对核实者钱包进行<a href='' target='_blank' id="validatorGoogleSearchUrl">网络搜索</a>，以确实它获得品牌企业授权。</p>
+                    </div>
+                    <hr>
+                    <div  class="overflow-auto">
+                      <p>新生成的核实码</p>
+                      <p>生成时间：<span id="newValidationTime"></span></p>
+                      <p>生成钱包：<span id="newValidationAccountRS"></span></p>
+                      <p>新核实码：<span id="newValidationToken"></span></p>
+                    </div>
                     <div>
-                      <p class="text-center text-muted">OR</p>
-                    </div>
-                    <form id="requestTitlTokenForm">
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text" >使用已有钱包</span>
-                        <input type="text" class="form-control" id="consumerWallet" name='recipient' value="CC14-" placeholder="Enter consumer wallet address with prefix CC14-">
-                      </div>
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text" >钱包公钥</span>
-                        <input type="text" class="form-control" id="consumerPubKey" name='publicKey'>
-                      </div>
-                        <hr>
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text"><img src="../images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
-                        <input type="text" class="form-control" name='asset' placeholder="Scan green QR code with CC14 logo..." list="requestDTasset">
-                        <datalist id="requestDTasset">
-                          <option value="6081132971218252451"></option>
-                          <option value="8780717788303414133"></option>
-                          <option value="15200409551401343201"></option>
-                          <option value="1961837512695565320"></option>
-                        </datalist>
-                      </div>
-                      <div class="input-group mb-3" >
-                        <span class="input-group-text"><img src="../images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;验证码</span>
-                        <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
-                        <datalist id="requestDTregCode">
-                          <option value="8df242f13ec2a0af99fb41efa0f90ca2d98fde83e663a48581d3e8045a505a75"></option>
-                          <option value="f43829fd08c04ca880b267d1bccad0a5f4771120961e6f78c5157c296b09607d"></option>
-                          <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
-                          <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
-                        </datalist>
-                      </div>
-                      <div class="input-group justify-content-md-end">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
-                        <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; 申请">
-                      </div>
-                    </form>
-                  </div>
-                  <div class="d-none" id="requestTitlTokeneResponse"  >
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>交易总结：</h5>
-                      <p id="requestTitlTokeneResult"></p>
-                      <span id="newWalletQRCode"></span>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto">
-                      <h5>JSON 响应</h5>
-                      <span id="requestTitlTokeneJSON"></span>
+                      <h5>JSON response</h5>
+                      <span id="validateWalletInfoJSON"></span>
+                      <span id="validateWalletInfoNewTokenJSON"></span>
                     </div>
                   </div>
-                </div><!-- accordion-body end ============================== -->
-              </div><!-- accordion-collapse end ============================ -->
-            </div><!-- accordion-item end ===================================-->
-
-            <div class="accordion-item" name="Transfer Asset">
-              <h2 class="accordion-header" id="transferAssetFlip">
-                <button id="transferAssetBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transferAssetPanel" aria-expanded="false" aria-controls="transferAssetPanel">
-                  <h4>&#x1F41A; 转让权益令牌</h4>
-                </button>
-              </h2>
-              <div id="transferAssetPanel" class="accordion-collapse collapse" aria-labelledby="transferAssetFlip" >
-                <div class="accordion-body">
-                  <div id="transferAssetAction">
-                    <form id="transferAssetForm">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">买家钱包</span>
-                        <input type="text" name='recipient' maxlength="26" class="form-control" value="CC14-U9BK-FRCM-ZX2W-H9K4R" placeholder="please enter your wallet address with prefix CC14-" >
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">令牌编号</span>
-                        <input type="text" name='asset' maxlength="26" class="form-control" value="1191924593202748656">
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">数量</span>
-                        <input type="text" name='quantity' class="form-control" value="5" >
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">操作信息:</span>
-                        <input type="text" name='message' class="form-control" placeholder="可选" >
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">卖家钱包密钥</span>
-                        <input type="password" name='secretPhrase' class="form-control" id='transferAssetPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
-                        <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
-                      </div>
-                      <div class="input-group justify-content-md-end mb-3">
-                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="location.reload()">
-                        <input type="submit" class="btn btn-outline-secondary" value="&#x2705; 生成交易字节" >
-                      </div>
-                    </form>
-                    <form id="broadcastTransactionForm">
-                      <div class="input-group mb-3" >
-                        <textarea style="height:120px" class="form-control" name='transactionBytes' id="transferAssetTransactionBytes">DApp 自动填写 ...
-                        </textarea>
-                      </div>
-                      <div class="input-group justify-content-md-end mb-3">
-                        <input type="submit" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;广播交易字节">
-                      </div>
-                    </form>
-                  </div>
-                  <div class="d-none" id="transferAssetResponse">
-                    <div class="overflow-auto"  >
-                      <h5>交易总结</h5>
-                      <span ></span>
-                      <p id="transferAssetResult"></p>
-                      <p id="transferAssetBroadcastTransactionResult"></p>
-                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
-                        <tbody>
-                          <tr><td>数量</td><td id="transferAssetTbl-qty"></td></tr>
-                          <tr><td>费用</td><td id="transferAssetTbl-fee"></td></tr>
-                          <tr><td>时间</td><td id="transferAssetTbl-time"></td></tr>
-                          <tr><td>卖家钱包</td><td id="transferAssetTbl-senderRS"></td></tr>
-                          <tr><td>买家钱包</td><td id="transferAssetTbl-recipientRS"></td></tr>
-                          <tr><td>操作信息</td><td id="transferAssetTbl-message"></td></tr>
-                          <tr><td>区块链标识</td><td id="transferAssetTbl-fullHash"></td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="text-wrap text-break overflow-auto"  >
-                      <h5>JSON 响应: </h5>
-                      <span id="transferAssetJSON"></span>
-                    </div>
-                  </div>
-                </div><!-- accordion-body end ============================== -->
-              </div><!-- accordion-collapse collapse end =================== -->
-            </div><!-- accordion-item end ===================================-->
+                </div>
+              </div>
+            </div><!-- accordion-item end ================================== -->
 
             <div class="accordion-item" name="Authorize traceable Product">
               <h2 class="accordion-header" id="issueAssetFlip">
                 <button id="issueAssetbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueAssetPanel" aria-expanded="false" aria-controls="issueAssetPanel" >
-                  <h4>&#x1F426; 溯源产品上链</h4>
+                  <h4>&#x1F426; 资产令牌化</h4>
                 </button>
               </h2>
               <div id="issueAssetPanel" class="accordion-collapse collapse" aria-labelledby="issueAssetFlip" >
@@ -722,17 +555,17 @@
                     <form id="issueAssetForm">
                       <div class="input-group mb-3">
                         <span class="input-group-text" >授权数量</span>
-                        <input type="text" class="form-control" name="quantity" value="1234.500">
+                        <input type="text" class="form-control demoIssueAssetQty" name="quantity" maxlength="15" required>
                         <span class="input-group-text" >小数点</span>
-                        <input type="text" class="form-control" name="decimals" value="3" >
+                        <input type="number" class="form-control demoIssueAssetDec" name="decimals" min="0" max="3" required>
                       </div>
                       <div class="input-group mb-3" >
-                        <span class="input-group-text" >产品条码</span>
-                        <input type="text" class="form-control" name='barcode' list="barcodeList2" maxlength="14" value="9876123456789">
+                        <span class="input-group-text" >令牌名称</span>
+                        <input type="text" class="form-control demoIssueAssetName" id="issueAssetName" name='name' minlength="3" maxlength="10" placeholder="3到10个字符，字母或数字" required>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">产品描述</span>
-                        <input type="text" class="form-control" value='{"unit":"公斤", "lotNo":"GX-45678"}' name='description' maxlength="500" >
+                        <textarea class="form-control demoTextareaDesc" rows="7" placeholder='JSON 标准 &#10;{"property":"value", "property":"value}' name='description' maxlength="500" required ></textarea>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">操作信息</span>
@@ -740,37 +573,46 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' id='issueAssetPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <input type="password" class="form-control demoIssuancePW" name='secretPhrase' id='issueAssetPassword' required>
                         <span class="input-group-text fs-4"  id="issueAssetPasswordIcon" onclick="togglePasswordFn('issueAssetPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
-                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                        <input type="submit" class="btn btn-outline-secondary " id="issueAssetBtn" value="&#x2705;准备上链字节">
+                        <input type="reset" class="btn btn-outline-secondary btn-lg w-25" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-secondary btn-lg w-25" id="issueAssetBtn" value="&#x2705;准备上链数据">
                       </div>
                     </form>
                     <div>
-                      <form id="issueAssetBroadcastTransactionForm">
-                        <textarea id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="应用自动填写..." rows="7"></textarea>
-                        <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; 广播上链字节" onClick="broadcastTransactionFn('issueAsset')">
+                      <form>
+                        <textarea id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="应用自动填写..." rows="4" data-bs-toggle="tooltip" data-bs-placement="top" title="当使用默认密钥时【&#x2714;确认发行资产令牌】将被禁止" readonly></textarea>
+                        <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg w-100" value="&#x2714; 确认发行资产令牌" onClick="broadcastTransactionFn('issueAsset')">
                       </form>
                     </div>
                   </div>
-                  <div class="d-none" id="issueAssetDisplay">
+                  <div class="d-none" id="issueAssetResponse">
                     <div overflow-auto>
-                      <h5>事件总结:</h5>
-                      <span id="issueAssetBroadcastTransactionResult"></span>
-                      <div id="issueAssetResult"></div>
-                      <div class="justify-content-center overflow-auto" id="issueAssetQRCode" style="max-height:320px"></div>
+                      <p class="d-none" id="issueAssetBroadcastResult">操作已经上链。点击区块链标识查看详情。</p>
+                      <p class="d-none" id="issueAssetResultError">未知账号，请核对钱包密钥。</p>
+                      <p class="d-none" id="issueAssetResultNoFunds">账号余额不足。非NFT资产上链需要最低1000枚CC14通证。</p>
+                      <table class='table table-sm text-nowrap fs-6 table-bordered border-info caption-top ' >
+                        <tr><td>发行费用  </td><td><span id="issueAssetResultFee"></span> CC14通证</td></tr>
+                        <tr><td>发行钱包  </td><td><span id="issueAssetResultAccountRS"></span></td></tr>
+                        <tr><td>令牌名称  </td><td><span id="issueAssetResultName"></span></td></tr>
+                        <tr><td>令牌编号  </td><td><span id="issueAssetResultTokenID"></span></td></tr>
+                        <tr><td>发行数量  </td><td><span id="issueAssetResultQty"></span> (精确至小数点后 <span id="issueAssetResultDec"></span> 位)</td></tr>
+                        <tr><td>资产细节  </td><td><input class="form-control border-0" type="text" id="issueAssetResultDescription"></td></tr>
+                        <tr><td>操作信息  </td><td><span id="issueAssetResultMessage"></span></td></tr>
+                        <tr><td>区块链标识</td><td><span id="issueAssetResultFullHash"></span></td></tr>
+                      </table>
                     </div>
                     <div class="text-wrap text-break overflow-auto" style="max-height:640px">
-                      <span id="issueAssetJSON"><h5>区块链响应</h5></span>
+                      <h5>区块链响应</h5>
+                      <span id="issueAssetJSON"></span>
+                      <span id="issueAssetBroadcastJSON"></span>
                     </div>
                   </div>
                 </div><!-- accordion-item panel body end =================== -->
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
-
-
           </div><!-- accordion end ========================================= -->
         </div>
       </div><!-- actionBlock end ============================================-->
@@ -789,23 +631,62 @@
 <script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
 <script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
 <script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/filter.js"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src="../js/3rdparty/jquery.dataTables.min.js" ></script>
 <script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/curve25519.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
 <script src="../js/3rdparty/jsbn.js"></script>
 <script src="../js/3rdparty/jsbn2.js"></script>
-<script src="../js/3rdparty/extensions.js"></script>
-<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/nrs.constants.js"></script>
+<script src="../js/3rdparty/nrs.encryption.js"></script>
 <script src="../js/3rdparty/nrs.util.js"></script>
-<script src="../js/3rdparty/jquery.table2excel.js"></script>
-<script src="../js/3rdparty/filter.js"></script>
-<script src="../js/3rdparty/jquery.dataTables.min.js" ></script>
+<script src="../js/3rdparty/nxtaddress.js"></script>
+<script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/scripts.cryptoc14.js" ></script>
 <script src='../data/conf.js' ></script>
 <script src='../data/doNotShare.js' ></script>
 <script src='../data/myAddressBook.js' ></script>
 <script src='../data/myAssetBook.js' ></script>
-<script src='scripts-cc14.js' ></script>
 <script src='nav_footer.js' ></script>
-
-
+<script>
+  // load parameters for demonstration
+  $(".demoKeyHash").val(keyHex);
+  $(".demoIvHash").val(ivHex);
+  $(".demoTokenID").val("14980595911452706870");
+  $(".demoBarcode").val("6901234567890");
+  $(".demoIssueNFTqty").val("5");
+  $(".demoIssueAssetQty").val("1234.5");
+  $(".demoIssueAssetDec").val("3");
+  $(".demoIssueAssetName").val("GX1011234");
+  $(".demoIssuanceRS").val("CC14-5KKJ-TXML-FKM3-4SLZB");
+  $(".demoIssuancePW").val("ci di wu yin 300 liang ge bi wang er bu ceng tou");
+  $(".demoActivationRS").val("CC14-F4Z6-3E9T-EXSK-HPYWH");
+  $(".demoActivationPW").val("ci di wu yin 302 liang ge bi wang er bu ceng tou");
+  $(".demoDumpsterRS").val("CC14-9QS5-MBBX-56MF-ESNEB");
+  var textareaDesc = '{ \r\n\t'+
+                     '"barcode":"6901234567890", \r\n\t'+
+                     '"unit":"公斤", \r\n\t'+
+                     '"lotNo":"GX123456", \r\n\t'+
+                     '"docNo":"control-101.pdf", \r\n\t'+
+                     '"expDate":"YYYYMMDD" \r\n'+
+                     '}';
+  $(".demoTextareaDesc").val(textareaDesc);
+  var textareaWallet = '{ \r\n\t'+
+    '"walletInfo":{ \r\n\t\t'+
+      '"accountRS":"CC14-5KKJ-TXML-FKM3-4SLZB", \r\n\t\t'+
+      '"entityName":"demoissuance wallet one. 演示品牌", \r\n\t\t'+
+      '"physicalAddress":"somewhere", \r\n\t\t'+
+      '"noFakeURL":"http://13.52.217.197/diti/", \r\n\t\t'+
+      '"expDate":"2022-12-31T23:59:59+00:00", \r\n\t\t'+
+      '"walletAssignment":"issuance" \r\n\t'+
+    '}, \r\n\t'+
+    '"validationCode" : "crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncifcliqohusrf84dqt56k5n88fuqrf0dokigkvv7e65d0sba5hlnq44lm1g64ovc30cbim4t1v3k8qc7e05man44p3de7t1pgopmtpoqi8bj0l1" \r\n'+
+  '}'
+  $(".demoTextareaWallet").val(textareaWallet);
+</script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
@@ -813,25 +694,12 @@
   $("#footer").html(footerHtml);
   $("#footerModalContainer").html(footerModal);
   $("input[type='text']").on("click", function () {$(this).select();});
-  function activationConfirmBtnFn(selected){
-    $("#activationConfirmWallet").html(selected);
-    if(selected == walletBurner){
-      $("#activationConfirmBtn").val(" 🔥 确认焚毁权益证明");
-      $("#walletType").html("Burn only");
-      $("#activationConfirmTblThead").html("Burned assets");
-      $("#activationConfirmBtn").removeClass("btn-success");
-      $("#activationConfirmBtn").addClass("btn-danger");
-    }else{
-      $("#activationConfirmBtn").val(" ✔ Confirm Activation");
-      $("#walletType").html("激活专用");
-      $("#activationConfirmTblThead").html("Activated Product");
-      $("#activationConfirmBtn").removeClass("btn-danger");
-      $("#activationConfirmBtn").addClass("btn-success");
-    }
-  }
+  $("input[type='number']").on("click", function () {$(this).select();});
+  $("textarea").on("click", function () {$(this).select();});
   var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
 </script>
 </html>

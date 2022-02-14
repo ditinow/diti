@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CryptoC14 one stop blockchain dApp</title>
+  <meta charset="utf-8">
+  <meta name="description" content="一站式区块链应用">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="../images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form class="d-flex" id="selectNodeUrlForm" >
+            <div class="input-group">
+              <select class="form-select" id="nodeAddress" name="nodeAddress" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connect to">
+                <option value="http://www.cryptoc14.com:19886/">CC14@ CryptoC14.com</option>
+                <option value="http://www.ditinow.com:19886/">CC14@ DiTiNOW.com</option>
+                <option value="http://40.124.110.187:19886/" selected>CC14@ Azure US South Central Zone 1</option>
+                <option value="http://106.52.243.178:19886/">CC14@ 腾讯 广州 Tencent Guangzhou</option>
+                <option value="http://101.34.178.164:19886/">CC14@ 腾讯 上海 Tencent Shanghai</option>
+                <option value="http://localhost:19886/" disabled>CC14@ local computer</option>
+                <option value="http://192.168.1.7:19886/" disabled>CC14@ local network</option>
+              </select>
+              <button type="submit" class="btn btn-outline-secondary " >Set</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+      <div class="row"><!-- action block ====================================-->
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion">
+            <br>
+            <div class="accordion-item" name="Crypto Evidence">
+              <h2 class="accordion-header" id="genFileTokenFlip">
+                <button id="fileTokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genFileTokenPanel" aria-expanded="false" aria-controls="genFileTokenPanel">
+                  <h4>&#x1F42C; Generate file token</h4>
+                </button>
+              </h2>
+              <div id="genFileTokenPanel" class="accordion-collapse collapse " aria-labelledby="genFileTokenFlip" >
+                <div class="accordion-body">
+                  <div id="genFileTokenAction">
+                    <form id="genFileTokenForm" enctype="multipart/form-data"  onsubmit="return genFileTokenFn(this,['file'])">
+                        <input type='hidden' name='requestType' value='generateFileToken'/>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >Upload</span>
+                          <input type="file" class="form-control" name="file" id="genFileTokenFormFile" />
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Passphrase</span>
+                          <input class="form-control" type='password' name='secretPhrase' id="genFileTokenFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                          <span class="input-group-text fs-4"  id="genFileTokenFormPasswordIcon" onclick="togglePasswordFn('genFileTokenFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='Generate fileToken'/>
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="genFileTokenDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Summary:</h5>
+                      <span id="genFileTokenResult"></span>
+                      <p><b>Save file to: </b>by local storage, cloud storage, CC14 data cloud, IPFS ... </p>
+                      <sp><b>Save fileToken to: </b>print out a hardcopy, download and save as a <a id="save2txt" href="" download="date.txt" >txt file </a> ...</p>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Validate file token">
+              <h2 class="accordion-header" id="decFileTokenFlip">
+                <button id="evidenceToolsBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#decFileTokenPanel" aria-expanded="false" aria-controls="decFileTokenPanel">
+                  <h4>&#x1F419; Validate file token</h4>
+                </button>
+              </h2>
+              <div id="decFileTokenPanel" class="accordion-collapse collapse " aria-labelledby="decFileTokenFlip" >
+                <div class="accordion-body">
+                  <div id="decFileTokenAction">
+                    <form id="decFileTokenForm" enctype="multipart/form-data" onsubmit="return decodeFileTokenFn(this,['file'])">
+                        <input type='hidden' name='requestType' value='decodeFileToken'/>
+                        <div class="input-group mb-3">
+                          <!-- <span class="input-group-text" >求证文件</span> -->
+                          <input type="file" class="form-control" name="file" id="decFileTokenFormFile" />
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >File token</span>
+                          <textarea class="form-control" style="height:60px" name='token' id="decFileTokenFormToken" placeholder="fileToken..."></textarea>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='Valide file token'/>
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="decFileTokenResponse">
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Summary:</h5>
+                      <span id="decFileTokenResult"></span>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <tbody>
+                          <tr><td>fileToken generator</td><td id="decFileTokenTbl-generator"></td></tr>
+                          <tr><td>fileToken generated on</td><td id="decFileTokenTbl-time"></td></tr>
+                          <tr><td>file to be validated</td><td id="decFileTokenTbl-file"></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Tokenize file token (NFT)">
+              <h2 class="accordion-header" id="tokenizeFlip">
+                <button id="tokenizeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tokenizePanel" aria-expanded="false" aria-controls="tokenizePanel">
+                  <h4>&#x1F433; Tokenize file token (NFT)</h4>
+                </button>
+              </h2>
+              <div id="tokenizePanel" class="accordion-collapse collapse " aria-labelledby="tokenizeFlip" >
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="tokenizeForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Name of NFT</span>
+                        <input class="form-control" type='text' name='name' value="NFT" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >File token</span>
+                        <textarea class="form-control" style="height:90px" name='description' id='tokenizeFormDescription' placeholder="autocomplete by DApp..."></textarea>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >File detail</span>
+                        <input type="text" class="form-control" name='message' id='tokenizeFormMessage' placeholder="autocomplete by DApp...">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" >Licenses</span>
+                        <select class="form-select" type="text" name='license' id="liceseList">
+                          <option selected></option>
+                          <option value="CC BY">Creative Commons Attribution</option>
+                          <option value="CC BY-SA">Creative Commons Attribution-ShareAlike</option>
+                          <option value="CC BY-ND" selected>Creative Commons Attribution-NoDerivs</option>
+                          <option value="CC BY-NC">Creative Commons Attribution-NonCommercial</option>
+                          <option value="CC BY-NC-SA">Creative Commons Attribution-NonCommercial-ShareAlike</option>
+                          <option value="CC BY-NC-ND">Creative Commons Attribution-NonCommercial-NoDerivs</option>
+                        </select>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Passphrase</span>
+                        <input class="form-control" type='password' name='secretPhrase' id="tokenizeFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                        <span class="input-group-text fs-4"  id="tokenizeFormPasswordIcon" onclick="togglePasswordFn('tokenizeFormPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-end mb-3" >
+                        <input type='submit' class='btn btn-outline-secondary' value='prepare transactionBytes' />
+                      </div>
+                    </form>
+                    <form id="tokenizeBroadcast" onsubmit="broadcastFn('tokenizeBroadcast')">
+                      <input type="hidden" class="form-control" name="transactionBytes" value="" id="tokenizeBroadcastTransactionBytes">
+                      <input type="submit" id="tokenizeBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm tokenize">
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="tokenizeDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <h4>Summary:</h4>
+                      <!-- <span id="tokenizeResult"></span>
+                      <span id="tokenizeBroadcastTransactionResult"></span> -->
+                      <p class="d-none" id="tokenizeSummary">Not enought CC14 utility token!</p>
+                      <p class="d-none" id="tokenizeBroadcastPass">Broadcasted。Transaction full hash: <br><span id="tokenizeBroadcastFullHash"></span></p>
+                      <p class="d-none" id="tokenizeBroadcastFailed">Broadcast fieled 上链失败。Please review【JSON response】->【Confirm tokenize】</p>
+                      <table class="table table-sm fs-6 table-bordered border-info caption-top">
+                        <caption>Tokenize detail</caption>
+                        <tbody>
+                          <tr><td>Packer</td><td id="tokenizeTblAccountRS"></td></tr>
+                          <tr><td>Time</td><td id="tokenizeTblTime"></td></tr>
+                          <tr><td>AssetID</td><td id="tokenizeTblAssetID"></td></tr>
+                          <tr><td>Fee</td><td id="tokenizeTblFee"></td></tr>
+                          <tr><td>Full hash</td><td id="tokenizeTblFullHash"></td></tr>
+                          <tr><td>File token</td><td id="tokenizeTblFielToken"></td></tr>
+                          <tr><td>Additional information</td><td id="tokenizeTblFile"></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <span id="tokenizeBroadcastResult" style="text-shadow: 3px 3px 6px #999; font-weight: bold;"></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Generate message token">
+              <h2 class="accordion-header" id="tokenFlip">
+                <button id="tokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tokenPanel" aria-expanded="false" aria-controls="tokenPanel">
+                  <h4>&#x1F423; Generate message token</h4>
+                </button>
+              </h2>
+              <div id="tokenPanel" class="accordion-collapse collapse " aria-labelledby="tokenFlip" >
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="genTokenForm">
+                        <input type='hidden' name='requestType' value='generateToken'/>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >Message</span>
+                          <textarea name="website" maxlength="500" class="form-control" onclick="this.select();" id="genTokenInput">random text ...</textarea>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Passphrase</span>
+                          <input class="form-control" type='password' name='secretPhrase' id="genTokenFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                          <span class="input-group-text fs-4"  id="genTokenFormPasswordIcon" onclick="togglePasswordFn('genTokenFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='Generate token'/>
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="genTokenDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <h5>Summary:</h5>
+                      <span id="genTokenResult"></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Validate message token">
+              <h2 class="accordion-header" id="decTokenFlip">
+                <button id="tokenBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#decTokenPanel" aria-expanded="false" aria-controls="decTokenPanel">
+                  <h4>&#x1F424; Validate message token</h4>
+                </button>
+              </h2>
+              <div id="decTokenPanel" class="accordion-collapse collapse " aria-labelledby="decTokenFlip" >
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="decTokenForm">
+                        <input type='hidden' name='requestType' value='decodeToken'/>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" >Message</span>
+                          <textarea name="website" class="form-control" id="decTokenFormWebsite"></textarea>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Message token</span>
+                          <textarea class="form-control" name='token' id="decTokenFormToken" ></textarea>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='Validate message token'/>
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="decTokenDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <h5>Summary:</h5>
+                      <span id="decTokenResult"></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="JSON responses">
+              <h2 class="accordion-header" id="evidenceJSONFlip">
+                <button id="evidenceJSONBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#evidenceJSONPanel" aria-expanded="false" aria-controls="evidenceJSONPanel">
+                  <h4>&#128279; JSON responses</h4>
+                </button>
+              </h2>
+              <div id="evidenceJSONPanel" class="accordion-collapse collapse " aria-labelledby="evidenceJSONFlip" >
+                <div class="accordion-body">
+                  <div class="col-12 col-sm-12 " id="evidenceJSONDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Crypto evidence</h5>
+                      <span id="genFileTokenJSON"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Validate evidence</h5>
+                      <span id="decFileTokenJSON"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Tokenize evidence</h5>
+                      <span id="tokenizeJSON"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Confirm tokenize</h5>
+                      <span id="tokenizeBroadcastJSON"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Message token</h5>
+                      <span id="genTokenJSON"></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>Validate message</h5>
+                      <span id="decTokenJSON"></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Validate wallet information">
+              <h2 class="accordion-header" id="validateWalletInfoFlip">
+                <button id="validateWalletInfoBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#validateWalletInfoPanel" aria-expanded="false" aria-controls="validateWalletInfoPanel">
+                  <h4>&#x1F512; Validate wallet information</h4>
+                </button>
+              </h2>
+              <div id="validateWalletInfoPanel" class="accordion-collapse collapse" aria-labelledby="validateWalletInfoFlip" >
+                <div class="accordion-body">
+                  <div id="validateWalletInfoAction">
+                    <form id="validateWalletInfoForm">
+                        <!-- <input type='hidden' name='requestType' value='decodeToken'/> -->
+                        <div class="input-group mb-3">
+                          <!-- <span class="input-group-text" >Wallet Information</span> -->
+                          <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormWebsite">
+                          </textarea>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >Passphrase</span>
+                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
+                          <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
+                        </div>
+                        <div class="input-group justify-content-end mb-3" >
+                          <input type='submit' class='btn btn-outline-secondary' value='Validate wallet information'/>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="validateWalletInfoResponse"  >
+                    <div  class="overflow-auto">
+                      <h5>Summary:</h5>
+                      <span id="validateWalletInfoResult"></span>
+                    </div>
+                    <div  class="overflow-auto">
+                      <span id="validateWalletInfoNewTokenResult"></span>
+                    </div>
+                    <div>
+                      <h5>JSON response</h5>
+                      <span id="validateWalletInfoJSON"></span>
+                      <span id="validateWalletInfoNewTokenJSON"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- accordion-item end ================================== -->
+
+
+
+          </div><!-- accordion end ========================================= -->
+        </div><!-- col-12 col-sm-10 mx-auto end ============================ -->
+      </div><!-- row end ====================================================-->
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end==================================================== -->
+  <div id="footerModalContainer" name="Footer modal container">
+    <!-- load by nav_footer.js -->
+  </div>
+  <footer id="footer" style="height: 50px;">
+    <!-- load by src='js/nav_footer.js'  -->
+  </footer>
+</body>
+<script>
+  var isNode = false;
+</script>
+<script src='../js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='../js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="../js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="../js/3rdparty/crypto-js.min.js"></script>
+<script src="../js/3rdparty/jsbn.js"></script>
+<script src="../js/3rdparty/jsbn2.js"></script>
+<script src="../js/3rdparty/extensions.js"></script>
+<script src="../js/3rdparty/converters.js"></script>
+<script src="../js/3rdparty/nrs.util.js"></script>
+<script src="../js/3rdparty/jquery.table2excel.js"></script>
+<script src='../data/conf.js' ></script>
+<script src='../data/myAddressBook.js' ></script>
+<script src='../data/myAssetBook.js' ></script>
+<script src='scripts-cc14.js' ></script>
+<script src='nav_footer.js' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("input[type='text']").on("click", function () {$(this).select();});
+  $('#genTokenInput').val(new Date());
+</script>
+<script>
+  $("#footerModalContainer").html(footerModal);
+  var aboutUsModal = new bootstrap.Modal(document.getElementById('aboutUsModal'), {keyboard: false});
+  var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
+  var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
+  var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
+</script>
+<script>
+  var textareaText = '{ \r\n\t'+
+    '"validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncifcliqohusrf84dqt56k5n88fuqrf0dokigkvv7e65d0sba5hlnq44lm1g64ovc30cbim4t1v3k8qc7e05man44p3de7t1pgopmtpoqi8bj0l1", \r\n\t'+
+    '"walletInfo":{ \r\n\t\t'+
+      '"accountRS":"CC14-5KKJ-TXML-FKM3-4SLZB", \r\n\t\t'+
+      '"entityName":"demoissuance wallet one. 演示品牌", \r\n\t\t'+
+      '"physicalAddress":"somewhere", \r\n\t\t'+
+      '"noFakeURL":"http://13.52.217.197/diti/", \r\n\t\t'+
+      '"expDate":"2022-12-31T23:59:59+00:00", \r\n\t\t'+
+      '"walletAssignment":"issuance" \r\n\t'+
+    '} \r\n'+
+  '}';
+  $("#validateWalletInfoFormWebsite").val(textareaText);
+</script>
+</html>
