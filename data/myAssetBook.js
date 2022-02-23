@@ -13,8 +13,8 @@ var myAssetBookObj = [
     "unit":"件",
     "madeIn":"中国，广西，南宁",
     "productUrl":"http://www.yourCompany.com/souvenir/",
-    "noFakeUrl":"http://www.cryptoc14.com/diti/",
-    "coverage":"12个月",
+    "chatTokenID":"7979927564843058923",
+    "coverage":"12个月"
   },
   {
     "barcode":"6902345678901",
@@ -24,8 +24,8 @@ var myAssetBookObj = [
     "unit":"套",
     "madeIn":"中国，广西，南宁",
     "productUrl":"http://www.yourCompany.com/souvenir/",
-    "noFakeUrl":"http://www.cryptoc14.com/diti/",
-    "coverage":"12个月",
+    "chatTokenID":"7979927564843058923",
+    "coverage":"12个月"
   },
   {
     "barcode":"6903456789012",
@@ -35,8 +35,8 @@ var myAssetBookObj = [
     "unit":"件",
     "madeIn":"中国，广西，玉林西山",
     "productUrl":"http://www.yourCompany.com/souvenir/",
-    "noFakeUrl":"http://www.cryptoc14.com/diti/",
-    "coverage":"48个月",
+    "chatTokenID":"7979927564843058923",
+    "coverage":"48个月"
   },
   {
     "barcode":"6905678901234",
@@ -46,7 +46,7 @@ var myAssetBookObj = [
     "unit":"克",
     "madeIn":"中国，广西，南宁",
     "productUrl":"http://www.yourCompany.com/souvenir/",
-    "noFakeUrl":"http://www.cryptoc14.com/diti/",
-    "coverage":"12个月",
+    "chatTokenID":"7979927564843058923",
+    "coverage":"12个月"
   }
 ];

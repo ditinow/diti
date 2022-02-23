@@ -193,7 +193,7 @@ function resetInputFn(selector){
 };
 
 //display JSON response
-function displayJSONFn(transaction){
+function displayTransactionFn(transaction){
   if(transaction.length == 64){
     var apiCallData = [
       {name:"requestType", value:"getTransaction"},
@@ -211,12 +211,92 @@ function displayJSONFn(transaction){
     data:apiCallData,
     success:function(response){
       var responseObj = JSON.parse(response);
-      $("#textareaJSONTitle").html(transaction);
-      $("#textareaJSONTitle").val(transaction);
-      $("#textareaJSON").html(JSON.stringify(responseObj,undefined, 4));
+      $("#transactionModalTitle").val(transaction);
+      $("#transactionModalJSON").html("<textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
     }
   });
-  jsonModal.show();
+  transactionModal.show();
+};
+
+//display JSON response
+function displayTokenFn(token){
+  if(token.length == 64){
+    var tokenID = NRS.fullHashToId(token);
+  }else{
+    var tokenID = token;
+  };
+  $("#textareaTokenTitle").val(tokenID);
+
+  var getAsset = [
+    {name:"requestType", value: "getAsset"},
+    {name:"asset",       value: tokenID},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeURL,
+    data:getAsset,
+    success:function(response){
+      var responseObj = JSON.parse(response);
+      $("#tokenModalJSONgetAsset").html("<h6>getAsset</h6><textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+    }
+  });
+
+  var getAssetHistory = [
+    {name:"requestType", value:"getAssetHistory"},
+    {name:"asset",       value:tokenID},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeURL,
+    data:getAssetHistory,
+    success:function(response){
+      var responseObj = JSON.parse(response);
+      $("#tokenModalJSONgetAssetHistory").html("<h6>getAssetHistory</h6><textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+    }
+  });
+
+  var getAssetAccounts = [
+    {name:"requestType", value:"getAssetAccounts"},
+    {name:"asset",       value:tokenID},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeURL,
+    data:getAssetAccounts,
+    success:function(response){
+      var responseObj = JSON.parse(response);
+      $("#tokenModalJSONgetAssetAccounts").html("<h6>getAssetAccounts</h6><textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+    }
+  });
+
+  var getAssetProperties = [
+    {name:"requestType", value:"getAssetProperties"},
+    {name:"asset",       value:tokenID},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeURL,
+    data:getAssetProperties,
+    success:function(response){
+      var responseObj = JSON.parse(response);
+      $("#tokenModalJSONgetAssetProperties").html("<h6>getAssetProperties</h6><textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+    }
+  });
+
+  var getAssetTransfers = [
+    {name:"requestType", value:"getAssetTransfers"},
+    {name:"asset",       value:tokenID},
+  ];
+  $.ajax({
+    type:"POST",
+    url: apiNodeURL,
+    data:getAssetTransfers,
+    success:function(response){
+      var responseObj = JSON.parse(response);
+      $("#tokenModalJSONgetAssetTransfers").html("<h6>getAssetTransfers</h6><textarea class='form-control' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+    }
+  });
+  tokenModal.show();
 };
 
 
@@ -309,8 +389,8 @@ function issueNFTFn(array){
           serialNo=tokenID;
         };
         var issueNFTTbl = "<tr><td>"+serialNo+
-                          "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayJSONFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>"+
-                          "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
+                          "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTokenFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>"+
+                          "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
                           "</td><td>"+encryptedID.toString()+
                           "</td><td>"+encryptedID.toString()+
                           "</td><td>"+barcode+
@@ -420,7 +500,7 @@ $("#activationSearchForm").submit(function(event){
             var findIssuer = walletsList.map(function(e) {return e.accountRS; }).indexOf(issuer);
             if(findIssuer >=0 && walletsList[findIssuer].walletAssignment == "issuance"){
               var activationSearchTbl = "<tr><td>"+barcode+
-                "</td><td>"+asset+
+                "</td><td><button type='button' class='btn btn-outline-dark border-0' onclick='displayTokenFn(&quot;"+asset+"&quot;)'>"+asset+"</button>"+
                 "</td><td>"+issueTime[2]+"Days "+issueTime[0]+
                 "</td><td>"+issuer+
                 "</td><td>"+issuedQty+
@@ -452,7 +532,7 @@ $("#activationConfirmForm").submit(function(event){
   $("#activationSearchTbl tbody tr").each(function(){
     activationSearchFiltered.push($(this).find("td").eq(1).text());
   });
-  console.log(activationSearchFiltered);
+  // console.log(activationSearchFiltered);
   activationSearchFiltered.forEach(activateAssetFn);
   function activateAssetFn(item){
     var transferAsset = [
@@ -477,11 +557,11 @@ $("#activationConfirmForm").submit(function(event){
         var recipientRS  = responseObj.transactionJSON.recipientRS;
         var asset        = responseObj.transactionJSON.attachment.asset;
         var activateTime = timestampToLocalFn(timestamp);
-        var activationConfirmTbl = "<tr><td>"+asset+
+        var activationConfirmTbl = "<tr><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTokenFn(&quot;"+asset+"&quot;)'>"+asset+"</button>"+
                                    "</td><td>"+recipientRS+
                                    "</td><td>"+feeCC14+
                                    "</td><td>"+activateTime[0]+ " " + activateTime[1]+
-                                   "</td><td><button type='button' class='btn btn-outline-secondary border border-0 btn-sm' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
+                                   "</td><td><button type='button' class='btn btn-outline-dark border-0 btn-sm' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
                                    "</td></tr>";
         $("#activationConfirmTbl tbody").append(activationConfirmTbl);
         $("#activationJSON").append("<h6>transferAsset - "+ transferAsset[3].value+" </h6><textarea class='form-control border-info' rows='17'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
@@ -566,7 +646,7 @@ $("#burningSearchForm").submit(function(event){
             var findIssuer = walletsList.map(function(e) {return e.accountRS; }).indexOf(issuer);
             if(findIssuer >=0 && walletsList[findIssuer].walletAssignment == "issuance"){
               var burningSearchTbl = "<tr><td>"+barcode+
-                "</td><td>"+asset+
+                "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTokenFn(&quot;"+asset+"&quot;)'>"+asset+"</button>"+
                 "</td><td>"+issueTime[2]+"Days "+issueTime[0]+
                 "</td><td>"+issuer+
                 "</td><td>"+issuedQty+
@@ -594,6 +674,7 @@ $("#burningSearchForm").submit(function(event){
 $("#burningConfirmForm").submit(function(event){
   event.preventDefault();
   var formData = $(this).serializeArray();
+  console.log(formData);
   var burningSearchFiltered=[];
   $("#burningSearchTbl tbody tr").each(function(){
     burningSearchFiltered.push($(this).find("td").eq(1).text());
@@ -617,19 +698,20 @@ $("#burningConfirmForm").submit(function(event){
       data:transferAsset,
       success:function(response){
         var responseObj  = JSON.parse(response);
+        console.log(responseObj);
         var fullHash     = responseObj.fullHash;
         var feeCC14      = responseObj.transactionJSON.feeNQT/100000000;
         var timestamp    = responseObj.transactionJSON.timestamp;
         var recipientRS  = responseObj.transactionJSON.recipientRS;
         var asset        = responseObj.transactionJSON.attachment.asset;
-        var activateTime = timestampToLocalFn(timestamp);
-        var activationConfirmTbl = "<tr><td>"+asset+
-                                   "</td><td>"+recipientRS+
-                                   "</td><td>"+feeCC14+
-                                   "</td><td>"+activateTime[0]+ " " + activateTime[1]+
-                                   "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
-                                   "</td></tr>";
-        $("#burningConfirmTbl tbody").append(activationConfirmTbl);
+        var dumpedTime   = timestampToLocalFn(timestamp);
+        var dumpedConfirmTbl = "<tr><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTokenFn(&quot;"+asset+"&quot;)'>"+asset+"</button>"+
+                               "</td><td>"+recipientRS+
+                               "</td><td>"+feeCC14+
+                               "</td><td>"+dumpedTime[0]+ " " + dumpedTime[1]+
+                               "</td><td><button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>"+
+                               "</td></tr>";
+        $("#burningConfirmTbl tbody").append(dumpedConfirmTbl);
         $("#burningJSON").append("<h6>transferAsset - "+ transferAsset[3].value+" </h6><textarea class='form-control border border-info' rows='17'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       }
     });
@@ -693,7 +775,7 @@ $("#setAssetPropertyForm").submit(function(event){
         $("#setAssetPropertyResultSetTime").html(setTime[0] + " ; " + setTime[1]);
         $("#setAssetPropertyResultProperty").html(responseObj.transactionJSON.attachment.property);
         $("#setAssetPropertyResultValue").html(responseObj.transactionJSON.attachment.value);
-        $("#setAssetPropertyResultFullHash").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+responseObj.fullHash+"&quot;)'>"+responseObj.fullHash+"</button>" );
+        $("#setAssetPropertyResultFullHash").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayTransactionFn(&quot;"+responseObj.fullHash+"&quot;)'>"+responseObj.fullHash+"</button>" );
         $("#setAssetPropertyResultFee").html(responseObj.transactionJSON.feeNQT/100000000);
         $("#setAssetPropertyTransactionBytes").val(responseObj.transactionBytes);
       };
@@ -755,12 +837,12 @@ function issueAssetFn(array){
           $(selectorResultFee).html(responseObj.transactionJSON.feeNQT/100000000);
           $(selectorResultAccountRS).html(responseObj.transactionJSON.senderRS);
           $(selectorResultName).html(responseObj.transactionJSON.attachment.name);
-          $(selectorResultTokenID).html("<button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayJSONFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>");
+          $(selectorResultTokenID).html("<button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTokenFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>");
           $(selectorResultQty).html(array[0].value);
           $(selectorResultQty).html(array[1].value);
           $(selectorResultDescription).val(responseObj.transactionJSON.attachment.description);
           $(selectorResultMessage).html(responseObj.transactionJSON.attachment.message);
-          $(selectorResultFullHash).html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
+          $(selectorResultFullHash).html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
           $(selectorTransactionBytes).val(responseObj.transactionBytes);
           $(selectorValidatTokenID).val(tokenID);
           $(selectorResult).removeClass("d-none");
@@ -966,6 +1048,9 @@ $("#requestCC14Form").submit(function(event){
   event.preventDefault();
   var formData = $(this).serializeArray();
   console.log(formData);
+  localStorage.setItem("chatWalletRS",formData[0].value.trim());
+  localStorage.setItem("chatWalletPK",formData[1].value.trim());
+  localStorage.setItem("chatWalletPW",formData[2].value());
   var requestCC14 = [
     {name:"account",value: formData[0].value.trim()},
     {name:"publicKey",value: formData[1].value.trim()},
@@ -1022,7 +1107,7 @@ $("#getAccountBalancesForm").submit(function(event){
           var index = i+1;
           var tokenID  =responseObj.accountAssets[i].asset;
           var tableRow = "<tr><td>"+index+
-                         "</td><td><button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>"+
+                         "</td><td><button type='button' class='btn btn-outline-dark border-0' onclick='displayTokenFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>"+
                          "</td><td>"+qty+
                          "</td><td>"+decimals+
                          "</td><td>"+responseObj.accountAssets[i].name+
@@ -1077,7 +1162,7 @@ $("#getAssetsByIssuerForm").submit(function(event){
         var index        = i+1;
         var tableRow     = "<tr><td>"+index+
                            // "</td><td>"+newArrayObj[i].asset+
-                           "</td><td><button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+transactionID+"&quot;)'>"+transactionID+"</button>"+
+                           "</td><td><button type='button' class='btn btn-outline-dark border-0' onclick='displayTokenFn(&quot;"+transactionID+"&quot;)'>"+transactionID+"</button>"+
                            "</td><td>"+qtyIni+
                            "</td><td>"+qtyNow+
                            "</td><td>"+decimals+
@@ -1142,7 +1227,7 @@ $("#sendMessageForm").submit(function(event){
             var transactionHash = responseObj.transactionJSON.fullHash;
             $("#sendMessageResult").removeClass("d-none");
             $("#sendMessageResultSenderRS").html(responseObj.transactionJSON.senderRS);
-            $("#sendMessageResultFullhash").html("<button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayJSONFn(&quot;"+transactionHash+"&quot;)'>"+transactionHash+"</button>");
+            $("#sendMessageResultFullhash").html("<button type='button' class='btn btn-outline-dark btn-sm border-0' onclick='displayTransactionFn(&quot;"+transactionHash+"&quot;)'>"+transactionHash+"</button>");
             $("#sendMessageResultFee").html(responseObj.transactionJSON.feeNQT/100000000 + " CC14 token");
           };
         }
@@ -1159,6 +1244,7 @@ $("#readMessageForm").submit(function(event){
   $("#readMessageTable tbody").empty();
   $("#readMessageResponse").removeClass("d-none");
   var formData= $(this).serializeArray();
+  console.log(formData);
   $("#sendMessageTbl-recipientRS").html(formData[1].value);
   if(formData[2].value >90){
     var timestamp = 0;
@@ -1175,6 +1261,7 @@ $("#readMessageForm").submit(function(event){
     {name:"timestamp",   value: timestamp},
     {name:"retrieve",    value: retrieve}
   ];
+  console.log(getBlockchainTransactions);
   $.ajax({
     type:"POST",
     url: apiNodeURL,
@@ -1188,13 +1275,15 @@ $("#readMessageForm").submit(function(event){
           var senderRS              = responseObj.transactions[i].senderRS;
           var recipientRS           = responseObj.transactions[i].recipientRS;
           var transactionID         = responseObj.transactions[i].transaction;
+          var fullHash              = responseObj.transactions[i].fullHash;
+          console.log(fullHash);
           var sendTime              = timestampToLocalFn(responseObj.transactions[i].timestamp);
           if("message" in responseObj.transactions[i].attachment){
-            var incomingMessage = "<tr><td >"+responseObj.transactions[i].attachment.message+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayJSONFn(&quot;"+transactionID+"&quot;)'>JSON</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+senderRS+"</td><td>"+recipientRS+"</td></tr>";
+            var incomingMessage = "<tr><td >"+responseObj.transactions[i].attachment.message+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>Transaction</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+senderRS+"</td><td>"+recipientRS+"</td></tr>";
           }else{
             var encryptedMessageData  = responseObj.transactions[i].attachment.encryptedMessage.data;
             var encryptedMessageNonce = responseObj.transactions[i].attachment.encryptedMessage.nonce;
-            var incomingMessage = "<tr><td>(data) "+encryptedMessageData+"<br>(nonce) "+encryptedMessageNonce+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayJSONFn(&quot;"+transactionID+"&quot;)'>JSON</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+senderRS+"</td><td>"+recipientRS+"</td></tr>";
+            var incomingMessage = "<tr><td>(data) "+encryptedMessageData+"<br>(nonce) "+encryptedMessageNonce+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>Transaction</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+senderRS+"</td><td>"+recipientRS+"</td></tr>";
           };
           $("#readMessageTable tbody").append(incomingMessage);
         }else{
@@ -1203,7 +1292,7 @@ $("#readMessageForm").submit(function(event){
             {name:"recipient",   value: responseObj.transactions[i].recipientRS},
             {name:"timestamp",   value: responseObj.transactions[i].timestamp},
             {name:"requestType", value: "readMessage"},
-            {name:"transaction", value: responseObj.transactions[i].transaction},
+            {name:"transaction", value: responseObj.transactions[i].fullHash},
             {name:"secretPhrase",value: formData[1].value},
           ];
             decryptMessageFn(decryptMessageData);
@@ -1212,12 +1301,13 @@ $("#readMessageForm").submit(function(event){
       };
     }
   });
-
 });
 
 //decrypt messageToEncrypt -----------------------------------------------------
 function decryptMessageFn(array){
   var apiCallData = array.slice(3);
+  apiCallData[1].value = NRS.fullHashToId(array[4].value);
+  console.log(apiCallData);
   $.ajax({
     type:"POST",
     url: apiNodeURL,
@@ -1226,15 +1316,14 @@ function decryptMessageFn(array){
       var responseObj=JSON.parse(response);
       var sendTime = timestampToLocalFn(array[2].value);
       if("message" in responseObj){
-        var incomingMessage = "<tr><td >"+responseObj.message+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayJSONFn(&quot;"+apiCallData[1].value+"&quot;)'>JSON</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+array[0].value+"</td><td>"+array[1].value+"</td></tr>";
+        var incomingMessage = "<tr><td >"+responseObj.message+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayTransactionFn(&quot;"+apiCallData[1].value+"&quot;)'>Transaction</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+array[0].value+"</td><td>"+array[1].value+"</td></tr>";
       }else{
-        var incomingMessage = "<tr><td >"+responseObj.decryptedMessage+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayJSONFn(&quot;"+apiCallData[1].value+"&quot;)'>JSON</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+array[0].value+"</td><td>"+array[1].value+"</td></tr>";
+        var incomingMessage = "<tr><td >"+responseObj.decryptedMessage+"</td><td><button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayTransactionFn(&quot;"+apiCallData[1].value+"&quot;)'>Transaction</button></td><td>"+sendTime[0]+"<br>"+sendTime[1]+"</td><td>"+array[0].value+"</td><td>"+array[1].value+"</td></tr>";
       };
       $("#readMessageTable tbody").append(incomingMessage);
       $("#readMessageJSON").after("<h6>readMessage</h6><textarea class='form-control border border-info' rows='5'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
     }
   });
-
 };
 
 
@@ -1283,7 +1372,7 @@ $("#tokenizeForm").submit(function(event){
         $("#tokenizeTblTime").html(localTime[0] + "," + localTime[1]);
         $("#tokenizeTblAssetID").html(assetID);
         $("#tokenizeTblFee").html(feeCC14);
-        $("#tokenizeTblFullHash").html("<button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
+        $("#tokenizeTblFullHash").html("<button type='button' class='btn btn-outline-secondary btn-sm' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
         $("#tokenizeTblFielToken").html(fielToken);
         $("#tokenizeTblFile").html(message);
         $("#tokenizeBroadcastTransactionBytes").val(transactionBytes);
@@ -1472,7 +1561,7 @@ $("#validateWalletInfoForm").submit(function(event){
         var localTime = timestampToLocalFn(timestamp);
         $("#newValidationTime").html( localTime[0] + " ; " + localTime[1] );
         $("#newValidationAccountRS").html(responseObj.accountRS);
-        $("#newValidationToken").html(responseObj.token);
+        $("#newValidationToken").val(responseObj.token);
         $("#validateWalletInfoNewTokenJSON").html("<h6>generateToken</h6><textarea class='form-control border border-info' rows='6'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       }
     });
@@ -1560,13 +1649,13 @@ $("#fileNFTValidateForm").submit(function(event){
           };
           $("#fileNFTValidateResultAccountRS").html(responseObj.senderRS);
           $("#fileNFTValidateResultName").html(responseObj.attachment.name);
-          $("#fileNFTValidateResultTokenID").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>");
+          $("#fileNFTValidateResultTokenID").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayTokenFn(&quot;"+tokenID+"&quot;)'>"+tokenID+"</button>");
           $("#fileNFTValidateResultFileName").html(descriptionObj.name);
           $("#fileNFTValidateResultFileSize").html(descriptionObj.size +" B ("+returnFileSizeFn(descriptionObj.size)+")");
           $("#licenseList").val(license).change();
           $("#fileNFTValidateResultAlgo").html(descriptionObj.algo);
           $("#fileNFTValidateResultFileHash").html(descriptionObj.hash);
-          $("#fileNFTValidateResultFullHash").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayJSONFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
+          $("#fileNFTValidateResultFullHash").html("<button type='button' class='btn btn-outline-dark border-0' onclick='displayTransactionFn(&quot;"+fullHash+"&quot;)'>"+fullHash+"</button>");
         };
       }
     });
@@ -1685,7 +1774,7 @@ function assetInfoFn(name){
       var unit        = myAssetBookObj[n].unit;
       var madeIn      = myAssetBookObj[n].madeIn;
       var productUrl  = myAssetBookObj[n].productUrl;
-      // var noFakeUrl   = myAssetBookObj[n].noFakeUrl;
+      var chatTokenID  = myAssetBookObj[n].chatTokenID;
       var coverage    = myAssetBookObj[n].coverage;
       $("#assetInforTbl-model").html(brand + " <a  href='"+productUrl+"'> "+model+"</a>");
       $("#assetInforTbl-barcode").html(barcode);
@@ -1693,6 +1782,7 @@ function assetInfoFn(name){
       $("#assetInforTbl-unit").html(unit);
       $("#assetInforTbl-madeIn").html(madeIn);
       $("#assetInforTbl-goodFor").html(coverage);
+      $("#titleSearchBBS").attr("onclick", "bulletinBoardFn2('"+chatTokenID+"')");
     };
   };
 };
@@ -1727,7 +1817,7 @@ function assetPropertyFn(assetID){
           var index = k+1;
           var displayTbl='<table class="table word-break table-bordered table-sm fs-6 border-info caption-top">'+
                     '<caption>Additional Information ' + index +' / '+i+' </caption>'+
-                    '<tr><td class="td-1">Setter</td><td class="td-2">' + setter +'</td></tr>'+
+                    '<tr><td class="td-1">Name</td><td class="td-2">' + setter +'</td></tr>'+
                     '<tr><td class="td-1">Wallet</td><td class="td-2">' + setterRS +'</td></tr>'+
                     '<tr><td class="td-1">Job Title</td><td class="td-2">' + jobFunction +'</td></tr>'+
                     '<tr><td class="td-1">Information</td><td class="td-2">' + property + ' : ' + value +'</td></tr></table>';
@@ -1905,7 +1995,7 @@ function assetTransferFn(assetID){
         };
         var index = length-i;
 
-        displayTbl='<button type="button" class="btn btn-sm btn-outline-dark border-0" onclick="displayJSONFn(&apos;'+assetTransfer+'&apos;)"><h5>Transaction '+ index +' / '+length+'</h5></button><br>'+
+        displayTbl='<button type="button" class="btn btn-sm btn-outline-dark border-0" onclick="displayTransactionFn(&apos;'+assetTransfer+'&apos;)"><h5>Transaction '+ index +' / '+length+'</h5></button><br>'+
                    '<table class="table word-break  border-info table-sm fs-6 table-bordered caption-top">'+
                      '<caption>Quantity transfered: ' + qty.toFixed(decimals) + '  &#128337; ' + localTime[0] +' ; '+ localTime[1]+ '</caption>'+
                      '<tr><td class="td-3">&#128228; Sender</td><td class="td-2">' +senderName +  '</td></tr>'+

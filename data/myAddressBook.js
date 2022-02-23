@@ -7,158 +7,158 @@
 
 var myAddressBookObj = [
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fnci9gliqdp0teho4sjshfmnqip9vh07999ntdjptvc7m6opobdc2figudsv0tgqqv81bjc3lo204n992sh15839crv01nfhpmbd6uco9bf43vh15",
     "walletInfo":{
       "accountRS":"CC14-49CE-CXZZ-3QHW-AH4JK",
-      "entityName":"CryptoC14 Technology 信息科技",
+      "entityName":"DiTiNOW LLC",
       "physicalAddress":"Houston, Texas, USA",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.ditinow.com/diti/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"validation"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fm2liqts1a8u05t1cb3k64n0rk5epd79oftdnnac4jtiu7vi348e1ma7jgumomgvbe0jcensblcnejk5evr34fm3fe908262co7omm0hc8b35f"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncibiliqul9h2m04skkrd2gqqmsd7pi1vb1ht87eb89q8sut7ufn1jrm2890ilsehvisj4fl2ktdop5pvjv8phtevfkbcf8b4b607djpntg653gv",
     "walletInfo":{
       "accountRS":"CC14-8P4T-FMJU-BXSK-252LG",
-      "entityName":"CryptoC14 Technology 信息科技",
+      "entityName":"DiTiNOW LLC",
       "physicalAddress":"Houston, Texas, USA",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.ditinow.com/diti/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"issuance"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fkeliqf4sapeg5aq7vje8738hgqp43gmkmp9tefp1s2mpo87vuhs32sai0vae1nb518cdt78spetljndqe9s889chlgu1ecn76rodchbghnf7q"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncideliq8ts5oi84djs5c65n3n7avi630qnnk7t4jm9806uvtvv4gquahcngaka9om5f7mvcbdesof8tth6f7duinoc1l3332rp2ikk21ojf1b4h",
     "walletInfo":{
       "accountRS":"CC14-H4L7-CTL7-2KMQ-7TCLW",
-      "entityName":"CryptoC14 Technology 信息科技",
+      "entityName":"DiTiNOW LLC",
       "physicalAddress":"Houston, Texas, USA",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.ditinow.com/diti/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"activation"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06ff8liqk0tqkmo5g2fn0oiiqvki5pbp99n5qijl9ggeusqolah5dtnug610k544kbgvktk03jkjsinhkhp2ooauugqc05s4k7kb8jsrc004d27r"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fnciecliqan3461845coimap3c90jbolc74alkn6t29koi26oe0foncovl0pg29bobghjhhofups0899irmf8mttc76l1ktlm42jgrsc5cac6qr0a",
     "walletInfo":{
       "accountRS":"CC14-HXAT-86F4-75BR-HWXSG",
-      "entityName":"CryptoC14 Technology 信息科技/Ego LLC",
+      "entityName":"DiTiNOW LLC",
       "physicalAddress":"Houston, Texas, USA",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.ditinow.com/diti/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"services"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fe4liqdto10505h2odu14rgm15874h397mukgskk9s5p9bf277lr4c0s8g72ldcm9vnck4s2d5kk254ade8h9fnk3tijs2a2is3feo23jv9ts4"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fneuksliqnkpnq9g4adfi2e1lujrcg51hfhmj9mct4kmplp23rqohcrmnpnggik4tkkn294i4pt8d3vtc0j0bis2lfqrqbuinpt2cculj2gbatvkf",
     "walletInfo":{
       "accountRS":"CC14-5KKJ-TXML-FKM3-4SLZB",
-      "entityName":"demo issuance wallet one. 演示品牌",
+      "entityName":"Demonstration account: issuance wallet one",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"issuance"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fdcliqsujp9m859a9ggbe0q74ahnt177fuvqk09arssbtm6khc0iu318r0t2co3ov4rp3c64ktfm9tdlcpfng9nb4imerb7n43kcsa0fp0jfmf"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncig8liqjv9miog4nlq12ich4sm8makis6gjlaus7q9j2qu4u8j3u8rqpirg2ps1rf4tkpbtbqfrrh318d047vni8nb47m9s8kpqtmi2sb5saole",
     "walletInfo":{
       "accountRS":"CC14-UEM4-XQBX-HZWW-G2FNW",
-      "entityName":"issuance wallet two. 演示品牌",
+      "entityName":"Demonstration account: issuance wallet one",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2021-10-31T23:59:59+00:00",
       "walletAssignment":"issuance"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fcmliqbqd5hs05n53bbpghb4i4l8j88dl0c2fb263ggu6ktqiio1g606kgi3r9svqs9q5a3d5dkc7al09p2q4jjv4o3dko80l9vb8u7nrcclqj"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncihmliqv278j9g4aevtsprvshh3p7ndchr827c4no733v2gd8lf9dss1pe0peu73c8qent85n58stc46ch4t8had3lafe10enl4hcobl1ihovpi",
     "walletInfo":{
       "accountRS":"CC14-F4Z6-3E9T-EXSK-HPYWH",
-      "entityName":"product activation wallet one. 演示品牌",
+      "entityName":"Demonstration account: product activation wallet one",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"activation"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fbsliqic8tpb859n7luveasc0ng2hf66ptdfhkt5kaf8fennf40kog5gbggtokvvdam0s1nkf08ga87oqmj0ifr00olqjg8vnshjf6229setlo"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fnciioliq019dlko4h2mssaap3kh4j5fp8dffhr649ou780v57v29fg5mlih0o42fk9rcsoho8o9ok2vn20l3q7iho6m8385rfl7dpp5nqotgpmkg",
     "walletInfo":{
       "accountRS":"CC14-DUPL-QDTD-ZGDJ-7YJTW",
-      "entityName":"product activation wallet two. 演示品牌",
+      "entityName":"Demonstration account: product activation wallet two",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"activation"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fb8liqn151sk05ek8ak2i6g39eeqp8dn11qigp4p6rprv6i86jl5icms50ktccpqp9afu1hpea4mh3jf7qkegr0a7qg7na8159bqpqqjm1u3io"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncijqliq9567bc040hgcf5un7tlcbbkl167mft11c5su0qbmhuedlrm07hlgvf1krqeqfjpbgsn848et8jae2qli0t0d05m469abij1e82hgcrmu",
     "walletInfo":{
       "accountRS":"CC14-6LFR-HCTG-F2LR-87ZB4",
-      "entityName":"services wallet. 演示品牌",
+      "entityName":"Demonstration account: services",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"services"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06fa6liqhbhbts05m71mo5mhd2mikgqo5nmu29p0ev44m5p0cpi7465ll8902050953b1dp9vi2722990hv4770ul2g3d3p13i87if82kauuvfp4"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fofbg8liqrnqbeqg43jovps3n67243rc0onbs4omssl5hb7sbd042ebvptpcgnp2pui2vcvu6071tsmpfpnmhvsmovh8dk0uurqt43t7akbq2tb8d",
     "walletInfo":{
       "accountRS":"CC14-CWWS-4MHT-ZKHY-DGUYC",
-      "entityName":"return wallet. 演示品牌",
+      "entityName":"Demonstration account: return",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"return"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06f70liqj1rsoq05rb36lmr0skuknpdjlt4q16kk03umdrbljhrdema1a4u0brh5k9mbqfg7adgrrv8ddhuv4lv46oq59skg0kdlu7li7arg9jj9"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fofbi6liqq5va9go4iiondpio0ggpggcoiort34jp5tmnm7h4vt78ht734pug69m1jk9ikkn5e859r22nlu23c17kf8dg5ejk6e9o2qv6r7tc750e",
     "walletInfo":{
       "accountRS":"CC14-TFDR-XQ3K-SJ5G-BX3EG",
-      "entityName":"return wallet. 演示品牌",
+      "entityName":"Demonstration account: authorized retailer",
       "physicalAddress":"somewhere",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"authorizedRetailer"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06f62liq5aehkm056as0ambpu3d0467qc6vl6j76ujlts25s5r3a2u0ertkgdr06045kurtno1uhfut671g4ro8k8qr734k4qctdplt972d6aisj"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncililiq0c3jmj84hpbjn7vgfi31eudf5s3u51khm7rfodn87r7hpc7r8nug25lbi0vc618pams3564jqaaku6sgbt6mev3vre0mg6v6frclasso",
     "walletInfo":{
       "accountRS":"CC14-85CR-6PAZ-SL4Y-CUCDA",
-      "entityName":"London retail store. 演示品牌",
+      "entityName":"Demonstration account: London store",
       "physicalAddress":"Washington Boulevard",
-      "noFakeURL":"http://www.cryptoc14.com/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"2022-12-31T23:59:59+00:00",
       "walletAssignment":"authorizedRetailer"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06f26liqp045a085674jhnrh8mml9i22t3nhmm0c9e7uhjej1pdogssmj5dgfl5uf4sfg5a7gi3d9b9eh5nbnc7c8h9qhi8hmm25898ohd9ler7m"
   },
 
   {
-    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncimsliqiod4o5840jjdnhgufe7c3lingibbtj104qrm68p25sf5dj67ohl0robclitlcsk7sd37ka89ago7isoksvhq40ukfkbfkae9rjepi1nu",
     "walletInfo":{
       "accountRS":"CC14-9QS5-MBBX-56MF-ESNEB",
-      "entityName":"演示品牌焚毁专用。钱包密钥已遗失，钱包内所有资产将无法转移。",
+      "entityName":"Demonstration account: dumpster",
       "physicalAddress":"",
-      "noFakeURL":"http://13.52.217.197/diti/",
+      "noFakeURL":"http://www.cryptoc14.com/",
       "expDate":"",
       "walletAssignment":"dumpster"
-    }
+    },
+    "validationCode":"crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06dealiqvcchhfg5dmuj88oaduce012b1ihfa99o3oei3u3io2mdqaqiqhl0ciieme0lfc1caan44hcqaftpju65i44eq1vfgvbs1jp1fp3tth1l"
   }
 ];

@@ -308,7 +308,7 @@
                         <div class="input-group mb-3">
                           <span class="input-group-text" >存证信息</span>
                           <input type="text" name="website" class="form-control" onclick="this.select();" id="genTokenInput" required>
-                          <input type="button" class="btn btn-outline-secondary" value="随机词组" onClick="newRandomSecretFn('genTokenInput')">
+                          <input type="button" class="btn btn-outline-secondary" value="随机词组" onClick="newRandomSecret2Fn('genTokenInput')">
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >钱包密钥</span>
@@ -408,6 +408,7 @@
 <script src="../js/3rdparty/nrs.util.js"></script>
 <script src="../js/3rdparty/nxtaddress.js"></script>
 <script src="../js/3rdparty/passphrasegenerator.js"></script>
+<script src="../js/3rdparty/passphrasegenerator2.js"></script>
 <script src="../js/scripts.cryptoc14.js" ></script>
 <script src='../data/conf.js' ></script>
 <script src='../data/myAddressBook.js' ></script>
@@ -420,7 +421,7 @@
   $(".demoAccount5RS").val("CC14-CWWS-4MHT-ZKHY-DGUYC");
   $(".demoAccount5RS").val("ci di wu yin 305 liang ge bi wang er bu ceng tou");
   $(".demoNFTName").val("FileNFT101");
-  $(".demoTokenID").val("9672428710107462724");
+  $(".demoTokenID").val("17721875186616844505");
 </script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -433,6 +434,7 @@
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
-  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
+  var transactionModal = new bootstrap.Modal(document.getElementById('transactionModal'), {keyboard: false});
+  var tokenModal = new bootstrap.Modal(document.getElementById('tokenModal'), {keyboard: false});
 </script>
 </html>

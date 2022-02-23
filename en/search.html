@@ -20,6 +20,37 @@
 	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
 	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
   }
+  .noScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  #postMessage:hover{
+    background-color: #129611;
+    border: 1px solid #129611;
+    color: white;
+  }
+
+  .inputButtonCSS{
+    border: 1px solid #CED4DA;
+  }
+
+  .messageBox{
+    height: calc(100vh - 120px);
+  }
+
+  .opacity25{
+    opacity: 50%;
+  }
+  .opacity25:hover{
+    opacity: 100%;
+  }
+
+  .position{
+    position:fixed;
+    right:0px;
+    top:30%;
+    z-index: 1;
+  }
 </style>
 </head>
 <body>
@@ -138,6 +169,9 @@
                       </tr>
                     </tbody>
                   </table>
+                  <div class="d-flex justify-content-center ">
+                    <button class="btn btn-secondary w-50" type="button" onClick="bulletinBoardFn2()" id="titleSearchBBS">&#128204; Bulletin Board</button>
+                  </div>
                   <div>
                     <p class="d-none" id="advisoryA0"><strong style="color:red">STOP! </strong>Unknown secure code, no blockchain record found. Please try again.</p>
                     <p class="d-none" id="advisoryA1"><strong style="color:red">STOP! </strong>Product was not authorized to built by <span class="bradnOwner">BRAND OWNER</span>.</p>
@@ -201,7 +235,7 @@
                                 </div>
                                 <div class="modal-body">
                                   <div class="container-fluid">
-                                    <div class="row">
+                                    <div class="row mb-3">
                                       <form id="validateWalletInfoForm">
                                         <div class="input-group mb-3">
                                           <textarea name="walletInfomation" class="form-control" rows='12' id="validateWalletInfoFormCode"></textarea>
@@ -219,7 +253,8 @@
                                     <div class="row">
                                       <div class="d-none" id="validateWalletInfoResponse"  >
                                         <div  class="overflow-auto">
-                                          <span id="validateWalletInfoResult"></span>
+                                          <p class="d-none" id="validateWalletInfoPassed">Validation passed!</p>
+                                          <p class="d-none" id="validateWalletInfoFailed">Validation failed!</p>
                                         </div>
                                           <span id="validateWalletInfoJSON"></span>
                                       </div>
@@ -295,6 +330,7 @@
                 </div>
               </div>
             </div>
+
             <div class="accordion-item" name="Transfer history">
               <h2 class="accordion-header" id="flipHistory">
                 <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelHistory" aria-expanded="false" aria-controls="panelHistory">
@@ -543,7 +579,7 @@
                           <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
                         </div>
                         <div class="input-group justify-content-md-end mb-3">
-                          <input type="reset" class="btn btn-outline-dark w-50"  value="&#x1F503; Reset" >
+                          <input type="reset" class="btn btn-outline-dark w-50" value="&#x1F503; Reset" >
                           <input type="submit" class="btn btn-dark w-50" value="&#x2705; transactionByte" >
                         </div>
                       </form>
@@ -603,6 +639,200 @@
         </div>
       </div><!-- Action modal end ===========================================-->
     </div>
+    <div name="Bulletin modal">
+      <div class="modal fade " id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background-color:#F5F5F5">
+          <div class="modal-body">
+            <div class="btn-group-vertical position" >
+              <button type="button" id="linktab0" class="btn btn-outline-secondary btn-sm opacity25" data-bs-dismiss="modal">&#10006;</button>
+              <button type="button" id="linktab1" class="btn btn-outline-secondary btn-sm opacity25 active" ><span style="writing-mode: vertical-rl; "><span id="linktab1Icon">&#x1F503;</span> Bulletin Board</span></button>
+              <button type="button" id="linktab2" class="btn btn-outline-secondary btn-sm opacity25" onclick="tabFn('tab2')"><span style="writing-mode: vertical-rl; ">&#128682; Register</span></button>
+              <button type="button" id="linktab3" class="btn btn-outline-secondary btn-sm opacity25" onclick="tabFn('tab3')"><span style="writing-mode: vertical-rl; ">&#128296; New Topic</span></button>
+            </div>
+
+            <div id="tab1" class="overflow-auto noScroll messageBox"  name="tab billboard ">
+              <div id="billboard">
+                <span id="displayMessage"></span>
+              </div>
+              <div class="" id="autoJump"></div>
+            </div>
+
+            <div id="tab2" class="d-none" name="tab account">
+              <div class="mt-3">
+                <form>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Chat Room</span>
+                    <input type="text" class="form-control chatTokenID" id="selectedChatID" name='chatRoom' list="chatRoomList" placeholder="Enter chat room ID" autocomplete="on" required>
+                    <datalist id="chatRoomList">
+                      <option value="3922836936387876787"id="chatIDLastOnList">Demo - Crypto Bulletin Board 公告栏</option>
+                      <!-- <option value="7979927564843058923">for CryptoC14</option> -->
+                    </datalist>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Passphrase</span>
+                    <input type="password" class="form-control chatAccountPW" name='passphrase' id='chatWalletPassphrase' placeholder="For wallet dedicated for Chat Room" >
+                    <span class="input-group-text fs-4"  id="chatWalletPassphraseIcon" onclick="togglePasswordFn('chatWalletPassphrase')">&#128584; </span>
+                  </div>
+                  <div class="input-group mb-3 justify-content-end">
+                    <input type="button" class="btn btn-outline-secondary w-25" onclick="chatLoginFn()" value="&#128190; Save">
+                    <input type="button" class="btn btn-secondary w-25" onclick="chatEnterFn()" value="&#128682; Enter">
+                  </div>
+                </form>
+              </div>
+              <div class="d-none mb-3" id="chatSummary" style="width: calc(100vw - 60px)">
+                <div class="border border-info mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text">Chat Token ID</span>
+                    <input type="text" class="form-control chatTokenID" readonly>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Description</span>
+                    <input type="text" class="form-control" id="summaryChatDesc" readonly>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Management</span>
+                    <input type="text" class="form-control" id="summaryIssuerRS" readonly>
+                  </div>
+                </div>
+                <div class="border border-info ">
+                  <div class="input-group">
+                    <span class="input-group-text">User Wallet</span>
+                    <input type="text" class="form-control chatAccountRS" readonly>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Publik Key</span>
+                    <input type="text" class="form-control chatAccountPK" value="尚未" readonly>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Passphrase</span>
+                    <input type="password" class="form-control chatAccountPW" readonly>
+                  </div>
+                </div>
+              </div>
+              <div style="width: calc(100vw - 60px)">
+                <p>This is not a replacement for imstance message. All messages will be posted without encryption.</p>
+                <p class="d-none" id="chatAccountEmpty">Please passphrase for the wallet address use for chatting.</p>
+                <p class="d-none" id="chatTokenIDEmpty">Please enter chat room token ID</p>
+                <p class="d-none" id="chatTokenIDNotFound">Unknown chat room token ID</p>
+              </div>
+            </div>
+
+            <div id="tab3" class="d-none" name="tab management">
+              <div class="mt-3">
+                <form id="issueChatTokenForm">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" >Description</span>
+                    <input class="form-control" type='text' name='description' maxlength="500" placeholder="Demo - Crypto Bulletin Board 公告栏" required>
+                  </div>
+                  <div class="input-group mb-3" >
+                    <span class="input-group-text" >Passphrase</span>
+                    <input class="form-control demoAccount4PW" type='password' name='secretPhrase' id="chatTokenFormPassword" required>
+                    <span class="input-group-text fs-4"  id="chatTokenFormPasswordIcon" onclick="togglePasswordFn('chatTokenFormPassword')">&#128584;</span>
+                  </div>
+                  <div class="input-group justify-content-end mb-3" >
+                    <input type='reset' class='btn btn-outline-secondary w-25' value='&#x1F503; Reset'/>
+                    <input type='submit' class='btn btn-secondary w-25' value='Create' />
+                  </div>
+                </form>
+              </div>
+              <div class="d-none  mb-3" id="issueChatTokenFormSummary">
+                <table class="table table-bordered border-info">
+                  <tr><td>Chat Room ID</td><td><span id="issueChatTokenFormID"></span></td></tr>
+                  <tr><td>Description</td><td><span id="issueChatTokenFormDesc"></span></td></tr>
+                  <tr><td>Issuer</td><td><span id="issueChatTokenFormRS"></span></td></tr>
+                  <tr><td>Full Hash</td><td><span id="issueChatTokenFormIDFullhash"></td></tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="w-100 fixed-bottom" name="message input dialog">
+              <form id="postMessageForm">
+                <div class="input-group " >
+                  <textarea class="form-control" rows="2" name='message' id="chatMessageTextarea" required></textarea>
+                  <input type="submit" class="btn btn-secondary" value="&#128172; Post " id="postMessage">
+                </div>
+                <div class="input-group" >
+                  <button class="btn btn-outline-secondary btn-sm fs-4 inputButtonCSS" type="button" data-bs-toggle="modal" data-bs-target="#emojiModal">&#128522;</button>
+                  <!-- <button class="btn btn-outline-secondary btn-sm fs-4 inputButtonCSS" type="button" onClick="newRandomSecretFn('chatMessageTextarea')">&#127922;</button> -->
+                  <input type="text" class="form-control" name='attachment' placeholder="Attachment, CID or URL only">
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="modal fade " id="emojiModal" tabindex="-1" aria-labelledby="emojiModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content border border-info">
+          <div class="modal-body">
+            <table class="table table-sm table-bordered border-secondary fs-3 text-center" id="emojiTbl">
+              <tr><td>&#128513;</td><td>&#128514;</td><td>&#128515;</td><td>&#128516;</td><td>&#128517;</td><td>&#128518;</td></tr>
+              <tr><td>&#128519;</td><td>&#128520;</td><td>&#128521;</td><td>&#128522;</td><td>&#128523;</td><td>&#128524;</td></tr>
+              <tr><td>&#128525;</td><td>&#128526;</td><td>&#128527;</td><td>&#128528;</td><td>&#128530;</td><td>&#128531;</td></tr>
+              <tr><td>&#128532;</td><td>&#128534;</td><td>&#128536;</td><td>&#128538;</td><td>&#128540;</td><td>&#128541;</td></tr>
+              <tr><td>&#128542;</td><td>&#128544;</td><td>&#128545;</td><td>&#128546;</td><td>&#128548;</td><td>&#128549;</td></tr>
+              <tr><td>&#128552;</td><td>&#128553;</td><td>&#128554;</td><td>&#128555;</td><td>&#128557;</td><td>&#128560;</td></tr>
+              <tr><td>&#128561;</td><td>&#128562;</td><td>&#128563;</td><td>&#128565;</td><td>&#128566;</td><td>&#128567;</td></tr>
+              <tr><td><i class='far fa-grin-beam-sweat'></i></td><td><i class="far fa-grin-squint-tears"></i></td><td><i class="far fa-grin-stars"></i></td><td><i class="far fa-grin-tears"></i></td><td><i class='far fa-grin-tongue-squint'></i></td><td><i class="far fa-meh-rolling-eyes"></i></td></tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary w-25" data-bs-dismiss="modal" aria-label="close">&#10006; Close</button>
+        </div>
+        </div>
+      </div>
+    </div>
+      <div class="modal fade" id="newChatAccountModal" tabindex="-1" aria-labelledby="newChatAccountModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel">Unknown account, please register the account by 【Request CC14 Token】.</h5>
+        </div>
+          <div class="modal-body">
+            <div id="requestCC14Action" >
+              <form id="requestCC14Form" >
+                <div class="input-group mb-3" >
+                  <span class="input-group-text" >Wallet</span>
+                  <input class="form-control chatAccountRS" type="text"  readonly>
+                </div>
+                <div class="input-group mb-3" >
+                  <span class="input-group-text" >Public Key</span>
+                  <input class="form-control chatAccountPK" type="text" readonly>
+                </div>
+                <div class="input-group mb-3" >
+                  <span class="input-group-text" >Passphrase</span>
+                  <input class="form-control chatAccountPW" type="text" placeholder="由应用自动输入" readonly>
+                </div>
+                <div class="input-group justify-content-md-end">
+                  <button type="button" class="btn btn-outline-secondary w-50" data-bs-dismiss="modal" aria-label="close">&#10006; Close</button>
+                  <input type="submit" class="btn btn-secondary w-50" value="申请 CC14 通证">
+                </div>
+              </form>
+            </div>
+            <div class="d-none" id="requestCC14Response" >
+              <div class="overflow-auto">
+                <h5>Summary:</h5>
+                <div>
+                  <p class="d-none" id="requestCC14incorrect">Unable to transfer. Please verify the wallet address entered.</p>
+                  <p class="d-none" id="requestCC14unconfirmedTX">Unconfirmed transaction found. Please retry after one minute.</p>
+                  <p class="d-none" id="requestCC14exceed">Provided wallet received over 2000 CC14 token from distributer. For addition amount please contact <a href="mailto:jieh.lei@gmail.com">DiTiNOW</a>, or WeChat ID：fengyun_houston .</a></p>
+                  <p class="d-none" id="requestCC14approved">Request approved. 500 CC14 token should arrive after one minute.</p>
+                </div>
+              </div>
+              <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                <h5>Response:</h5>
+                <div id="requestCC14JSON">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
     </div><!-- container end =============================================== -->
     <div style="position:fixed; opacity:0.5; bottom:100px; right:20px" >
       <h1><a class="text-decoration-none" href="#toTop">&#9195;</a></h1>
@@ -637,6 +867,7 @@ var isNode = false;
 <script src="../js/3rdparty/nxtaddress.js"></script>
 <script src="../js/3rdparty/passphrasegenerator.js"></script>
 <script src="../js/scripts.cryptoc14.js" ></script>
+<script src="../js/bulletin.cryptoc14.js" ></script>
 <script src='../data/conf.js' ></script>
 <script src='../data/myAddressBook.js' ></script>
 <script src='../data/myAssetBook.js' ></script>
@@ -652,11 +883,22 @@ var isNode = false;
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
-  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
+  var transactionModal = new bootstrap.Modal(document.getElementById('transactionModal'), {keyboard: false});
+  var tokenModal = new bootstrap.Modal(document.getElementById('tokenModal'), {keyboard: false});
+  var newChatAccountModal = new bootstrap.Modal(document.getElementById('newChatAccountModal'), {keyboard: false});
+  var chatModal = new bootstrap.Modal(document.getElementById('chatModal'), {keyboard: false});
 </script>
 <script>
   $('#consumerWallet').val(localStorage.getItem("myWalletLS"));
   $('#consumerPubKey').val(localStorage.getItem("myPubKeyLS"));
   $('#recipientWallet').val(localStorage.getItem("myWalletLS"));
+</script>
+<script>
+  $(".chatTokenID").val(localStorage.getItem("chatTokenID"));
+  $(".chatAccountRS").val(localStorage.getItem("chatWalletRS"));
+  $(".chatAccountPK").val(localStorage.getItem("chatWalletPK"));
+  $(".chatAccountPW").val(localStorage.getItem("chatWalletPW"));
+  $("#linktab1").attr("onclick", "postFn('"+localStorage.getItem('chatTokenID')+"')");
+  chatRoomListOptionFn();
 </script>
 </html>

@@ -53,3 +53,11 @@ td.alert3{color: red; font-weight:  bold; font-size: 0.8em}
     height: 1px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
 }
+.myPost {
+  background-color: #9EEA6A;
+  border-radius: 8px;
+}
+.notMyPost {
+  background-color: white;
+  border-radius: 8px;
+}

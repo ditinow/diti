@@ -509,7 +509,7 @@
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >钱包密钥</span>
-                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" placeholder="(Optional) for generating a new validation code">
+                          <input class="form-control" type='password' name='secretPhrase' id="validateWalletInfoFormPassword" placeholder="(选项) 用于生成新的核实码">
                           <span class="input-group-text fs-4"  id="validateWalletInfoFormPasswordIcon" onclick="togglePasswordFn('validateWalletInfoFormPassword')">&#128584;</span>
                         </div>
                         <div class="input-group justify-content-end mb-3" >
@@ -531,7 +531,7 @@
                       <p>新生成的核实码</p>
                       <p>生成时间：<span id="newValidationTime"></span></p>
                       <p>生成钱包：<span id="newValidationAccountRS"></span></p>
-                      <p>新核实码：<span id="newValidationToken"></span></p>
+                      <p>新核实码：<input class=" border-0 w-75" type="text" id="newValidationToken"></p>
                     </div>
                     <div>
                       <h5>JSON response</h5>
@@ -663,6 +663,7 @@
   $(".demoIssueAssetName").val("GX1011234");
   $(".demoIssuanceRS").val("CC14-5KKJ-TXML-FKM3-4SLZB");
   $(".demoIssuancePW").val("ci di wu yin 300 liang ge bi wang er bu ceng tou");
+  $("#issueAssetPassword").val("ci di wu yin 301 liang ge bi wang er bu ceng tou");
   $(".demoActivationRS").val("CC14-F4Z6-3E9T-EXSK-HPYWH");
   $(".demoActivationPW").val("ci di wu yin 302 liang ge bi wang er bu ceng tou");
   $(".demoDumpsterRS").val("CC14-9QS5-MBBX-56MF-ESNEB");
@@ -676,15 +677,15 @@
   $(".demoTextareaDesc").val(textareaDesc);
   var textareaWallet = '{ \r\n\t'+
     '"walletInfo":{ \r\n\t\t'+
-      '"accountRS":"CC14-5KKJ-TXML-FKM3-4SLZB", \r\n\t\t'+
-      '"entityName":"demoissuance wallet one. 演示品牌", \r\n\t\t'+
-      '"physicalAddress":"somewhere", \r\n\t\t'+
-      '"noFakeURL":"http://13.52.217.197/diti/", \r\n\t\t'+
-      '"expDate":"2022-12-31T23:59:59+00:00", \r\n\t\t'+
-      '"walletAssignment":"issuance" \r\n\t'+
+      '"accountRS":"CC14-9QS5-MBBX-56MF-ESNEB", \r\n\t\t'+
+      '"entityName":"Demonstration account: dumpster", \r\n\t\t'+
+      '"physicalAddress":"", \r\n\t\t'+
+      '"noFakeURL":"http://www.cryptoc14.com/", \r\n\t\t'+
+      '"expDate":"", \r\n\t\t'+
+      '"walletAssignment":"dumpster" \r\n\t'+
     '}, \r\n\t'+
-    '"validationCode" : "crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fncifcliqohusrf84dqt56k5n88fuqrf0dokigkvv7e65d0sba5hlnq44lm1g64ovc30cbim4t1v3k8qc7e05man44p3de7t1pgopmtpoqi8bj0l1" \r\n'+
-  '}'
+    '"validationCode" : "crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3f06dealiqvcchhfg5dmuj88oaduce012b1ihfa99o3oei3u3io2mdqaqiqhl0ciieme0lfc1caan44hcqaftpju65i44eq1vfgvbs1jp1fp3tth1l" \r\n'+
+  '}';
   $(".demoTextareaWallet").val(textareaWallet);
 </script>
 <script>
@@ -700,6 +701,7 @@
   var contactUsModal = new bootstrap.Modal(document.getElementById('contactUsModal'), {keyboard: false});
   var termModal = new bootstrap.Modal(document.getElementById('termModal'), {keyboard: false});
   var legalModal = new bootstrap.Modal(document.getElementById('legalModal'), {keyboard: false});
-  var jsonModal = new bootstrap.Modal(document.getElementById('jsonModal'), {keyboard: false});
+  var transactionModal = new bootstrap.Modal(document.getElementById('transactionModal'), {keyboard: false});
+  var tokenModal = new bootstrap.Modal(document.getElementById('tokenModal'), {keyboard: false});
 </script>
 </html>
